@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import Star from 'react-native-star-view';
+//npm install --save react-native-star-view
 
 const styles = StyleSheet.create({
     container: {

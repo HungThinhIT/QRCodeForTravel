@@ -4,18 +4,17 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 //Import screens
 import Home from "../screens/Home";
-import Menu from "../screens/Menu";
+import Settings from "../screens/Settings";
 import Profile from "../screens/Profile";
 
 const Tab = createMaterialBottomTabNavigator();
-
 
 export default function MyTabs() {
     return (
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Profile" component={Profile} />
-            <Tab.Screen name="Settings" component={Menu} />
+            <Tab.Screen name="Settings" component={Settings} />
         </Tab.Navigator>
     );
 }

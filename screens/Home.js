@@ -31,7 +31,6 @@ const Item = ({ name, img,add }) => (
     </TouchableOpacity>
 );
 
-
 export default function HomeScreen() {
     const renderItem = ({ item }) => (
         <Item name={item.name} img={item.img} add={item.add}/>

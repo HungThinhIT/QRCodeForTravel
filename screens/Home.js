@@ -44,10 +44,10 @@ export default function HomeScreen() {
             </View>
             
             <FlatList
+                style={styles.listView}
                 data={categories}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
-                numColumns={1}
+                keyExtractor={item => item.id.toString()}
             />
         </SafeAreaView>
     );
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF',
         shadowColor:'#f20',
         marginBottom:10,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
     qrtr:{
         margin:15,
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
     },
     Catimg:{
         width:60,
-        height:60
+        height:60,
+        flex: 1,
     },
     header:{
         flexDirection: 'row'
@@ -96,9 +98,12 @@ const styles = StyleSheet.create({
         marginLeft:10,
         flexGrow:2,
         flex: 2,
-        
     },
     cont:{
         flexDirection: "column",
+        flex: 5,
+    },
+    listView: {
+        paddingHorizontal: 10,
     }
   });

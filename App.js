@@ -3,13 +3,17 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import MyTabs from "./navigation/Screens";
+import AddLocation from "./screens/AddLocation";
 
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <MyTabs />
+    // </NavigationContainer>
+    <AddLocation>
+
+    </AddLocation>
   );
 }
 

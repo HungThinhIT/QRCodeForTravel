@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import React, { useState } from "react";
-
+import {db, auth} from "../firebase/firebase"
 
 const ProfileScreen = ({ navigation, route }) => {
     return <Text>This is {route.params.name}'s profile</Text>;
@@ -20,7 +20,10 @@ export default function Login({ navigation, props }) {
     const [pass, setPass] = useState("");
 
     const handleSubmit = (evt) => {
-        Alert.alert(`Submitting Name ${name} ${pass}`);
+        auth
+        .signInWithEmailAndPassword(name, pass)
+        .then(() => navigation.navigate('Main'))
+        .catch(error => Alert.alert("Message:"+ error.message))
     }
 
     return (
@@ -62,28 +65,6 @@ export default function Login({ navigation, props }) {
 
                     </View>
                 </View>
-
-                {/* <View style={{ flex: 1, marginTop: 10, flexDirection: "row" }}>
-                    <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={onChangeNumber}
-                            value={number}
-                            placeholder="useless placeholder"
-                            keyboardType="numeric"
-                        />
-                    </View>
-                    <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={onChangeNumber}
-                            value={number}
-                            placeholder="useless placeholder"
-                            keyboardType="numeric"
-                        />
-                    </View>
-                </View> */}
-
             </View>
         </View >
     );

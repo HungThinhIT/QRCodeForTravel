@@ -42,11 +42,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fff'
     },
+    commonInput: {
+        marginTop: 10,
+        width: 250
+    },
 });
 const ProfileScreen = ({ navigation, route }) => {
     return <Text>This is {route.params.name}'s profile</Text>;
 };
-export default function Login({ navigation }) {
+export default function SignUp({ navigation }) {
     const [text, onChangeText] = React.useState("Useless Text");
     const [number, onChangeNumber] = React.useState(null);
     const [isSelected, setSelection] = React.useState(false);
@@ -60,7 +64,7 @@ export default function Login({ navigation }) {
                 <View style={styles.space}>
                     <Image
                         style={{
-                            marginTop: 30,
+                            marginTop: 25,
                             width: 100,
                             height: 100,
                         }}
@@ -68,49 +72,23 @@ export default function Login({ navigation }) {
                     />
                 </View>
                 <View style={{ flex: 1, }}>
-                    <View style={{ marginTop: 10, width: 250 }}>
+                    <View style={styles.commonInput}>
                         <LabelInputText initText="nhavo@gmail.com" label="Email" />
                     </View>
-                    <View style={{ marginTop: 10, width: 250 }}>
+                    <View style={styles.commonInput}>
+                        <LabelInputText initText="0905905905" label="Điện thoại" />
+                    </View>
+                    <View style={styles.commonInput}>
                         <LabelInputText initText="*****" label="Mật Khẩu" />
                     </View>
-                    <View style={{ marginTop: 5 }}>
-                        <View style={{ flexDirection: "row" }}>
-                            <CheckBox
-                                value={isSelected}
-                                onValueChange={setSelection}
-                                style={styles.checkbox}
-                            />
-                            <Text style={{ marginTop: 5 }}>Ghi nhớ tài khoản của tôi</Text>
-                        </View>
-                        <View style={{ marginTop: 5 }}>
-                            <ButtonModel label="ĐĂNG NHẬP" onPress={() => Alert.alert('Left button pressed')} />
-                            <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>
-                        </View>
+                    <View style={styles.commonInput}>
+                        <LabelInputText initText="*****" label="Xác nhận mật Khẩu" />
+                    </View>
+                    <View style={{ marginTop: 20 }}>
+                        <ButtonModel label="ĐĂNG NHẬP" onPress={() => Alert.alert('Left button pressed')} />
 
                     </View>
                 </View>
-
-                {/* <View style={{ flex: 1, marginTop: 10, flexDirection: "row" }}>
-                    <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={onChangeNumber}
-                            value={number}
-                            placeholder="useless placeholder"
-                            keyboardType="numeric"
-                        />
-                    </View>
-                    <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={onChangeNumber}
-                            value={number}
-                            placeholder="useless placeholder"
-                            keyboardType="numeric"
-                        />
-                    </View>
-                </View> */}
 
             </View>
         </View >

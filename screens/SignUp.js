@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import * as React from "react";
+import React, { useState } from "react";
 import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 
@@ -50,13 +50,23 @@ const styles = StyleSheet.create({
 const ProfileScreen = ({ navigation, route }) => {
     return <Text>This is {route.params.name}'s profile</Text>;
 };
-export default function SignUp({ navigation }) {
+export default function SignUp({ navigation, props }) {
     const [text, onChangeText] = React.useState("Useless Text");
     const [number, onChangeNumber] = React.useState(null);
     const [isSelected, setSelection] = React.useState(false);
     const SignUp = () => {
         navigation.navigate('Sign Up');
     };
+
+
+    const [name, setName] = useState("");
+    const [pass, setPass] = useState("");
+    const [phone, setPhone] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");
+
+    const handleSubmit = (evt) => {
+        Alert.alert(`Submitting Name ${name} ${pass}`);
+    }
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A7FD9', flexDirection: 'column' }}>
@@ -73,19 +83,20 @@ export default function SignUp({ navigation }) {
                 </View>
                 <View style={{ flex: 1, }}>
                     <View style={styles.commonInput}>
-                        <LabelInputText initText="nhavo@gmail.com" label="Email" />
+                        <LabelInputText initText="nhavo@gmail.com" label="Email"
+                            onChangeText={name => setName(name)} defaultValue={name} secureTextEntry={false} />
                     </View>
                     <View style={styles.commonInput}>
-                        <LabelInputText initText="0905905905" label="Điện thoại" />
+                        <LabelInputText initText="0905905905" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} secureTextEntry={false} />
                     </View>
                     <View style={styles.commonInput}>
-                        <LabelInputText initText="*****" label="Mật Khẩu" />
+                        <LabelInputText initText="*****" label="Mật Khẩu" onChangeText={pass => setPass(pass)} defaultValue={pass} secureTextEntry={true} />
                     </View>
                     <View style={styles.commonInput}>
-                        <LabelInputText initText="*****" label="Xác nhận mật Khẩu" />
+                        <LabelInputText initText="*****" label="Xác nhận mật Khẩu" onChangeText={confirmPass => setConfirmPass(confirmPass)} defaultValue={confirmPass} secureTextEntry={true} />
                     </View>
                     <View style={{ marginTop: 20 }}>
-                        <ButtonModel label="ĐĂNG NHẬP" onPress={() => Alert.alert('Left button pressed')} />
+                        <ButtonModel label="ĐĂNG KÝ" onPress={handleSubmit} />
 
                     </View>
                 </View>

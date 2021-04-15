@@ -1,25 +1,25 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, SafeAreaView } from 'react-native';
 // import { withNavigation } from '@react-navigation/compat';
 
 const LabelInputText = (props) => {
-    const { label, initText } = props
-    const [text, onChangeText] = useState("");
+    const { label, initText, onChangeText, secureTextEntry } = props
 
     return (
         <SafeAreaView style={styles.formInput}>
             <Text>{label}</Text>
             <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={initText}
+                style={styles.input}
+                onChangeText={onChangeText}
+                placeholder={initText}
+                secureTextEntry={secureTextEntry}
             />
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    formInput:{
+    formInput: {
         marginTop: 10,
     },
     input: {
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         width: '100%'
     },
-  });
+});
 
 export default LabelInputText;

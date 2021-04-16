@@ -32,31 +32,31 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <KeyboardAwareScrollView>
-            <View style={styles.firstPart}>
-                <View style={styles.centerPart}>
-                    <View style={styles.space}>
-                        <Image
-                            style={{
-                                marginTop: 30,
-                                width: 100,
-                                height: 100,
-                            }}
-                            source={require("../assets/logo.png")}
-                        />
-                    </View>
-                    <View style={{ flex: 1, }}>
-                        <View style={{ marginTop: 10, width: 250 }}>
-                            <LabelInputText initText="nhavo@gmail.com" label="Email"
-                                onChangeText={name => setName(name)} defaultValue={name} secureTextEntry={false} />
+            <KeyboardAwareScrollView>
+                <View style={styles.firstPart}>
+                    <View style={styles.centerPart}>
+                        <View style={styles.space}>
+                            <Image
+                                style={{
+                                    marginTop: 30,
+                                    width: 100,
+                                    height: 100,
+                                }}
+                                source={require("../assets/logo.png")}
+                            />
                         </View>
-                        <View style={{ marginTop: 10, width: 250 }}>
-                            <LabelInputText initText="*****" label="Mật Khẩu"
-                                onChangeText={pass => setPass(pass)} defaultValue={pass} secureTextEntry={true} />
+                        <View style={{ flex: 1, }}>
+                            <View style={{ marginTop: 10, width: 250 }}>
+                                <LabelInputText initText="nhavo@gmail.com" label="Email"
+                                    onChangeText={name => setName(name)} defaultValue={name} secureTextEntry={false} />
+                            </View>
+                            <View style={{ marginTop: 10, width: 250 }}>
+                                <LabelInputText initText="*****" label="Mật Khẩu"
+                                    onChangeText={pass => setPass(pass)} defaultValue={pass} secureTextEntry={true} />
 
-                        </View>
-                        <View style={{ marginTop: 5 }}>
-                            {/* <View style={{ flexDirection: "row" }}>
+                            </View>
+                            <View style={{ marginTop: 5 }}>
+                                {/* <View style={{ flexDirection: "row" }}>
                             <CheckBox
                                 value={isSelected}
                                 onValueChange={setSelection}
@@ -64,15 +64,15 @@ export default function Login({ navigation }) {
                             />
                             <Text style={{ marginTop: 5 }}>Ghi nhớ tài khoản của tôi</Text>
                         </View> */}
-                            <View style={{ marginTop: 5 }}>
-                                <ButtonModel label="ĐĂNG NHẬP" onPress={() => handleSubmit()} />
-                                <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>
+                                <View style={{ marginTop: 5 }}>
+                                    <ButtonModel label="ĐĂNG NHẬP" onPress={() => handleSubmit()} />
+                                    <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
-            </View >
-        </KeyboardAwareScrollView>
+                </View >
+            </KeyboardAwareScrollView>
     );
 }
 const styles = StyleSheet.create({

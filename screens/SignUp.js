@@ -2,8 +2,8 @@ import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
-import {db, auth} from "../firebase/firebase";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { db, auth } from "../firebase/firebase";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const ProfileScreen = ({ navigation, route }) => {
     return <Text>This is {route.params.name}'s profile</Text>;
@@ -20,30 +20,30 @@ export default function SignUp({ navigation, props }) {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
-    
-    const  storeNewAccount =() => {
+
+    const storeNewAccount = () => {
         db.collection("users").doc(email.toString()).set({
-            address:"",
-            fullname:"",
-            gender:"",
-            moble_phone:phone,
-            point:2000,
-          }).then(function() {
+            address: "",
+            fullname: "",
+            gender: "",
+            moble_phone: phone,
+            point: 2000,
+        }).then(function () {
             Alert.alert('Thanh cong!!!');
             Login();
-          });
+        });
     }
     const handleSubmit = (evt) => {
-        if(email ==="" || password ==="" || confirmPass==="" || phone ===""){
-            Alert.alert(`Vui lòng nhập đầy đủ thông tin!`+uid);
-        }else{
-            if(password === confirmPass){
+        if (email === "" || password === "" || confirmPass === "" || phone === "") {
+            Alert.alert(`Vui lòng nhập đầy đủ thông tin!` + uid);
+        } else {
+            if (password === confirmPass) {
                 auth
-                .createUserWithEmailAndPassword(email, password)
-                .then(() => storeNewAccount())
-                .catch(error =>Alert.alert("Message:"+ error.message))
+                    .createUserWithEmailAndPassword(email, password)
+                    .then(() => storeNewAccount())
+                    .catch(error => Alert.alert("Message:" + error.message))
                 // navigation.navigate('Log In')
-            }else{
+            } else {
                 Alert.alert(`Mật khẩu không trùng khớp!`);
             }
         }
@@ -51,12 +51,12 @@ export default function SignUp({ navigation, props }) {
 
     return (
         <KeyboardAwareScrollView>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A7FD9', flexDirection: 'column' }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center', width: '80%', height: "80%", borderTopLeftRadius: 20, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: '#fff' }}>
+            <View style={styles.firstPart}>
+                <View style={styles.centerPart}>
                     <View style={styles.space}>
                         <Image
                             style={{
-                                marginTop: 25,
+                                marginTop: 20,
                                 width: 100,
                                 height: 100,
                             }}
@@ -89,6 +89,14 @@ export default function SignUp({ navigation, props }) {
 }
 
 const styles = StyleSheet.create({
+    firstPart: {
+        flex: 1,
+        height: 700,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#0A7FD9',
+        flexDirection: 'column'
+    },
     container: {
         paddingTop: 50,
     },
@@ -130,4 +138,12 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: 250
     },
+    centerPart: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '80%',
+        height: "83%",
+        borderRadius: 20,
+        backgroundColor: '#fff'
+    }
 });

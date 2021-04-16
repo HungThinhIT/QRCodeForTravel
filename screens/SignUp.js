@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from "react";
-import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, CheckBox } from 'react-native';
+import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, Dimensions,CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import { db, auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -91,7 +91,7 @@ export default function SignUp({ navigation, props }) {
 const styles = StyleSheet.create({
     firstPart: {
         flex: 1,
-        height: 700,
+        height: Dimensions.get('window').height,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#0A7FD9',
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: "83%",
+        height: "80%",
         borderRadius: 20,
         backgroundColor: '#fff'
     }

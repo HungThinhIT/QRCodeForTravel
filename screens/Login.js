@@ -62,7 +62,6 @@ export default function Login({ navigation, props }) {
                             <ButtonModel label="ĐĂNG NHẬP" onPress={() => handleSubmit()} />
                             <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>
                         </View>
-
                     </View>
                 </View>
             </View>

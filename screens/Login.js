@@ -1,23 +1,27 @@
 import 'react-native-gesture-handler';
-// import * as React from "react";
-import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, CheckBox } from 'react-native';
+import { Text, View, Image, StyleSheet, Alert, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import {db, auth} from "../firebase/firebase"
 
-const ProfileScreen = ({ navigation, route }) => {
-    return <Text>This is {route.params.name}'s profile</Text>;
-};
-export default function Login({ navigation, props }) {
+// const ProfileScreen = ({ navigation, route }) => {
+//     return <Text>This is {route.params.name}'s profile</Text>;
+// };
+export default function Login({navigation}) {
+    useEffect(() => {
+        auth.onAuthStateChanged(user => {
+            if(user)
+                navigation.navigate('Main')
+            })
+        });
     const [text, onChangeText] = React.useState("Useless Text");
     const [number, onChangeNumber] = React.useState(null);
     const [isSelected, setSelection] = React.useState(false);
+    const [name, setName] = useState("");
+    const [pass, setPass] = useState("");
     const SignUp = () => {
         navigation.navigate('Sign Up');
     };
-
-    const [name, setName] = useState("");
-    const [pass, setPass] = useState("");
 
     const handleSubmit = (evt) => {
         auth
@@ -50,14 +54,14 @@ export default function Login({ navigation, props }) {
 
                     </View>
                     <View style={{ marginTop: 5 }}>
-                        <View style={{ flexDirection: "row" }}>
+                        {/* <View style={{ flexDirection: "row" }}>
                             <CheckBox
                                 value={isSelected}
                                 onValueChange={setSelection}
                                 style={styles.checkbox}
                             />
                             <Text style={{ marginTop: 5 }}>Ghi nhớ tài khoản của tôi</Text>
-                        </View>
+                        </View> */}
                         <View style={{ marginTop: 5 }}>
                             <ButtonModel label="ĐĂNG NHẬP" onPress={() => handleSubmit()} />
                             <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>

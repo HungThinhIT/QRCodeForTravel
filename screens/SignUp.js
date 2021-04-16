@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from "react";
-import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, Dimensions,CheckBox } from 'react-native';
+import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, Dimensions, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import { db, auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';

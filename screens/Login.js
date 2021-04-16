@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { Text, View, Image, StyleSheet, Alert, CheckBox } from 'react-native';
+import { Text, View, Image, StyleSheet, Alert, CheckBox, Dimensions } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import React, { useState, useEffect } from 'react';
 import { db, auth } from "../firebase/firebase";
@@ -78,7 +78,7 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
     firstPart: {
         flex: 1,
-        height: 700,
+        height: Dimensions.get('window').height,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#0A7FD9',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: "63%",
+        height: "55%",
         borderRadius: 20,
         backgroundColor: '#fff'
     },

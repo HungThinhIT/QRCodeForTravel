@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import {db, auth} from "../firebase/firebase";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const ProfileScreen = ({ navigation, route }) => {
     return <Text>This is {route.params.name}'s profile</Text>;
@@ -49,39 +50,41 @@ export default function SignUp({ navigation, props }) {
     }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A7FD9', flexDirection: 'column' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center', width: '80%', height: "80%", borderTopLeftRadius: 20, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: '#fff' }}>
-                <View style={styles.space}>
-                    <Image
-                        style={{
-                            marginTop: 25,
-                            width: 100,
-                            height: 100,
-                        }}
-                        source={require("../assets/logo.png")}
-                    />
+        <KeyboardAwareScrollView>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A7FD9', flexDirection: 'column' }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', width: '80%', height: "80%", borderTopLeftRadius: 20, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: '#fff' }}>
+                    <View style={styles.space}>
+                        <Image
+                            style={{
+                                marginTop: 25,
+                                width: 100,
+                                height: 100,
+                            }}
+                            source={require("../assets/logo.png")}
+                        />
+                    </View>
+                    <View style={{ flex: 1, }}>
+                        <View style={styles.commonInput}>
+                            <LabelInputText initText="email@gmail.com" label="Email"
+                                onChangeText={email => setEmail(email)} defaultValue={email} secureTextEntry={false} />
+                        </View>
+                        <View style={styles.commonInput}>
+                            <LabelInputText initText="099988889" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} secureTextEntry={false} />
+                        </View>
+                        <View style={styles.commonInput}>
+                            <LabelInputText initText="*****" label="Mật Khẩu" onChangeText={password => setPassword(password)} defaultValue={password} secureTextEntry={true} />
+                        </View>
+                        <View style={styles.commonInput}>
+                            <LabelInputText initText="*****" label="Xác nhận mật Khẩu" onChangeText={confirmPass => setConfirmPass(confirmPass)} defaultValue={confirmPass} secureTextEntry={true} />
+                        </View>
+                        <View style={{ marginTop: 20 }}>
+                            <ButtonModel label="ĐĂNG KÝ" onPress={() => handleSubmit()} />
+                            <Text style={{ marginTop: 10 }} onPress={Login}>Đăng Nhập</Text>
+                        </View>
+                    </View>
                 </View>
-                <View style={{ flex: 1, }}>
-                    <View style={styles.commonInput}>
-                        <LabelInputText initText="email@gmail.com" label="Email"
-                            onChangeText={email => setEmail(email)} defaultValue={email} secureTextEntry={false} />
-                    </View>
-                    <View style={styles.commonInput}>
-                        <LabelInputText initText="099988889" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} secureTextEntry={false} />
-                    </View>
-                    <View style={styles.commonInput}>
-                        <LabelInputText initText="*****" label="Mật Khẩu" onChangeText={password => setPassword(password)} defaultValue={password} secureTextEntry={true} />
-                    </View>
-                    <View style={styles.commonInput}>
-                        <LabelInputText initText="*****" label="Xác nhận mật Khẩu" onChangeText={confirmPass => setConfirmPass(confirmPass)} defaultValue={confirmPass} secureTextEntry={true} />
-                    </View>
-                    <View style={{ marginTop: 20 }}>
-                        <ButtonModel label="ĐĂNG KÝ" onPress={() => handleSubmit()} />
-                        <Text style={{ marginTop: 10 }} onPress={Login}>Đăng Nhập</Text>
-                    </View>
-                </View>
-            </View>
-        </View >
+            </View >
+        </KeyboardAwareScrollView>
     );
 }
 

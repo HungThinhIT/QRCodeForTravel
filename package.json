@@ -22,6 +22,7 @@
     "react-native-css-vh-vw": "^1.0.5",
     "react-native-expo-viewport-units": "^0.0.8",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-masonry-layout": "^1.0.6",
     "react-native-paper": "^4.7.2",
     "react-native-qrcode-scanner": "^1.5.3",

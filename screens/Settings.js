@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import { Text, View, StyleSheet, FlatList, TouchableOpacity, Alert, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import {auth} from "../firebase/firebase";
+import 'react-native-gesture-handler';
 
 const menu = [
     { id: 1, title: 'Hồ sơ', icon: 'person' },
@@ -8,19 +10,24 @@ const menu = [
     { id: 3, title: 'Đã lưu', icon: 'bookmark' },
     { id: 4, title: 'Something', icon: 'settings' },
     { id: 5, title: 'Lịch sử', icon: 'history' },
-    { id: 6, title: 'Sự kiện', icon: 'calendar-today' },
+    { id: 6, title: 'Log Out', icon: 'history' },
 ];
+const signOut = (id,navigation) => {
+    if(id === 6){
+        auth.signOut().then(()=> navigation.navigate('Log In'));
+    }
+}
 
-const Item = ({ title, icon }) => (
-    <TouchableOpacity style={styles.item} onPress={() => Alert.alert('Clicked!')}>
+const Item = ({id, title, icon, navigation }) => (
+    <TouchableOpacity style={styles.item} onPress={() => signOut(id,navigation)}>
         <MaterialIcons name={icon} size={28} style={styles.icon} />
         <Text style={styles.itemTitle}>{title}</Text>
     </TouchableOpacity>
 );
 
-export default function Settings() {
+export default function Settings({navigation}) {
     const renderItem = ({ item }) => (
-        <Item title={item.title} icon={item.icon}/>
+        <Item id={item.id} title={item.title} icon={item.icon} navigation = {navigation}/>
     );
     const [modalVisible, setModalVisible] = useState(false);
 

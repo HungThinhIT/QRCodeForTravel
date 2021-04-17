@@ -38,8 +38,8 @@ const Tab = createBottomTabNavigator();
         >
             <Tab.Screen 
                 style={{color: 'white!important'}}
-                name="DetailLocation" 
-                component={DetailLocation} 
+                name="Home" 
+                component={Home} 
                 options={{
                     tabBarLabel: "Khám phá",
                     //FIXME: Refactor with new version

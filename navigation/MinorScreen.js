@@ -4,6 +4,8 @@ import SignUp from '../screens/SignUp';
 import Login from "../screens/Login";
 import MyTabs from "./Screens";
 import Settings from "../screens/Settings";
+import MapPicker from "../screens/MapPicker";
+
 const Tab = createStackNavigator();
 
 export default function MinorScreen() {

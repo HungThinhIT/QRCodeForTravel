@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, Dimensions, Alert, PermissionsAndroid } from 'react-native';
 import MapView, { Marker, OverlayComponent } from 'react-native-maps';
-import * as Permission from 'expo-permissions';
+// import * as Permission from 'expo-permissions';
 import { ButtonModel } from "../components";
 
 

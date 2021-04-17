@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { FlatList, Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, TouchableOpacity, Alert } from 'react-native';
+import { FlatList, Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, TouchableOpacity, Alert, PermissionsAndroid } from 'react-native';
 import Star from 'react-native-star-view';
-import { Entypo, AntDesign } from '@expo/vector-icons';
+// import { Entypo, AntDesign } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
 
 export default function DetailLocation() {
@@ -128,7 +128,8 @@ export default function DetailLocation() {
                                     <Text style={{ marginTop: 3 }}> 4.3</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Entypo name="eye" size={24} color="black" />
+                                    {/* FIXME: Replace with another fonts */}
+                                    {/* <Entypo name="eye" size={24} color="black" /> */}
                                     <Text style={{ marginTop: 3 }}> 420</Text>
                                 </View>
                             </View>
@@ -138,7 +139,8 @@ export default function DetailLocation() {
                                 style={styles.favoriteButton}
                             >
                                 <Text style={{ color: "red" }}>Thêm vào yêu thích</Text>
-                                <AntDesign name="heart" size={20} color="red" />
+                                {/* FIXME: Replace with another fonts */}
+                                {/* <AntDesign name="heart" size={20} color="red" /> */}
                             </TouchableOpacity>
                         </View>
                         {/* QR CODE GENERATE  */}

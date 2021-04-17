@@ -3,15 +3,16 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import MyTabs from "./navigation/Screens";
-import AddLocation from "./screens/AddLocation";
 import MinorScreen from "./navigation/MinorScreen";
 import MapPicker from './screens/MapPicker';
+import AddLocation from "./screens/Addlocation";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AddLocation/>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <AddLocation/>
+    // </NavigationContainer>
+    <AddLocation/>
   );
 }
 

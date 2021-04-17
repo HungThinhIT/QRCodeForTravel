@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { React, useState } from "react";
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Alert, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const menu = [
@@ -22,20 +22,80 @@ export default function Settings() {
     const renderItem = ({ item }) => (
         <Item title={item.title} icon={item.icon}/>
     );
+    const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>Setting</Text>
+        // <View style={styles.container}>
+        //     <View style={styles.header}>
+        //         <Text style={styles.headerTitle}>Setting</Text>
+        //     </View>
+        //     <View style={{}}>
+        //         <FlatList
+        //             data={menu}
+        //             renderItem={renderItem}
+        //             keyExtractor={item => item.id}
+        //             numColumns={2}
+        //         />
+        //     </View>
+        // </View>
+        <View>
+            <View style={{ flex: 1, backgroundColor: "transparent" }}>
+                <View style={{ flex: 8, backgroundColor: "transparent" }}>
+
+                </View>
+                <View style={{ flex: 2, backgroundColor: "" }}>
+                    <View style={{ flex: 1, backgroundColor: "transparent", flexDirection: "row" }}>
+                        <View style={styles.item}>
+                            <Entypo name="key" size={24} color="#05B5B3" />
+                        </View>
+                        <View style={styles.item}>
+                            <FontAwesome name="sign-out" size={24} color="#05B5B3" />
+                        </View>
+                        <View style={styles.item}>
+                            <FontAwesome5 name="adjust" size={24} color="#05B5B3" />
+                        </View>
+                    </View>
+                    <View style={{ flex: 1, backgroundColor: "transparent", flexDirection: "row" }}>
+                        <View style={styles.item}>
+                            <FontAwesome5 name="history" size={24} color="#05B5B3" />
+                        </View>
+                        <View style={styles.item}>
+                            <AntDesign name="heart" size={24} color="#05B5B3" />
+                        </View>
+                        <View style={styles.item}>
+                            <MaterialCommunityIcons name="hammer-wrench" size={24} color="#05B5B3" />
+                        </View>
+                    </View>
+                </View>
             </View>
-            <View style={{}}>
-                <FlatList
-                    data={menu}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                />
-            </View>
+            {/* <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                    setModalVisible(!modalVisible);
+                }}
+            > */}
+                {/* <View 
+                    style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+                >
+                    <View
+                        style={{ height: '300px'}}
+                    ></View>
+                </View> */}
+                {/* <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Hello World!</Text>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Text style={styles.textStyle}>Hide Modal</Text>
+                        </Pressable>
+                    </View>
+                </View> */}
+            {/* </Modal> */}
         </View>
     );
 }

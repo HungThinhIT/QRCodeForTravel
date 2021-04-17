@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+// import { Feather } from '@expo/vector-icons';
 import { LabelInputText, LabelPicker } from '../components';
 const editForm = (props) => {
     return (
@@ -81,7 +81,8 @@ export default function Profile() {
             }
             }>
                 <Text>
-                    <Feather name="edit" size={24} color="black" />
+                    {/* FIXME: Replace with another fonts */}
+                    {/* <Feather name="edit" size={24} color="black" /> */}
                  {hanldeButtonText(isEditable)}
                 </Text>
             </TouchableOpacity>

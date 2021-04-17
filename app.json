@@ -17,9 +17,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "vku.reactnative3.qrtravel",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "AIzaSyAdwW_dHVzEshgBBu9bOi8U76oagLlgTqc"
+      }
     },
     "android": {
+      "package": "vku.reactnative3.qrtravel",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "ApiKey": "AIzaSyAdwW_dHVzEshgBBu9bOi8U76oagLlgTqc"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

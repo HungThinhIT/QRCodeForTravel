@@ -5,20 +5,87 @@ import { Entypo, AntDesign } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
 
 export default function DetailLocation() {
+
+    const getInitialState = {
+        latitude: 15.98,
+        longitude: 108.14,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+    };
+    const [location, onChangeLocation] = React.useState(getInitialState);
+    const [paddingTop, onChangePaddingTop] = React.useState(0);
+    const onRegionChange = (location) => {
+        onChangeLocation(location);
+    }
+
+    function onMapReady() {
+        onChangePaddingTop(1);
+        if (Platform.OS === 'android') {
+            PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+            ).then((granted) => {
+                //alert(JSON.stringify(granted)); // just to ensure that permissions were granted
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        var currentLongLat = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            latitudeDelta: 0.2,
+                            longitudeDelta: 0.2,
+                        }
+                        onRegionChange(currentLongLat);
+
+                    },
+                    (err) => console.log(err),
+                    { enableHighAccuracy: false, timeout: 8000, maximumAge: 10000 }
+                );
+            });
+        }
+    }
+
+    React.useEffect(() => {
+        onRegionChange(location);
+    });
+
     return (
         <ScrollView style={[styles.container, {
             flexDirection: "column"
         }]}>
             <View style={styles.map}>
                 {/* <Text> Map in here</Text> */}
-                <MapView
+                {/* <MapView
+                    provider={MapView.PROVIDER_GOOGLE}
                     initialRegion={{
                     latitude: 37.78825,
                     longitude: -122.4324,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                     }}
-                />
+                /> */}
+                <MapView
+                provider={MapView.PROVIDER_GOOGLE}
+                style={[styles.map, { paddingTop: 15 }]}
+                // initialRegion={location}
+                onRegionChange={onRegionChange}
+                followsUserLocation={true}
+                showsUserLocation
+                showsMyLocationButton={true}
+                showsCompass={true}
+                onMapReady={onMapReady}
+                toolbarEnabled={true}
+                zoomEnabled={true}
+                rotateEnabled={true}
+                onPress={(e) => {
+                    var currentLongLat = {
+                        latitude: e.nativeEvent.coordinate.latitude,
+                        longitude: e.nativeEvent.coordinate.longitude,
+                        latitudeDelta: 0.2,
+                        longitudeDelta: 0.2,
+                    }
+                    onChangeLocation(currentLongLat);
+                }}
+            >
+            </MapView>
             </View>
             <View>
                 <SafeAreaView>

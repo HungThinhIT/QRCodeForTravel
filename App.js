@@ -10,7 +10,7 @@ import MapPicker from './screens/MapPicker';
 export default function App() {
   return (
     <NavigationContainer>
-      <AddLocation/>
+      <MinorScreen />
     </NavigationContainer>
   );
 }

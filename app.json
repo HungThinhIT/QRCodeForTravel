@@ -27,11 +27,6 @@
     "android": {
       "package": "vku.reactnative3.qrtravel",
       "versionCode": 1,
-      "config": {
-        "googleMaps": {
-          "ApiKey": "AIzaSyAdwW_dHVzEshgBBu9bOi8U76oagLlgTqc"
-        }
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

@@ -44,7 +44,7 @@ export default function MapPicker({ navigation }) {
         }
     }
     const onSelectLocation = () => {
-        alert(JSON.stringify(location))
+        navigation.navigate('Add Location', { 'location': location });
     }
     React.useEffect(() => {
         onRegionChange(location);

@@ -70,6 +70,23 @@
                         "endColumns": "100",
                         "endOffsets": "5295"
                     }
+                },
+                {
+                    "source": "C:\\Users\\Nha Vo\\.gradle\\caches\\transforms-2\\files-2.1\\99c6ff58ff6c83738ffbf8a18655305e\\jetified-ucrop-2.2.6-native\\res\\values-ko\\values-ko.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,112,164",
+                        "endColumns": "56,51,46",
+                        "endOffsets": "107,159,206"
+                    },
+                    "to": {
+                        "startLines": "49,50,51",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "5300,5357,5409",
+                        "endColumns": "56,51,46",
+                        "endOffsets": "5352,5404,5451"
+                    }
                 }
             ]
         }

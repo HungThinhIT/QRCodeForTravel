@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native';
+import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+// import { FontAwesome } from '@expo/vector-icons';
 
 // StatusBar.setHidden(true);StatusBar,
 
@@ -43,6 +44,19 @@ export default function HomeScreen() {
                 <Text style={styles.add}>+</Text>
             </View>
             
+            <View style={styles.searchContainer}>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', borderColor: '#0A7FD9', borderWidth: 1}}>
+                    {/* FIXME: Replace with another fonts */}
+                    {/* <FontAwesome style={{margin: 12}} name="search" size={24} color="black" /> */}
+
+                    <TextInput 
+                        style={styles.search}
+                        placeholder="Tìm kiếm địa điểm đến"
+                    >
+                    </TextInput>
+                </View>
+            </View>
+
             <FlatList
                 style={styles.listView}
                 data={categories}
@@ -105,5 +119,13 @@ const styles = StyleSheet.create({
     },
     listView: {
         paddingHorizontal: 10,
+    },
+    search: {
+        height: 40,
+        // borderWidth: 1,
+    },
+    searchContainer: {
+        height: 60,
+        // backgroundColor: 'gray'
     }
   });

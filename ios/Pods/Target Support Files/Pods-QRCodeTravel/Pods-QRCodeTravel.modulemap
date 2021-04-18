@@ -1,0 +1,6 @@
+module Pods_QRCodeTravel {
+  umbrella header "Pods-QRCodeTravel-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,18 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import MyTabs from "./navigation/Screens";
 import MinorScreen from "./navigation/MinorScreen";
 import MapPicker from './screens/MapPicker';
-import AddLocation from "./screens/Addlocation";
+import AddLocationScreen from './navigation/AddLocationScreen';
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <AddLocation/>
-    // </NavigationContainer>
-    <AddLocation/>
+    <NavigationContainer>
+      <AddLocationScreen />
+    </NavigationContainer>
   );
 }
 

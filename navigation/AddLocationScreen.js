@@ -5,7 +5,7 @@ import AddLocation from "../screens/Addlocation";
 
 const Tab = createStackNavigator();
 
-export default function MinorScreen() {
+export default function AddLocationScreen() {
     return (
         <Tab.Navigator initialRouteName="Add Location">
             <Tab.Screen name="Add Location" component={AddLocation} />

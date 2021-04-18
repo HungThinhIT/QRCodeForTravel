@@ -17,114 +17,155 @@
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 13-->[com.facebook.flipper:flipper:0.75.1] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\a8f6015f96666ab8d93bfe5b64998bc8\jetified-flipper-0.75.1\AndroidManifest.xml:16:5-76
 13-->[com.facebook.flipper:flipper:0.75.1] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\a8f6015f96666ab8d93bfe5b64998bc8\jetified-flipper-0.75.1\AndroidManifest.xml:16:22-73
-14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include required permissions for Google Maps API to run. -->
-14-->[:react-native-maps] D:\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-81
-14-->[:react-native-maps] D:\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:22-78
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
-15-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:22-76
-16
-17    <uses-feature
-17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
-18        android:glEsVersion="0x00020000"
-18-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
-19        android:required="true" />
-19-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+14
+15    <queries>
+15-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-14:15
+16        <intent>
+16-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:18
+17            <action android:name="android.media.action.IMAGE_CAPTURE" />
+17-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-73
+17-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:21-70
+18        </intent>
+19    </queries>
 20
-21    <application
-21-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:6:5-29:19
-22        android:name="com.qrcodetravel.MainApplication"
-22-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:7:7-38
-23        android:allowBackup="false"
-23-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:11:7-34
-24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-24-->[androidx.core:core:1.3.1] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\3975ffd70914deb17405b14313b8e4ba\core-1.3.1\AndroidManifest.xml:24:18-86
-25        android:debuggable="true"
-26        android:icon="@mipmap/ic_launcher"
-26-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:9:7-41
-27        android:label="@string/app_name"
-27-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:8:7-39
-28        android:roundIcon="@mipmap/ic_launcher_round"
-28-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:10:7-52
-29        android:theme="@style/AppTheme"
-29-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:12:7-38
-30        android:usesCleartextTraffic="true" >
-30-->D:\QRCodeForTravel\android\app\src\debug\AndroidManifest.xml:8:9-44
-31        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-31-->D:\QRCodeForTravel\android\app\src\debug\AndroidManifest.xml:11:9-86
-31-->D:\QRCodeForTravel\android\app\src\debug\AndroidManifest.xml:11:19-83
-32
-33        <meta-data
-33-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:13:8-15:66
-34            android:name="com.google.android.maps.v2.API_KEY"
-34-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:14:9-58
-35            android:value="AIzaSyAdwW_dHVzEshgBBu9bOi8U76oagLlgTqc" />
-35-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:15:9-64
-36
-37        <activity
-37-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:17:7-27:18
-38            android:name="com.qrcodetravel.MainActivity"
-38-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:18:9-37
-39            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-39-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:20:9-86
-40            android:label="@string/app_name"
-40-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:19:9-41
-41            android:launchMode="singleTask"
-41-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:21:9-40
-42            android:windowSoftInputMode="adjustResize" >
-42-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:22:9-51
-43            <intent-filter>
-43-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:23:9-26:25
-44                <action android:name="android.intent.action.MAIN" />
-44-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:24:13-65
-44-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:24:21-62
+21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+21-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:5-81
+21-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:22-78
+22    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include required permissions for Google Maps API to run. -->
+22-->[:react-native-maps] D:\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-81
+22-->[:react-native-maps] D:\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:22-78
+23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+23-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
+23-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:22-76
+24
+25    <uses-feature
+25-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+26        android:glEsVersion="0x00020000"
+26-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+27        android:required="true" />
+27-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+28
+29    <application
+29-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:6:5-31:19
+30        android:name="com.qrcodetravel.MainApplication"
+30-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:7:7-38
+31        android:allowBackup="false"
+31-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:11:7-34
+32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+32-->[androidx.core:core:1.3.1] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\3975ffd70914deb17405b14313b8e4ba\core-1.3.1\AndroidManifest.xml:24:18-86
+33        android:debuggable="true"
+34        android:icon="@mipmap/ic_launcher"
+34-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:9:7-41
+35        android:label="@string/app_name"
+35-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:8:7-39
+36        android:requestLegacyExternalStorage="true"
+36-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:14:7-50
+37        android:roundIcon="@mipmap/ic_launcher_round"
+37-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:10:7-52
+38        android:theme="@style/AppTheme"
+38-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:12:7-38
+39        android:usesCleartextTraffic="true" >
+39-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:13:7-42
+40        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+40-->D:\QRCodeForTravel\android\app\src\debug\AndroidManifest.xml:11:9-86
+40-->D:\QRCodeForTravel\android\app\src\debug\AndroidManifest.xml:11:19-83
+41
+42        <meta-data
+42-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:15:8-17:66
+43            android:name="com.google.android.maps.v2.API_KEY"
+43-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:16:9-58
+44            android:value="AIzaSyAdwW_dHVzEshgBBu9bOi8U76oagLlgTqc" />
+44-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:17:9-64
 45
-46                <category android:name="android.intent.category.LAUNCHER" />
-46-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:25:13-73
-46-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:25:23-70
-47            </intent-filter>
-48        </activity>
-49
-50        <uses-library
-50-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:28:8-86
-51            android:name="org.apache.http.legacy"
-51-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:28:22-59
-52            android:required="false" />
-52-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:28:60-84
-53
-54        <provider
-54-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-20:20
-55            android:name="com.imagepicker.ImagePickerProvider"
-55-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-63
-56            android:authorities="com.qrcodetravel.imagepickerprovider"
-56-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-71
-57            android:exported="false"
-57-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
-58            android:grantUriPermissions="true" >
-58-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
-59            <meta-data
-59-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-19:70
-60                android:name="android.support.FILE_PROVIDER_PATHS"
-60-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-67
-61                android:resource="@xml/imagepicker_provider_paths" />
-61-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:17-67
-62        </provider>
-63
-64        <activity
-64-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-65            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-65-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+46        <activity
+46-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:19:7-29:18
+47            android:name="com.qrcodetravel.MainActivity"
+47-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:20:9-37
+48            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+48-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:22:9-86
+49            android:label="@string/app_name"
+49-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:21:9-41
+50            android:launchMode="singleTask"
+50-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:23:9-40
+51            android:windowSoftInputMode="adjustResize" >
+51-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:24:9-51
+52            <intent-filter>
+52-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:25:9-28:25
+53                <action android:name="android.intent.action.MAIN" />
+53-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:26:13-65
+53-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:26:21-62
+54
+55                <category android:name="android.intent.category.LAUNCHER" />
+55-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:27:13-73
+55-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:27:23-70
+56            </intent-filter>
+57        </activity>
+58
+59        <uses-library
+59-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:30:8-86
+60            android:name="org.apache.http.legacy"
+60-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:30:22-59
+61            android:required="false" />
+61-->D:\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:30:60-84
+62
+63        <provider
+63-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-27:20
+64            android:name="androidx.core.content.FileProvider"
+64-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-62
+65            android:authorities="com.qrcodetravel.provider"
+65-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-60
 66            android:exported="false"
-66-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-67            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-67-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-68
-69        <meta-data
-69-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\dcffa74d8d015470a7eae32b9eb648c7\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-70            android:name="com.google.android.gms.version"
-70-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\dcffa74d8d015470a7eae32b9eb648c7\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-71            android:value="@integer/google_play_services_version" />
-71-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\dcffa74d8d015470a7eae32b9eb648c7\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-72    </application>
-73
-74</manifest>
+66-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-37
+67            android:grantUriPermissions="true" >
+67-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-47
+68            <meta-data
+68-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-26:58
+69                android:name="android.support.FILE_PROVIDER_PATHS"
+69-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:17-67
+70                android:resource="@xml/provider_paths" />
+70-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-55
+71        </provider>
+72
+73        <activity
+73-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:9-31:72
+74            android:name="com.yalantis.ucrop.UCropActivity"
+74-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-60
+75            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+75-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-69
+76
+77        <provider
+77-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-20:20
+78            android:name="com.imagepicker.ImagePickerProvider"
+78-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-63
+79            android:authorities="com.qrcodetravel.imagepickerprovider"
+79-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-71
+80            android:exported="false"
+80-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+81            android:grantUriPermissions="true" >
+81-->[:react-native-image-picker] D:\QRCodeForTravel\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
+82            <meta-data
+82-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-26:58
+83                android:name="android.support.FILE_PROVIDER_PATHS"
+83-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:17-67
+84                android:resource="@xml/imagepicker_provider_paths" />
+84-->[:react-native-image-crop-picker] D:\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-55
+85        </provider>
+86
+87        <activity
+87-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+88            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+88-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+89            android:exported="false"
+89-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+90            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+90-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+91
+92        <meta-data
+92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\dcffa74d8d015470a7eae32b9eb648c7\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+93            android:name="com.google.android.gms.version"
+93-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\dcffa74d8d015470a7eae32b9eb648c7\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+94            android:value="@integer/google_play_services_version" />
+94-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nha Vo\.gradle\caches\transforms-2\files-2.1\dcffa74d8d015470a7eae32b9eb648c7\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+95    </application>
+96
+97</manifest>

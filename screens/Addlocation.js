@@ -4,18 +4,35 @@ import { Text, View, Image, StyleSheet, Button, Alert, SafeAreaView, TouchableOp
 import { LabelInputText, } from '../components';
 import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as ImagePicker from "react-native-image-picker";
+import ImagePicker from 'react-native-image-crop-picker';
+import { SliderBox } from "react-native-image-slider-box";
 
 export default function AddLocation({ navigation }) {
     const [selectedValue, setSelectedValue] = useState("java");
     const [photo, setPhoto] = useState(null);
+    const [imageArray, setImageArray] = useState([]);
     const onSelectetImage = () => {
         const options = {};
-        ImagePicker.launchImageLibrary(options, response => {
-            if (response.uri) {
-                setPhoto(response);
+        const tempArrayImage = [];
+        // ImagePicker.launchImageLibrary(options, response => {
+        //     if (response.uri) {
+        //         setPhoto(response);
+        //     }
+        // });
+        ImagePicker.openPicker({
+            multiple: true,// To support multiple image selection
+            quality: 1.0,
+            maxWidth: 500,
+            maxHeight: 500,
+        }).then(image => {
+            for (var i = 0; i < image.length; i++) {
+                var uri = image[i].path;
+                tempArrayImage.push(uri)//image[i].data=>base64 string
             }
+            setImageArray(tempArrayImage);
+            console.log(JSON.stringify(imageArray));
         });
+
     }
     const onSelectMap = () => {
         navigation.navigate('Map');
@@ -27,19 +44,21 @@ export default function AddLocation({ navigation }) {
                     <View style={styles.space}>
                         <TouchableOpacity
                             onPress={onSelectetImage}>
-                            {photo !== null ? (
-                                <Image
-                                    style={styles.styleImage}
-                                    source={{ uri: photo.uri }}
-                                />
+                            {imageArray.length > 0 ? (
+                                <View style={styles.styleSlide}>
+                                    <SliderBox images={imageArray} ImageComponentStyle={styles.styleImage} />
+                                </View>
                             ) : (<Image
                                 style={styles.styleImage}
                                 source={require("../assets/adaptive-icon.png")}
                             />)}
                         </TouchableOpacity>
                     </View>
+                    <View style={{ flexDirection: "row-reverse", width: "100%" }}>
+                        <View style={{ flex: 1, marginRight: 10, marginTop: 5 }}><Text style={{ alignSelf: "flex-end", color: "blue" }} onPress={onSelectetImage}>Chọn ảnh...</Text></View>
+                    </View>
                     <View style={{ flex: 1, }}>
-                        <View style={{ marginTop: 10, width: 250 }}>
+                        <View style={{ width: 250 }}>
                             <LabelInputText initText="Khu nghỉ dưỡng" label="Tiêu đề" />
                         </View>
 
@@ -123,7 +142,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         height: Dimensions.get('window').height,
     },
-    styleImage: {
+    styleSlide: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width * 40 / 100,
+    }
+    , styleImage: {
         resizeMode: 'cover',
         width: Dimensions.get('window').width * 80 / 100,
         height: Dimensions.get('window').width * 40 / 100,

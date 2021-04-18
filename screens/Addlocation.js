@@ -11,8 +11,8 @@ export default function AddLocation({ navigation, route }) {
     const [selectedValue, setSelectedValue] = useState("java");
     const [photo, setPhoto] = useState(null);
     const [imageArray, setImageArray] = useState([]);
-    const [location, setLocation] = useState(null);
-    setLocation(route.params.location ? route.params.location : null);
+    const routeLocation = route.params.location ? route.params.location : null;
+    const [location, setLocation] = useState(routeLocation);
     const stringLocation = location !== null ? location.latitude + " " + location.longtitude : "";
 
     const onSelectetImage = () => {

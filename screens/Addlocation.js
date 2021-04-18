@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     styleImage: {
+        resizeMode: 'cover',
         width: Dimensions.get('window').width * 80 / 100,
         height: Dimensions.get('window').width * 40 / 100,
         borderTopLeftRadius: 20,

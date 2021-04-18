@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Button, Alert } from 'react-native';
 // import { Feather } from '@expo/vector-icons';
 import { LabelInputText, LabelPicker } from '../components';
+import { db, auth } from "../firebase/firebase";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const editForm = (props) => {
     return (
         <View style={styles.containerBody}>
@@ -14,7 +16,6 @@ const editForm = (props) => {
                 </View>
                 <View style={{ flex: 3, paddingLeft: 5 }} >
                     <LabelInputText label={'Giới tính'} initText={"Nam"} />
-
                 </View>
             </View>
             <LabelInputText label={'Địa chỉ'} initText={"87 Nguyen Dinh Hien"} />
@@ -71,7 +72,33 @@ const hanldeButtonText = (isEditable) =>{
     return 'Edit'
 }
 
-export default function Profile() {
+export default function Profile({ navigation }) {
+    var name = "Nguyen Hung Thinh", email="123",gender,address,dxuat;
+    useEffect(()=>{
+        getData();
+    },[])
+    
+    const Logout = () => {
+        AsyncStorage.removeItem('@storage_Key');
+        const user = auth.currentUser;
+        if (user != null) {
+            auth.signOut().then(()=> navigation.navigate('Log In'));
+        }else{
+            navigation.navigate('Log In');
+        }
+    };
+    const getData = async () => {
+        try {
+            const uid = await AsyncStorage.getItem('@storage_Key')
+            if(uid){
+                console.log(uid)
+            }else{
+                navigation.navigate('Log In')
+            }
+        } catch(e) {
+            Alert.alert(e);
+            }
+        }
     const [isEditable, setIsEditable] = useState(false);
     const [editOrSaveText, setEditOrSaveText] = useState('Edit');
     return (
@@ -95,12 +122,15 @@ export default function Profile() {
                         }}
                     />
                 </View>
-                <Text style={styles.fullName}>Nguyen Hung Thinh</Text>
+                <Text style={styles.fullName}>Nguyễn Hưng Thịnh</Text>
                 <Text>15 points</Text>
             </View>
             {isEditable == true ? editForm() : viewForm()}
             {/* { editForm()} */}
             {/* // { viewForm()} */}
+            <View style = {styles.logout}>
+                <Text style={{ marginTop: 10 }} onPress={Logout}>Đăng Xuất</Text>
+            </View>
         </View>
     );
 }
@@ -142,5 +172,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         alignItems: 'flex-start',
         textAlign: 'left'
+    },
+    logout:{
+        marginTop:30,
+        alignItems:"center",
     }
 });

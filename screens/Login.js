@@ -1,19 +1,20 @@
 import 'react-native-gesture-handler';
-import { Text, View, Image, StyleSheet, Alert, CheckBox, Dimensions } from 'react-native';
+import { Text, View, Image, StyleSheet, Alert, CheckBox, Dimensions} from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import React, { useState, useEffect } from 'react';
 import { db, auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const ProfileScreen = ({ navigation, route }) => {
 //     return <Text>This is {route.params.name}'s profile</Text>;
 // };
 export default function Login({ navigation }) {
     useEffect(() => {
-        auth.onAuthStateChanged(user => {
-            if (user)
-                navigation.navigate('Main')
-        })
+        const user = auth.currentUser;
+        if (user != null) {
+            navigation.navigate('Main')
+        }
     });
     const [text, onChangeText] = React.useState("Useless Text");
     const [number, onChangeNumber] = React.useState(null);
@@ -24,14 +25,26 @@ export default function Login({ navigation }) {
         navigation.navigate('Sign Up');
     };
 
+    const storeData = async (value) => {
+        try {
+          await AsyncStorage.setItem('@storage_Key', value);
+          console.log(value);
+          navigation.navigate('Main');
+        } catch (e) {
+        }
+      }
+
     const handleSubmit = (evt) => {
         auth
             .signInWithEmailAndPassword(name, pass)
-            .then(() => navigation.navigate('Main'))
+            .then((userCredential) => {
+                storeData(userCredential.user.uid);
+              })
             .catch(error => Alert.alert("Message:" + error.message))
     }
 
     return (
+            
             <KeyboardAwareScrollView>
                 <View style={styles.firstPart}>
                     <View style={styles.centerPart}>
@@ -64,14 +77,20 @@ export default function Login({ navigation }) {
                             />
                             <Text style={{ marginTop: 5 }}>Ghi nhớ tài khoản của tôi</Text>
                         </View> */}
-                                <View style={{ marginTop: 5 }}>
+                                <View style={{ marginTop: 10 }}>
                                     <ButtonModel label="ĐĂNG NHẬP" onPress={() => handleSubmit()} />
                                     <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>
+                                    <Text style={{ marginTop: 10 }} onPress={()=>navigation.navigate('Load')}>Về Trang chính</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
                 </View >
+                <View style={styles.header}>
+                    <View style={styles.headerTitleWrapper}>
+                        <Text style={styles.headerTitle}></Text>
+                    </View>
+                </View>
             </KeyboardAwareScrollView>
     );
 }
@@ -88,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: "55%",
+        height: "60%",
         borderRadius: 20,
         backgroundColor: '#fff'
     },
@@ -118,7 +137,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
     SubmitButtonStyle: {
-
         marginTop: 10,
         paddingTop: 15,
         paddingBottom: 15,
@@ -128,5 +146,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#fff'
+    },
+    header: {
+        height: 55,
+        alignItems: 'center',
+        backgroundColor: "#0A7FD9",
+        flexDirection: 'row',
     },
 });

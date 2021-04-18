@@ -7,7 +7,7 @@ const Tab = createStackNavigator();
 
 export default function AddLocationScreen() {
     return (
-        <Tab.Navigator initialRouteName="Add Location">
+        <Tab.Navigator initialRouteName="Map">
             <Tab.Screen name="Add Location" component={AddLocation} />
             <Tab.Screen name="Map" component={MapPicker} />
         </Tab.Navigator>

@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, StyleSheet, Button, Alert, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native';
 import { LabelInputText, } from '../components';
 import { Picker } from '@react-native-picker/picker';
@@ -7,10 +7,13 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
 
-export default function AddLocation({ navigation }) {
+export default function AddLocation({ navigation, route }) {
     const [selectedValue, setSelectedValue] = useState("java");
     const [photo, setPhoto] = useState(null);
     const [imageArray, setImageArray] = useState([]);
+    const location = route.params.location ? route.params.location : null;
+    const stringLocation = location !== null ? location.latitude + " " + location.longtitude : "";
+
     const onSelectetImage = () => {
         const options = {};
         const tempArrayImage = [];

@@ -12,9 +12,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Login({ navigation }) {
     useEffect(() => {
         const user = auth.currentUser;
-        if (user != null) {
-            navigation.navigate('Main')
-        }
+        const value = AsyncStorage.getItem('@storage_Key');
+            if (value !== null) {
+                if (user !== null) {
+                    navigation.navigate('Main')
+                }
+            }
     });
     const [text, onChangeText] = React.useState("Useless Text");
     const [number, onChangeNumber] = React.useState(null);
@@ -25,26 +28,38 @@ export default function Login({ navigation }) {
         navigation.navigate('Sign Up');
     };
 
-    const storeData = async (value) => {
+    const getData = async () => {
         try {
-          await AsyncStorage.setItem('@storage_Key', value);
-          console.log(value);
-          navigation.navigate('Main');
-        } catch (e) {
+            const value = await AsyncStorage.getItem('@storage_Key');
+            if (value !== null) {
+                console.log(JSON.parse(value));
+            }else{
+
+            }
+        } catch (error) {
         }
-      }
+    }
 
     const handleSubmit = (evt) => {
         auth
             .signInWithEmailAndPassword(name, pass)
             .then((userCredential) => {
-                storeData(userCredential.user.uid);
+                // console.log(userCredential.user.uid) providerData;
+                AsyncStorage.setItem('@storage_Key', JSON.stringify(userCredential.user), (err)=> {
+                    if(err){
+                        console.log("an error");
+                        throw err;
+                    }
+                    console.log("success");
+                    navigation.navigate('Load');
+                }).catch((err)=> {
+                    console.log("error is: " + err);
+                });
               })
             .catch(error => Alert.alert("Message:" + error.message))
     }
 
     return (
-            
             <KeyboardAwareScrollView>
                 <View style={styles.firstPart}>
                     <View style={styles.centerPart}>

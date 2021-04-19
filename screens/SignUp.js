@@ -21,27 +21,23 @@ export default function SignUp({ navigation, props }) {
     const [phone, setPhone] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
-    const storeNewAccount = () => {
-        db.collection("users").doc(email.toString()).set({
-            address: "",
-            fullname: "",
-            gender: "",
-            moble_phone: phone,
-            point: 2000,
-        }).then(function () {
-            Alert.alert('Thanh cong!!!');
-            Login();
-        });
-    }
     const handleSubmit = (evt) => {
         if (email === "" || password === "" || confirmPass === "" || phone === "") {
-            Alert.alert(`Vui lòng nhập đầy đủ thông tin!` + uid);
+            Alert.alert(`Vui lòng nhập đầy đủ thông tin!`);
         } else {
             if (password === confirmPass) {
-                auth
-                    .createUserWithEmailAndPassword(email, password)
-                    .then(() => storeNewAccount())
-                    .catch(error => Alert.alert("Message:" + error.message))
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredentials)=>{
+                        if(userCredentials.user){
+                          userCredentials.user.updateProfile({
+                            displayName: 'Anonymous',
+                            photoURL: phone,
+                          }).then((s)=> {
+                            Alert.alert("Đăng ký thành công!");
+                            navigation.navigate('Log In');
+                          })
+                        }
+                    }).catch(error => Alert.alert("Message:" + error.message))
                 // navigation.navigate('Log In')
             } else {
                 Alert.alert(`Mật khẩu không trùng khớp!`);

@@ -6,6 +6,7 @@ import { db, auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 // const ProfileScreen = ({ navigation, route }) => {
 //     return <Text>This is {route.params.name}'s profile</Text>;
 // };
@@ -19,9 +20,6 @@ export default function Login({ navigation }) {
                 }
             }
     });
-    const [text, onChangeText] = React.useState("Useless Text");
-    const [number, onChangeNumber] = React.useState(null);
-    const [isSelected, setSelection] = React.useState(false);
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const SignUp = () => {
@@ -33,8 +31,6 @@ export default function Login({ navigation }) {
             const value = await AsyncStorage.getItem('@storage_Key');
             if (value !== null) {
                 console.log(JSON.parse(value));
-            }else{
-
             }
         } catch (error) {
         }
@@ -58,7 +54,7 @@ export default function Login({ navigation }) {
               })
             .catch(error => Alert.alert("Message:" + error.message))
     }
-
+    
     return (
             <KeyboardAwareScrollView>
                 <View style={styles.firstPart}>
@@ -76,7 +72,7 @@ export default function Login({ navigation }) {
                         <View style={{ flex: 1, }}>
                             <View style={{ marginTop: 10, width: 250 }}>
                                 <LabelInputText initText="nhavo@gmail.com" label="Email"
-                                    onChangeText={name => setName(name)} defaultValue={name} secureTextEntry={false} />
+                                    onChangeText={name => setName(name)} defaultValue={name} />
                             </View>
                             <View style={{ marginTop: 10, width: 250 }}>
                                 <LabelInputText initText="*****" label="Mật Khẩu"

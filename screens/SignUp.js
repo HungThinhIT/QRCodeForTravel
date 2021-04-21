@@ -34,11 +34,10 @@ export default function SignUp({ navigation, props }) {
                             photoURL: phone,
                           }).then((s)=> {
                             Alert.alert("Đăng ký thành công!");
-                            navigation.navigate('Log In');
+                            auth.signOut().then(()=> navigation.navigate('Log In'));
                           })
                         }
                     }).catch(error => Alert.alert("Message:" + error.message))
-                // navigation.navigate('Log In')
             } else {
                 Alert.alert(`Mật khẩu không trùng khớp!`);
             }
@@ -62,10 +61,10 @@ export default function SignUp({ navigation, props }) {
                     <View style={{ flex: 1, }}>
                         <View style={styles.commonInput}>
                             <LabelInputText initText="email@gmail.com" label="Email"
-                                onChangeText={email => setEmail(email)} defaultValue={email} secureTextEntry={false} />
+                                onChangeText={email => setEmail(email)} defaultValue={email} />
                         </View>
                         <View style={styles.commonInput}>
-                            <LabelInputText initText="099988889" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} secureTextEntry={false} />
+                            <LabelInputText initText="099988889" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} keyboardType="numeric"/>
                         </View>
                         <View style={styles.commonInput}>
                             <LabelInputText initText="*****" label="Mật Khẩu" onChangeText={password => setPassword(password)} defaultValue={password} secureTextEntry={true} />

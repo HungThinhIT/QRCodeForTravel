@@ -1,28 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button, Alert } from 'react-native';
-// import { Feather } from '@expo/vector-icons';
-import { LabelInputText, LabelPicker } from '../components';
+import { LabelInputText, ButtonModel } from '../components';
 import { db, auth } from "../firebase/firebase";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const editForm = (phone,name) => {
-    return (
-        <View style={styles.containerBody}>
-            <Text style={styles.titleInfo}>Thông tin của bạn</Text>
-            <LabelInputText label={'Họ và Tên'} initText={name}/>
-            <View style={{ flexDirection: 'row' }}>
-                <View style={{ flex: 7 }} >
-                    <LabelInputText label={'Số điện thoại'} initText={phone} />
-
-                </View>
-                <View style={{ flex: 3, paddingLeft: 5 }} >
-                    <LabelInputText label={'Giới tính'} initText={'Nam'} />
-                </View>
-            </View>
-            <LabelInputText label={'Địa chỉ'} initText={'address'} />
-            {/* <LabelPicker label="Giới tính"/> */}
-        </View>
-    );
-}
 
 const viewForm = (phone,name) => {
     return (
@@ -44,7 +24,7 @@ const viewForm = (phone,name) => {
                     <Text>{phone}</Text>
                 </View>
             </View>
-            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+            {/* <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
                 <View style={{ flex: 3 }} >
                     <Text>Giới tính</Text>
@@ -60,42 +40,50 @@ const viewForm = (phone,name) => {
                 <View style={{ flex: 7 }} >
                     <Text>{'address'}</Text>
                 </View>
-            </View>
+            </View> */}
         </View>
     );
 }
 
 const hanldeButtonText = (isEditable) =>{
     if(isEditable ){
-        return 'Save'
+        return 'Hủy'
     }
     return 'Edit'
 }
 
+const hanldeButtonText1 = (isEditable) =>{
+    if(isEditable){
+        return ''
+    }
+    return 'Đăng Xuất'
+}
+
 export default function Profile({ navigation }) {
     const [isEditable, setIsEditable] = useState(false);
-    const [editOrSaveText, setEditOrSaveText] = useState('Edit');
+    const [dx, setDx] = useState('Đăng xuất');
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [phone, setPhone] = useState();
+    const [name1, setName1] = useState("");
+    const [phone1, setPhone1] = useState("");
+     
     useEffect(()=>{
         getData();
     },[])
-    
+    //Kiểm tra đã lưu đăng nhập chưa
     const getData = async () => {
         try {
             const value = await AsyncStorage.getItem('@storage_Key');
             if (value !== null) {
-                console.log(JSON.parse(value));
+                // console.log(JSON.parse(value));
                 const user = JSON.parse(value);
                 setName(user.displayName);
                 setEmail(user.email);
                 var phone1 = user.photoURL;
                 phone1 == null ? setPhone("Trống") : setPhone(user.photoURL);
-                console.log("S:"+user.photoURL);
             }else{
                 AsyncStorage.removeItem('@storage_Key');
-                console.log("E: "+value);
                 navigation.navigate('Log In');
             }
         } catch (error) {
@@ -112,6 +100,51 @@ export default function Profile({ navigation }) {
         }
     };
 
+    //Lưu thông tin sau khi nhấn nút Lưu lại
+    const handleSubmit = (evt) => {
+        if(name1 != "" && phone1 == ""){
+            Alert.alert("Đã cập nhật tên: "+name1);
+        }
+        if(name1 == "" && phone1 != ""){
+            Alert.alert("Đã cập nhật SDT: "+phone1);
+        }
+        if(name1 != "" && phone1 != ""){
+            var user = auth.currentUser;
+            user.updateProfile({
+            displayName: name1,
+            photoURL: phone1
+            }).then(() => {
+                Alert.alert("Đã cập nhật tên và SDT");
+            }).catch(function(error) {
+                console.log(error);
+                // Alert.alert("Đã cập nhật tên và SDT");
+                // setIsEditable(!isEditable)
+            });
+        }
+    }
+
+    const editForm = () => {
+        return (
+            <View style={styles.containerBody}>
+                <Text style={styles.titleInfo}>Thông tin của bạn</Text>
+                <LabelInputText label={'Họ và Tên'} initText={name} onChangeText={name1 => setName1(name1)} />
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 7 }} >
+                        <LabelInputText label={'Số điện thoại'} initText={phone}  onChangeText={phone1 => setPhone1(phone1)} keyboardType="numeric"/>
+                    </View>
+                    {/* <View style={{ flex: 3, paddingLeft: 5 }} >
+                        <LabelInputText label={'Giới tính'} initText={'Nam'} />
+                    </View> */}
+                </View>
+                {/* <LabelInputText label={'Địa chỉ'} initText={'address'} /> */}
+                {/* <LabelPicker label="Giới tính"/> */}
+                <View style={{ marginTop: 10 }}>
+                    <ButtonModel label="Lưu lại" onPress={() => handleSubmit()} />
+                </View>
+            </View>
+        );
+    }
+
     return (
         <View >
             <TouchableOpacity style={styles.editAndSaveBtn} onPress={() => {
@@ -124,6 +157,7 @@ export default function Profile({ navigation }) {
                  {hanldeButtonText(isEditable)}
                 </Text>
             </TouchableOpacity>
+            
             <View style={styles.containerHead}>
                 <View style={styles.blockLogo}>
                     <Image
@@ -136,11 +170,11 @@ export default function Profile({ navigation }) {
                 <Text style={styles.fullName}>{name}</Text>
                 <Text>{email}</Text>
             </View>
-            {isEditable == true ? editForm(phone,name) : viewForm(phone,name)}
+            {isEditable == true ? editForm() : viewForm(phone,name)}
             {/* { editForm()} */}
             {/* // { viewForm()} */}
             <View style = {styles.logout}>
-                <Text style={{ marginTop: 10 }} onPress={Logout}>Đăng Xuất</Text>
+                <Text style={{ marginTop: 10 }} onPress={Logout}>{hanldeButtonText1(isEditable)}</Text>
             </View>
         </View>
     );
@@ -154,7 +188,7 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     containerHead: {
-        paddingTop: 20,
+        paddingTop: 35,
         // flexDirection: 'column',
         alignItems: 'center',
     },
@@ -179,11 +213,11 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     titleInfo: {
-        // backgroundColor: 'red',
         fontWeight: 'bold',
         fontSize: 16,
         alignItems: 'flex-start',
-        textAlign: 'left'
+        textAlign: 'left',
+        marginTop:35,
     },
     logout:{
         marginTop:30,

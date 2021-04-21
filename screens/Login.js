@@ -2,55 +2,31 @@ import 'react-native-gesture-handler';
 import { Text, View, Image, StyleSheet, Alert, CheckBox, Dimensions} from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
 import React, { useState, useEffect } from 'react';
-import { db, auth } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-// const ProfileScreen = ({ navigation, route }) => {
-//     return <Text>This is {route.params.name}'s profile</Text>;
-// };
 export default function Login({ navigation }) {
-    useEffect(() => {
-        const user = auth.currentUser;
-        const value = AsyncStorage.getItem('@storage_Key');
-            if (value !== null) {
-                if (user !== null) {
-                    navigation.navigate('Main')
-                }
-            }
-    });
+    // useEffect(() => {
+    //      const user = auth.currentUser;
+    //      const value = AsyncStorage.getItem('@storage_Key');
+    //         if (value !== null) {
+    //              if (user !== null) {
+    //                 navigation.navigate('Main')
+    //             }
+    //         }
+    // });
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const SignUp = () => {
         navigation.navigate('Sign Up');
     };
 
-    const getData = async () => {
-        try {
-            const value = await AsyncStorage.getItem('@storage_Key');
-            if (value !== null) {
-                console.log(JSON.parse(value));
-            }
-        } catch (error) {
-        }
-    }
-
     const handleSubmit = (evt) => {
         auth
             .signInWithEmailAndPassword(name, pass)
-            .then((userCredential) => {
-                // console.log(userCredential.user.uid) providerData;
-                AsyncStorage.setItem('@storage_Key', JSON.stringify(userCredential.user), (err)=> {
-                    if(err){
-                        console.log("an error");
-                        throw err;
-                    }
-                    console.log("success");
-                    navigation.navigate('Load');
-                }).catch((err)=> {
-                    console.log("error is: " + err);
-                });
+            .then(() => {
+                console.log("success");
+                navigation.navigate('Load');
               })
             .catch(error => Alert.alert("Message:" + error.message))
     }

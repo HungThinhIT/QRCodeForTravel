@@ -2,19 +2,14 @@ import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, Dimensions, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
-import { db, auth } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const ProfileScreen = ({ navigation, route }) => {
-    return <Text>This is {route.params.name}'s profile</Text>;
-};
-export default function SignUp({ navigation, props }) {
-    const [text, onChangeText] = React.useState("Useless Text");
-    const [number, onChangeNumber] = React.useState(null);
-    const [isSelected, setSelection] = React.useState(false);
-    const Login = () => {
-        navigation.navigate('Log In');
-    };
+export default function SignUp({ navigation}) {
+    // const [isSelected, setSelection] = React.useState(false);
+    // const Login = () => {
+    //     navigation.navigate('Log In');
+    // };
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -74,7 +69,7 @@ export default function SignUp({ navigation, props }) {
                         </View>
                         <View style={{ marginTop: 20 }}>
                             <ButtonModel label="ĐĂNG KÝ" onPress={() => handleSubmit()} />
-                            <Text style={{ marginTop: 10 }} onPress={Login}>Đăng Nhập</Text>
+                            {/* <Text style={{ marginTop: 10 }} onPress={Login}>Đăng Nhập</Text> */}
                         </View>
                     </View>
                 </View>
@@ -137,7 +132,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: "80%",
+        height: "75%",
         borderRadius: 20,
         backgroundColor: '#fff'
     }

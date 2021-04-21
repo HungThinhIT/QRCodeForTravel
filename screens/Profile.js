@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button, Alert } from 'react-native';
 import { LabelInputText, ButtonModel } from '../components';
-import { db, auth } from "../firebase/firebase";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { auth } from "../firebase/firebase";
 
 const viewForm = (phone,name) => {
     return (
@@ -24,23 +23,6 @@ const viewForm = (phone,name) => {
                     <Text>{phone}</Text>
                 </View>
             </View>
-            {/* <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-
-                <View style={{ flex: 3 }} >
-                    <Text>Giới tính</Text>
-                </View>
-                <View style={{ flex: 7 }} >
-                    <Text>Nam</Text>
-                </View>
-            </View>
-            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-                <View style={{ flex: 3 }} >
-                    <Text>Địa chỉ</Text>
-                </View>
-                <View style={{ flex: 7 }} >
-                    <Text>{'address'}</Text>
-                </View>
-            </View> */}
         </View>
     );
 }
@@ -61,7 +43,6 @@ const hanldeButtonText1 = (isEditable) =>{
 
 export default function Profile({ navigation }) {
     const [isEditable, setIsEditable] = useState(false);
-    const [dx, setDx] = useState('Đăng xuất');
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [phone, setPhone] = useState();
@@ -69,29 +50,20 @@ export default function Profile({ navigation }) {
     const [phone1, setPhone1] = useState("");
      
     useEffect(()=>{
-        getData();
-    },[])
-    //Kiểm tra đã lưu đăng nhập chưa
-    const getData = async () => {
-        try {
-            const value = await AsyncStorage.getItem('@storage_Key');
-            if (value !== null) {
-                // console.log(JSON.parse(value));
-                const user = JSON.parse(value);
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
                 setName(user.displayName);
                 setEmail(user.email);
                 var phone1 = user.photoURL;
                 phone1 == null ? setPhone("Trống") : setPhone(user.photoURL);
-            }else{
-                AsyncStorage.removeItem('@storage_Key');
-                navigation.navigate('Log In');
+            } else {
+                console.log("User else: null");
+                Logout();
             }
-        } catch (error) {
-        }
-    }
+          });
+    },[])
 
     const Logout = () => {
-        AsyncStorage.removeItem('@storage_Key');
         const user = auth.currentUser;
         if (user != null) {
             auth.signOut().then(()=> navigation.navigate('Log In'));
@@ -102,23 +74,48 @@ export default function Profile({ navigation }) {
 
     //Lưu thông tin sau khi nhấn nút Lưu lại
     const handleSubmit = (evt) => {
+        var user = auth.currentUser;
         if(name1 != "" && phone1 == ""){
-            Alert.alert("Đã cập nhật tên: "+name1);
+            console.log(name1+phone1);
+            user.updateProfile({
+                displayName: name1,
+                }).then(() => {
+                    Alert.alert("Đã cập nhật họ tên!");
+                    setName(name1);
+                    setName1("");
+                    setIsEditable(!isEditable)
+                }).catch(function(error) {
+                    Alert.alert("Đã có lỗi xảy ra!");
+            });
         }
         if(name1 == "" && phone1 != ""){
-            Alert.alert("Đã cập nhật SDT: "+phone1);
+            console.log(name1+phone1);
+            user.updateProfile({
+                photoURL: phone1
+                }).then(() => {
+                    Alert.alert("Đã cập nhật SDT");
+                    setPhone(phone1);
+                    setPhone1("");
+                    setIsEditable(!isEditable)
+                }).catch(function(error) {
+                    Alert.alert("Đã có lỗi xảy ra!");
+            });
         }
         if(name1 != "" && phone1 != ""){
-            var user = auth.currentUser;
+            console.log(name1+phone1);
             user.updateProfile({
             displayName: name1,
             photoURL: phone1
             }).then(() => {
                 Alert.alert("Đã cập nhật tên và SDT");
+                setName(name1);
+                setPhone(phone1);
+                setName1("");
+                setPhone1("");
+                setIsEditable(!isEditable)
             }).catch(function(error) {
                 console.log(error);
-                // Alert.alert("Đã cập nhật tên và SDT");
-                // setIsEditable(!isEditable)
+                Alert.alert("Đã có lỗi xảy ra!");
             });
         }
     }
@@ -132,12 +129,7 @@ export default function Profile({ navigation }) {
                     <View style={{ flex: 7 }} >
                         <LabelInputText label={'Số điện thoại'} initText={phone}  onChangeText={phone1 => setPhone1(phone1)} keyboardType="numeric"/>
                     </View>
-                    {/* <View style={{ flex: 3, paddingLeft: 5 }} >
-                        <LabelInputText label={'Giới tính'} initText={'Nam'} />
-                    </View> */}
                 </View>
-                {/* <LabelInputText label={'Địa chỉ'} initText={'address'} /> */}
-                {/* <LabelPicker label="Giới tính"/> */}
                 <View style={{ marginTop: 10 }}>
                     <ButtonModel label="Lưu lại" onPress={() => handleSubmit()} />
                 </View>
@@ -202,7 +194,6 @@ const styles = StyleSheet.create({
     },
     blockLogo: {
         textAlign: 'center',
-        // backgroundColor: 'red',
     },
     containerBody: {
         paddingTop: 10,

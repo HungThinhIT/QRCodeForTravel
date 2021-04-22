@@ -14,12 +14,13 @@ MERGED from [:react-native-community_masked-view] C:\Hoctap\QRCodeForTravel\node
 MERGED from [:react-native-picker_picker] C:\Hoctap\QRCodeForTravel\node_modules\@react-native-picker\picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-geolocation-service] C:\Hoctap\QRCodeForTravel\node_modules\react-native-geolocation-service\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] C:\Hoctap\QRCodeForTravel\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-34:12
 MERGED from [:react-native-maps] C:\Hoctap\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-12:12
 MERGED from [:react-native-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-safe-area-context] C:\Hoctap\QRCodeForTravel\node_modules\react-native-safe-area-context\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] C:\Hoctap\QRCodeForTravel\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:2:1-13:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5c64f35c4f864d4cd139ccbbff91ceb9\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\0ea3fdda9f5684423892484ef8480b5f\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [org.webkit:android-jsc:r245459] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\65337ca8c0783fc27be60d476a5f6b75\jetified-android-jsc-r245459\AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-reanimated] C:\Hoctap\QRCodeForTravel\node_modules\react-native-reanimated\android\build\.transforms\39864be7e7d5d9bf7eb097f9de0b36f7\jetified-react-native-reanimated-64\AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.fresco:flipper:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\84c6a932a42f35f9b796c5d67e6eb742\jetified-flipper-2.2.0\AndroidManifest.xml:2:1-9:12
@@ -32,6 +33,7 @@ MERGED from [com.facebook.fresco:memory-type-java:2.2.0] C:\Users\Van Quy\.gradl
 MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\cf4b730f71bf97441bdf4ebe8cfeeb88\jetified-imagepipeline-native-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:soloader:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\c35a46a0a862651f1e0a89250dcee30d\jetified-soloader-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.soloader:soloader:0.10.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5fb5c0c623111e89d0cb2cc6cbe55df8\jetified-soloader-0.10.1\AndroidManifest.xml:2:1-13:12
+MERGED from [com.github.yalantis:ucrop:2.2.6-native] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\99c6ff58ff6c83738ffbf8a18655305e\jetified-ucrop-2.2.6-native\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\747f53e70e3372703b3570ac3dfbfb03\material-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\d14dbad7340cad958a2e361a440b498d\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\ce476dc2f1f7d59691ad234de1ec2fb1\sqlite-framework-2.1.0\AndroidManifest.xml:17:1-24:12
@@ -40,9 +42,6 @@ MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] C:\Users\Van Quy\.gra
 MERGED from [com.facebook.fresco:imagepipeline:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\cda5d9a1a957ef402e55e5ba5c5bfd6d\jetified-imagepipeline-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\8f540c10f5114d05b8ee24db3e19e1f8\jetified-nativeimagetranscoder-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\b51f59890c1c9ada8eed6d21cecc075e\jetified-imagepipeline-base-2.2.0\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\baebfc24ee3e9d675a4614c1f27f118a\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2ee35bfe9d2e9019f071c4a047a96db2\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6e0f82970a69a6b386ee45a08ac362fe\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-location:17.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6ecbd03c0ba003b6c6cab88140d4ae56\jetified-play-services-location-17.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2631375de80937c90cd3a1032ab35871\jetified-play-services-base-17.0.0\AndroidManifest.xml:17:1-29:12
@@ -52,6 +51,7 @@ MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Van 
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\803d31b2df2f8d968e6cb7c3ffa37ef9\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.2.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5e5754defa7ec1b661ffd11a17838c67\fragment-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\3c1c25210c9523b781f68f6e5260d398\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\baebfc24ee3e9d675a4614c1f27f118a\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\22a5d9f52d495a432176451a4c4ba982\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2f70304b103eacfab05dbe55739e869f\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\49dee3543bc65746b6bba9f83aa0b18a\loader-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -59,10 +59,13 @@ MERGED from [androidx.activity:activity:1.1.0] C:\Users\Van Quy\.gradle\caches\t
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\c38f0dcdb4eabb88f8961812937ce545\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\86cf751735e9e9dd0416cce35c4a71a1\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\ae1a1dddf9cea612695d8157e2ff38cd\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2ee35bfe9d2e9019f071c4a047a96db2\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\361553562ce35cf8cf447832c4a7d1ec\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\d67cd79abd1ca209502f51c69d23182b\core-1.1.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\bae4382a703142a8f82a100a412243f1\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\74153744c3b76afb34d0c28a686a981b\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6e0f82970a69a6b386ee45a08ac362fe\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\644db9887bcf690060a06a795c4e8303\exifinterface-1.1.0-beta01\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\af9af86a2035b10a0514f89f66cf8a9a\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\cbff631e500aff82164944184b49a648\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5af1825acc1d96709826d913b19b2820\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:17:1-24:12
@@ -109,6 +112,8 @@ application
 ADDED from C:\Hoctap\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:6:5-29:19
 MERGED from C:\Hoctap\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:6:5-29:19
 MERGED from C:\Hoctap\QRCodeForTravel\android\app\src\main\AndroidManifest.xml:6:5-29:19
+MERGED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-32:19
+MERGED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-32:19
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.soloader:soloader:0.10.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5fb5c0c623111e89d0cb2cc6cbe55df8\jetified-soloader-0.10.1\AndroidManifest.xml:11:5-20
@@ -217,6 +222,8 @@ MERGED from [:react-native-geolocation-service] C:\Hoctap\QRCodeForTravel\node_m
 MERGED from [:react-native-geolocation-service] C:\Hoctap\QRCodeForTravel\node_modules\react-native-geolocation-service\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-gesture-handler] C:\Hoctap\QRCodeForTravel\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] C:\Hoctap\QRCodeForTravel\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-8:41
+MERGED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-8:41
 MERGED from [:react-native-maps] C:\Hoctap\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-maps] C:\Hoctap\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
@@ -227,8 +234,8 @@ MERGED from [:react-native-screens] C:\Hoctap\QRCodeForTravel\node_modules\react
 MERGED from [:react-native-screens] C:\Hoctap\QRCodeForTravel\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5c64f35c4f864d4cd139ccbbff91ceb9\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5c64f35c4f864d4cd139ccbbff91ceb9\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\0ea3fdda9f5684423892484ef8480b5f\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\0ea3fdda9f5684423892484ef8480b5f\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [org.webkit:android-jsc:r245459] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\65337ca8c0783fc27be60d476a5f6b75\jetified-android-jsc-r245459\AndroidManifest.xml:7:5-9:41
 MERGED from [org.webkit:android-jsc:r245459] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\65337ca8c0783fc27be60d476a5f6b75\jetified-android-jsc-r245459\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-reanimated] C:\Hoctap\QRCodeForTravel\node_modules\react-native-reanimated\android\build\.transforms\39864be7e7d5d9bf7eb097f9de0b36f7\jetified-react-native-reanimated-64\AndroidManifest.xml:7:5-9:41
@@ -253,6 +260,8 @@ MERGED from [com.facebook.fresco:soloader:2.2.0] C:\Users\Van Quy\.gradle\caches
 MERGED from [com.facebook.fresco:soloader:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\c35a46a0a862651f1e0a89250dcee30d\jetified-soloader-2.2.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.soloader:soloader:0.10.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5fb5c0c623111e89d0cb2cc6cbe55df8\jetified-soloader-0.10.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:soloader:0.10.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5fb5c0c623111e89d0cb2cc6cbe55df8\jetified-soloader-0.10.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.6-native] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\99c6ff58ff6c83738ffbf8a18655305e\jetified-ucrop-2.2.6-native\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.6-native] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\99c6ff58ff6c83738ffbf8a18655305e\jetified-ucrop-2.2.6-native\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\747f53e70e3372703b3570ac3dfbfb03\material-1.1.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\747f53e70e3372703b3570ac3dfbfb03\material-1.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\d14dbad7340cad958a2e361a440b498d\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -269,12 +278,6 @@ MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] C:\Users\Van Quy\.
 MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\8f540c10f5114d05b8ee24db3e19e1f8\jetified-nativeimagetranscoder-2.2.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\b51f59890c1c9ada8eed6d21cecc075e\jetified-imagepipeline-base-2.2.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\b51f59890c1c9ada8eed6d21cecc075e\jetified-imagepipeline-base-2.2.0\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\baebfc24ee3e9d675a4614c1f27f118a\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\baebfc24ee3e9d675a4614c1f27f118a\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2ee35bfe9d2e9019f071c4a047a96db2\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2ee35bfe9d2e9019f071c4a047a96db2\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6e0f82970a69a6b386ee45a08ac362fe\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6e0f82970a69a6b386ee45a08ac362fe\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:17.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6ecbd03c0ba003b6c6cab88140d4ae56\jetified-play-services-location-17.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:17.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6ecbd03c0ba003b6c6cab88140d4ae56\jetified-play-services-location-17.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\faf3edd0a0a40b32e6c32885cc662e42\jetified-play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
@@ -293,6 +296,8 @@ MERGED from [androidx.fragment:fragment:1.2.1] C:\Users\Van Quy\.gradle\caches\t
 MERGED from [androidx.fragment:fragment:1.2.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\5e5754defa7ec1b661ffd11a17838c67\fragment-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\3c1c25210c9523b781f68f6e5260d398\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\3c1c25210c9523b781f68f6e5260d398\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\baebfc24ee3e9d675a4614c1f27f118a\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\baebfc24ee3e9d675a4614c1f27f118a\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\22a5d9f52d495a432176451a4c4ba982\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\22a5d9f52d495a432176451a4c4ba982\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2f70304b103eacfab05dbe55739e869f\viewpager-1.0.0\AndroidManifest.xml:20:5-44
@@ -307,6 +312,8 @@ MERGED from [androidx.customview:customview:1.0.0] C:\Users\Van Quy\.gradle\cach
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\86cf751735e9e9dd0416cce35c4a71a1\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\ae1a1dddf9cea612695d8157e2ff38cd\transition-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.transition:transition:1.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\ae1a1dddf9cea612695d8157e2ff38cd\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2ee35bfe9d2e9019f071c4a047a96db2\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\2ee35bfe9d2e9019f071c4a047a96db2\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\361553562ce35cf8cf447832c4a7d1ec\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\361553562ce35cf8cf447832c4a7d1ec\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\d67cd79abd1ca209502f51c69d23182b\core-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -315,6 +322,10 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Van Quy\.gradl
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\bae4382a703142a8f82a100a412243f1\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\74153744c3b76afb34d0c28a686a981b\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\74153744c3b76afb34d0c28a686a981b\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6e0f82970a69a6b386ee45a08ac362fe\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\6e0f82970a69a6b386ee45a08ac362fe\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\644db9887bcf690060a06a795c4e8303\exifinterface-1.1.0-beta01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\644db9887bcf690060a06a795c4e8303\exifinterface-1.1.0-beta01\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\af9af86a2035b10a0514f89f66cf8a9a\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\af9af86a2035b10a0514f89f66cf8a9a\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\cbff631e500aff82164944184b49a648\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
@@ -361,6 +372,40 @@ uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.facebook.flipper:flipper:0.75.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a8f6015f96666ab8d93bfe5b64998bc8\jetified-flipper-0.75.1\AndroidManifest.xml:16:5-76
 	android:name
 		ADDED from [com.facebook.flipper:flipper:0.75.1] C:\Users\Van Quy\.gradle\caches\transforms-2\files-2.1\a8f6015f96666ab8d93bfe5b64998bc8\jetified-flipper-0.75.1\AndroidManifest.xml:16:22-73
+queries
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-14:15
+intent#action:name:android.media.action.IMAGE_CAPTURE
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:18
+action#android.media.action.IMAGE_CAPTURE
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-73
+	android:name
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:21-70
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:22-78
+provider#androidx.core.content.FileProvider
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-27:20
+	android:grantUriPermissions
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-47
+	android:authorities
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-60
+	android:exported
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-37
+	android:name
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-62
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-26:58
+	android:resource
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-55
+	android:name
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:17-67
+activity#com.yalantis.ucrop.UCropActivity
+ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:9-31:72
+	android:theme
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-69
+	android:name
+		ADDED from [:react-native-image-crop-picker] C:\Hoctap\QRCodeForTravel\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-60
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from [:react-native-maps] C:\Hoctap\QRCodeForTravel\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-81
 	android:name

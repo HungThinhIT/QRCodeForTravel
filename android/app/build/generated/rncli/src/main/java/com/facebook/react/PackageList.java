@@ -23,6 +23,8 @@ import com.reactnativecommunity.picker.RNCPickerPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-image-crop-picker
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
 // react-native-picker
@@ -84,6 +86,7 @@ public class PackageList {
       new RNCPickerPackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
+      new PickerPackage(),
       new MapsPackage(),
       new PickerViewPackage(),
       new ReanimatedPackage(),

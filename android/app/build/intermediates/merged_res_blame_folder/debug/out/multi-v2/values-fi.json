@@ -4,6 +4,23 @@
             "outputFile": "C:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fi\\values-fi.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Van Quy\\.gradle\\caches\\transforms-2\\files-2.1\\99c6ff58ff6c83738ffbf8a18655305e\\jetified-ucrop-2.2.6-native\\res\\values-fi\\values-fi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,178,243,293",
+                        "endColumns": "122,64,49,48",
+                        "endOffsets": "173,238,288,337"
+                    },
+                    "to": {
+                        "startLines": "49,50,51,52",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "5616,5739,5804,5854",
+                        "endColumns": "122,64,49,48",
+                        "endOffsets": "5734,5799,5849,5898"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Van Quy\\.gradle\\caches\\transforms-2\\files-2.1\\dcffa74d8d015470a7eae32b9eb648c7\\jetified-play-services-basement-17.0.0\\res\\values-fi\\values.xml",
                     "from": {
                         "startLines": "4",

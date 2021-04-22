@@ -1,20 +1,12 @@
 import 'react-native-gesture-handler';
 import { Text, View, Image, StyleSheet, Alert, CheckBox, Dimensions} from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
-import React, { useState, useEffect } from 'react';
-import { auth } from "../firebase/firebase";
+import React, { useState} from 'react';
+import { auth} from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function Login({ navigation }) {
-    // useEffect(() => {
-    //      const user = auth.currentUser;
-    //      const value = AsyncStorage.getItem('@storage_Key');
-    //         if (value !== null) {
-    //              if (user !== null) {
-    //                 navigation.navigate('Main')
-    //             }
-    //         }
-    // });
+
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const SignUp = () => {
@@ -66,7 +58,9 @@ export default function Login({ navigation }) {
                         </View> */}
                                 <View style={{ marginTop: 10 }}>
                                     <ButtonModel label="ĐĂNG NHẬP" onPress={() => handleSubmit()} />
-                                    <Text style={{ marginTop: 10 }} onPress={SignUp}>Tạo tài khoản mới</Text>
+                                    <View style={styles.btnlogin}>
+                                        <Text style={{ marginTop: 10,flex:1 }} onPress={SignUp}>Tạo tài khoản</Text>
+                                    </View>
                                     <Text style={{ marginTop: 10 }} onPress={()=>navigation.navigate('Load')}>Về Trang chính</Text>
                                 </View>
                             </View>
@@ -140,4 +134,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#0A7FD9",
         flexDirection: 'row',
     },
+    btnlogin:{
+        flexDirection:"row",
+        marginTop:10
+    }
 });

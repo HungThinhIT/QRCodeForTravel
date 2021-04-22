@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button, Alert } from 'react-native';
 import { LabelInputText, ButtonModel } from '../components';
 import { auth } from "../firebase/firebase";
+import {YellowBox} from 'react-native';
+console.disableYellowBox = true; 
 
 const viewForm = (phone,name) => {
     return (
@@ -75,48 +77,48 @@ export default function Profile({ navigation }) {
     //Lưu thông tin sau khi nhấn nút Lưu lại
     const handleSubmit = (evt) => {
         var user = auth.currentUser;
-        if(name1 != "" && phone1 == ""){
-            console.log(name1+phone1);
-            user.updateProfile({
+        if(user){
+            if(name1 != "" && phone1 == ""){
+                user.updateProfile({
+                    displayName: name1,
+                    }).then(() => {
+                        Alert.alert("Đã cập nhật họ tên!");
+                        setName(name1);
+                        setName1("");
+                        setIsEditable(!isEditable)
+                    }).catch(function(error) {
+                        Alert.alert("Đã có lỗi xảy ra!");
+                });
+            }
+            if(name1 == "" && phone1 != ""){
+                user.updateProfile({
+                    photoURL: phone1
+                    }).then(() => {
+                        Alert.alert("Đã cập nhật SDT");
+                        setPhone(phone1);
+                        setPhone1("");
+                        setIsEditable(!isEditable)
+                    }).catch(function(error) {
+                        Alert.alert("Đã có lỗi xảy ra!");
+                });
+            }
+            if(name1 != "" && phone1 != ""){
+                user.updateProfile({
                 displayName: name1,
-                }).then(() => {
-                    Alert.alert("Đã cập nhật họ tên!");
-                    setName(name1);
-                    setName1("");
-                    setIsEditable(!isEditable)
-                }).catch(function(error) {
-                    Alert.alert("Đã có lỗi xảy ra!");
-            });
-        }
-        if(name1 == "" && phone1 != ""){
-            console.log(name1+phone1);
-            user.updateProfile({
                 photoURL: phone1
                 }).then(() => {
-                    Alert.alert("Đã cập nhật SDT");
+                    Alert.alert("Đã cập nhật tên và SDT");
+                    setName(name1);
                     setPhone(phone1);
+                    setName1("");
                     setPhone1("");
                     setIsEditable(!isEditable)
                 }).catch(function(error) {
                     Alert.alert("Đã có lỗi xảy ra!");
-            });
-        }
-        if(name1 != "" && phone1 != ""){
-            console.log(name1+phone1);
-            user.updateProfile({
-            displayName: name1,
-            photoURL: phone1
-            }).then(() => {
-                Alert.alert("Đã cập nhật tên và SDT");
-                setName(name1);
-                setPhone(phone1);
-                setName1("");
-                setPhone1("");
-                setIsEditable(!isEditable)
-            }).catch(function(error) {
-                console.log(error);
-                Alert.alert("Đã có lỗi xảy ra!");
-            });
+                });
+            }
+        }else{
+            Logout();
         }
     }
 

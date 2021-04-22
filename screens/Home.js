@@ -32,7 +32,7 @@ const Item = ({ name, img,add }) => (
     </TouchableOpacity>
 );
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
     const renderItem = ({ item }) => (
         <Item name={item.name} img={item.img} add={item.add}/>
     );
@@ -41,7 +41,7 @@ export default function HomeScreen() {
         <SafeAreaView >
             <View style={styles.header}> 
                 <Text style={styles.qrtr}>QR Travel</Text>
-                <Text style={styles.add}>+</Text>
+                <Text style={styles.add} onPress={()=>navigation.navigate('Map')}>+</Text>
             </View>
             
             <View style={styles.searchContainer}>

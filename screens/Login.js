@@ -6,9 +6,33 @@ import { auth} from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function Login({ navigation }) {
-
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
+    const hasUnsavedChanges = Boolean(true);
+    React.useEffect(
+        () =>
+          navigation.addListener('beforeRemove', (e) => {
+            if (!hasUnsavedChanges) {
+              // If we don't have unsaved changes, then we don't need to do anything
+              return;
+            }
+            e.preventDefault();
+            Alert.alert(
+              'Trở về trang chính?',
+              'Bạn chưa đăng nhập. Bạn có muốn về trang chính?',
+              [
+                { text: "Tiếp tục", style: 'cancel', onPress: () => {} },
+                {
+                  text: 'Rời đi',
+                  style: 'destructive',
+                  onPress: () => navigation.navigate('Load'),
+                },
+              ]
+            );
+          }),
+        [navigation, hasUnsavedChanges]
+      );
+
     const SignUp = () => {
         navigation.navigate('Sign Up');
     };

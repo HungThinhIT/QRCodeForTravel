@@ -8,7 +8,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
 
 export default function AddLocation({ navigation, route }) {
-    const [selectedValue, setSelectedValue] = useState("java");
+    const [selectedValue, setSelectedValue] = useState("dn");
     const [photo, setPhoto] = useState(null);
     const [ inputlink, setInputlink] = useState('0');
     const [ height, setHeight] = useState(0);
@@ -22,7 +22,9 @@ export default function AddLocation({ navigation, route }) {
     const [detail, setDetail] = useState();
 
     const submitLocation = (location,title,selectedValue,address,name,detail) => {
-        Alert.alert(location+title+selectedValue+address+name+detail);
+        const latitude = location.latitude;
+        const longitude= location.longitude;
+        Alert.alert(title+name+address+selectedValue+detail+"Toa do: " +latitude+", "+longitude);
     };
     const onSelectetImage = () => {
         const options = {};

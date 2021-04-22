@@ -51,7 +51,7 @@ export default function Profile({ navigation }) {
     const [name1, setName1] = useState("");
     const [phone1, setPhone1] = useState("");
      
-    useEffect(()=>{
+    useEffect(() => {
         auth.onAuthStateChanged(function(user) {
             if (user) {
                 setName(user.displayName);
@@ -59,7 +59,6 @@ export default function Profile({ navigation }) {
                 var phone1 = user.photoURL;
                 phone1 == null ? setPhone("Trống") : setPhone(user.photoURL);
             } else {
-                console.log("User else: null");
                 Logout();
             }
           });

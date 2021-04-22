@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
-// import { FontAwesome } from '@expo/vector-icons';
 
 // StatusBar.setHidden(true);StatusBar,
 
@@ -45,18 +44,15 @@ export default function HomeScreen({ navigation }) {
             </View>
             
             <View style={styles.searchContainer}>
-                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', borderColor: '#0A7FD9', borderWidth: 1}}>
                     {/* FIXME: Replace with another fonts */}
                     {/* <FontAwesome style={{margin: 12}} name="search" size={24} color="black" /> */}
-
                     <TextInput 
                         style={styles.search}
                         placeholder="Tìm kiếm địa điểm đến"
                     >
                     </TextInput>
-                </View>
+                
             </View>
-
             <FlatList
                 style={styles.listView}
                 data={categories}
@@ -79,11 +75,16 @@ const styles = StyleSheet.create({
         
     },
     qrtr:{
-        margin:15,
-        marginLeft:8,
-        color:'#0000FF',
+        marginLeft:18,
+        color:'#0A7FD9',
         fontSize: 22,
-        marginTop:30,
+    },
+    add:{
+        color:'#0A7FD9',
+        fontSize: 22,
+        marginRight:28,
+        textAlign: 'right',
+        flexGrow:2,
     },
     Catimg:{
         width:60,
@@ -91,15 +92,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header:{
-        flexDirection: 'row'
-    },
-    add:{
-        color:'#0000FF',
-        fontSize: 22,
-        marginTop:30,
-        marginRight:15,
-        textAlign: 'right',
-        flexGrow:2,
+        flexDirection: 'row',
+        paddingVertical:15,
+        backgroundColor:"#FFFFFF",
+        borderBottomWidth :1,
+        borderBottomColor: '#000',
     },
     nameqr:{
         marginLeft:10,
@@ -121,11 +118,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     search: {
-        height: 40,
-        // borderWidth: 1,
+        margin:10,
+        height: 50,
+        borderWidth: 1,
+        borderRadius: 20,
+        paddingHorizontal: 12,
+        borderColor: '#0A7FD9',
     },
     searchContainer: {
-        height: 60,
-        // backgroundColor: 'gray'
+        backgroundColor:"#FFFFFF",
     }
   });

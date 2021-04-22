@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Dimensions, Alert, PermissionsAndroid } from 'r
 import MapView, { Marker, OverlayComponent } from 'react-native-maps';
 // import * as Permission from 'expo-permissions';
 import { ButtonModel } from "../components";
+import { auth } from "../firebase/firebase";
 
 export default function MapPicker({ navigation }) {
 
@@ -35,7 +36,6 @@ export default function MapPicker({ navigation }) {
                             longitudeDelta: 0.2,
                         }
                         onRegionChange(currentLongLat);
-
                     },
                     (err) => console.log(err),
                     { enableHighAccuracy: false, timeout: 8000, maximumAge: 10000 }
@@ -48,7 +48,16 @@ export default function MapPicker({ navigation }) {
     }
     React.useEffect(() => {
         onRegionChange(location);
+        auth.onAuthStateChanged(function(user) {
+            if (!user) {
+                Logout();
+            }
+          });
     });
+    
+    const Logout = () => {
+        navigation.navigate('Log In');
+    };
     const mapView = React.createRef();
     const lastLocation = React.useRef(location);
     return (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+// import { FontAwesome } from '@expo/vector-icons';
 
 // StatusBar.setHidden(true);StatusBar,
 
@@ -46,7 +46,8 @@ export default function HomeScreen() {
             
             <View style={styles.searchContainer}>
                 <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', borderColor: '#0A7FD9', borderWidth: 1}}>
-                    <FontAwesome style={{margin: 12}} name="search" size={24} color="black" />
+                    {/* FIXME: Replace with another fonts */}
+                    {/* <FontAwesome style={{margin: 12}} name="search" size={24} color="black" /> */}
 
                     <TextInput 
                         style={styles.search}

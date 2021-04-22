@@ -1,0 +1,104 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.qrcodetravel"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:4:5-67
+11-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+12-->[:react-native-maps] /Users/phoenix/Documents/Github/QRCodeForTravel/node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/release/AndroidManifest.xml:10:5-81
+12-->[:react-native-maps] /Users/phoenix/Documents/Github/QRCodeForTravel/node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/release/AndroidManifest.xml:10:22-78
+13    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- Include required permissions for Google Maps API to run. -->
+13-->[:react-native-picker] /Users/phoenix/Documents/Github/QRCodeForTravel/node_modules/react-native-picker/android/build/intermediates/library_manifest/release/AndroidManifest.xml:11:5-78
+13-->[:react-native-picker] /Users/phoenix/Documents/Github/QRCodeForTravel/node_modules/react-native-picker/android/build/intermediates/library_manifest/release/AndroidManifest.xml:11:22-75
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->[com.google.android.gms:play-services-maps:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/faf3edd0a0a40b32e6c32885cc662e42/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
+14-->[com.google.android.gms:play-services-maps:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/faf3edd0a0a40b32e6c32885cc662e42/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:22-76
+15
+16    <uses-feature
+16-->[com.google.android.gms:play-services-maps:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/faf3edd0a0a40b32e6c32885cc662e42/jetified-play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
+17        android:glEsVersion="0x00020000"
+17-->[com.google.android.gms:play-services-maps:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/faf3edd0a0a40b32e6c32885cc662e42/jetified-play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
+18        android:required="true" />
+18-->[com.google.android.gms:play-services-maps:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/faf3edd0a0a40b32e6c32885cc662e42/jetified-play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
+19
+20    <application
+20-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:6:5-29:19
+21        android:name="com.qrcodetravel.MainApplication"
+21-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:7:7-38
+22        android:allowBackup="false"
+22-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:11:7-34
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.1.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/AndroidManifest.xml:24:18-86
+24        android:icon="@mipmap/ic_launcher"
+24-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:9:7-41
+25        android:label="@string/app_name"
+25-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:8:7-39
+26        android:roundIcon="@mipmap/ic_launcher_round"
+26-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:10:7-52
+27        android:theme="@style/AppTheme" >
+27-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:12:7-38
+28        <meta-data
+28-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:13:8-15:66
+29            android:name="com.google.android.maps.v2.API_KEY"
+29-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:14:9-58
+30            android:value="AIzaSyAdwW_dHVzEshgBBu9bOi8U76oagLlgTqc" />
+30-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:15:9-64
+31
+32        <activity
+32-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:17:7-27:18
+33            android:name="com.qrcodetravel.MainActivity"
+33-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:18:9-37
+34            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+34-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:20:9-86
+35            android:label="@string/app_name"
+35-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:19:9-41
+36            android:launchMode="singleTask"
+36-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:21:9-40
+37            android:windowSoftInputMode="adjustResize" >
+37-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:22:9-51
+38            <intent-filter>
+38-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:23:9-26:25
+39                <action android:name="android.intent.action.MAIN" />
+39-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:24:13-65
+39-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:24:21-62
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:25:13-73
+41-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:25:23-70
+42            </intent-filter>
+43        </activity>
+44
+45        <uses-library
+45-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:28:8-86
+46            android:name="org.apache.http.legacy"
+46-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:28:22-59
+47            android:required="false" />
+47-->/Users/phoenix/Documents/Github/QRCodeForTravel/android/app/src/main/AndroidManifest.xml:28:60-84
+48
+49        <activity
+49-->[com.google.android.gms:play-services-base:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/2631375de80937c90cd3a1032ab35871/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+50            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+50-->[com.google.android.gms:play-services-base:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/2631375de80937c90cd3a1032ab35871/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+51            android:exported="false"
+51-->[com.google.android.gms:play-services-base:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/2631375de80937c90cd3a1032ab35871/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+52            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+52-->[com.google.android.gms:play-services-base:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/2631375de80937c90cd3a1032ab35871/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+53
+54        <meta-data
+54-->[com.google.android.gms:play-services-basement:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/dcffa74d8d015470a7eae32b9eb648c7/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+55            android:name="com.google.android.gms.version"
+55-->[com.google.android.gms:play-services-basement:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/dcffa74d8d015470a7eae32b9eb648c7/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+56            android:value="@integer/google_play_services_version" />
+56-->[com.google.android.gms:play-services-basement:17.0.0] /Users/phoenix/.gradle/caches/transforms-2/files-2.1/dcffa74d8d015470a7eae32b9eb648c7/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+57    </application>
+58
+59</manifest>

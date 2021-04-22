@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { Text, View, StyleSheet, FlatList, TouchableOpacity, Alert, Modal } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+// import { MaterialIcons } from '@expo/vector-icons';
 import {auth} from "../firebase/firebase";
 import 'react-native-gesture-handler';
 
@@ -20,12 +20,13 @@ const signOut = (id,navigation) => {
 
 const Item = ({id, title, icon, navigation }) => (
     <TouchableOpacity style={styles.item} onPress={() => signOut(id,navigation)}>
-        <MaterialIcons name={icon} size={28} style={styles.icon} />
+        {/* FIXME: Replace with another fonts */}
+        {/* <MaterialIcons name={icon} size={28} style={styles.icon} /> */}
         <Text style={styles.itemTitle}>{title}</Text>
     </TouchableOpacity>
 );
 
-export default function Settings({navigation}) {
+export default function Settings({ navigation }) {
     const renderItem = ({ item }) => (
         <Item id={item.id} title={item.title} icon={item.icon} navigation = {navigation}/>
     );
@@ -70,7 +71,8 @@ export default function Settings({navigation}) {
                             <AntDesign name="heart" size={24} color="#05B5B3" />
                         </View>
                         <View style={styles.item}>
-                            <MaterialCommunityIcons name="hammer-wrench" size={24} color="#05B5B3" />
+                            {/* FIXME: Replace with another fonts */}
+                            {/* <MaterialCommunityIcons name="hammer-wrench" size={24} color="#05B5B3" /> */}
                         </View>
                     </View>
                 </View>

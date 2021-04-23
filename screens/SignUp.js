@@ -2,47 +2,37 @@ import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, Alert, Dimensions, CheckBox } from 'react-native';
 import { LabelInputText, ButtonModel } from "../components";
-import { db, auth } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const ProfileScreen = ({ navigation, route }) => {
-    return <Text>This is {route.params.name}'s profile</Text>;
-};
-export default function SignUp({ navigation, props }) {
-    const [text, onChangeText] = React.useState("Useless Text");
-    const [number, onChangeNumber] = React.useState(null);
-    const [isSelected, setSelection] = React.useState(false);
-    const Login = () => {
-        navigation.navigate('Log In');
-    };
+export default function SignUp({ navigation}) {
+    // const [isSelected, setSelection] = React.useState(false);
+    // const Login = () => {
+    //     navigation.navigate('Log In');
+    // };
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
-    const storeNewAccount = () => {
-        db.collection("users").doc(email.toString()).set({
-            address: "",
-            fullname: "",
-            gender: "",
-            moble_phone: phone,
-            point: 2000,
-        }).then(function () {
-            Alert.alert('Thanh cong!!!');
-            Login();
-        });
-    }
     const handleSubmit = (evt) => {
         if (email === "" || password === "" || confirmPass === "" || phone === "") {
-            Alert.alert(`Vui lòng nhập đầy đủ thông tin!` + uid);
+            Alert.alert(`Vui lòng nhập đầy đủ thông tin!`);
         } else {
             if (password === confirmPass) {
-                auth
-                    .createUserWithEmailAndPassword(email, password)
-                    .then(() => storeNewAccount())
-                    .catch(error => Alert.alert("Message:" + error.message))
-                // navigation.navigate('Log In')
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredentials)=>{
+                        if(userCredentials.user){
+                          userCredentials.user.updateProfile({
+                            displayName: 'Anonymous',
+                            photoURL: phone,
+                          }).then((s)=> {
+                            Alert.alert("Đăng ký thành công!");
+                            auth.signOut().then(()=> navigation.navigate('Log In'));
+                          })
+                        }
+                    }).catch(error => Alert.alert("Message:" + error.message))
             } else {
                 Alert.alert(`Mật khẩu không trùng khớp!`);
             }
@@ -66,10 +56,10 @@ export default function SignUp({ navigation, props }) {
                     <View style={{ flex: 1, }}>
                         <View style={styles.commonInput}>
                             <LabelInputText initText="email@gmail.com" label="Email"
-                                onChangeText={email => setEmail(email)} defaultValue={email} secureTextEntry={false} />
+                                onChangeText={email => setEmail(email)} defaultValue={email} />
                         </View>
                         <View style={styles.commonInput}>
-                            <LabelInputText initText="099988889" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} secureTextEntry={false} />
+                            <LabelInputText initText="099988889" label="Điện thoại" onChangeText={phone => setPhone(phone)} defaultValue={phone} keyboardType="numeric"/>
                         </View>
                         <View style={styles.commonInput}>
                             <LabelInputText initText="*****" label="Mật Khẩu" onChangeText={password => setPassword(password)} defaultValue={password} secureTextEntry={true} />
@@ -79,7 +69,7 @@ export default function SignUp({ navigation, props }) {
                         </View>
                         <View style={{ marginTop: 20 }}>
                             <ButtonModel label="ĐĂNG KÝ" onPress={() => handleSubmit()} />
-                            <Text style={{ marginTop: 10 }} onPress={Login}>Đăng Nhập</Text>
+                            {/* <Text style={{ marginTop: 10 }} onPress={Login}>Đăng Nhập</Text> */}
                         </View>
                     </View>
                 </View>
@@ -142,7 +132,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: "80%",
+        height: "75%",
         borderRadius: 20,
         backgroundColor: '#fff'
     }

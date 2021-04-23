@@ -49,6 +49,8 @@ anim rns_slide_in_from_left
 anim rns_slide_in_from_right
 anim rns_slide_out_to_left
 anim rns_slide_out_to_right
+anim ucrop_loader_circle_path
+anim ucrop_loader_circle_scale
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -620,6 +622,7 @@ attr subtitleTextAppearance
 attr subtitleTextColor
 attr subtitleTextStyle
 attr suggestionRowLayout
+attr swipeRefreshLayoutProgressSpinnerBackgroundColor
 attr switchMinWidth
 attr switchPadding
 attr switchStyle
@@ -711,6 +714,22 @@ attr track
 attr trackTint
 attr trackTintMode
 attr ttcIndex
+attr ucrop_artv_ratio_title
+attr ucrop_artv_ratio_x
+attr ucrop_artv_ratio_y
+attr ucrop_aspect_ratio_x
+attr ucrop_aspect_ratio_y
+attr ucrop_circle_dimmed_layer
+attr ucrop_dimmed_color
+attr ucrop_frame_color
+attr ucrop_frame_stroke_size
+attr ucrop_grid_color
+attr ucrop_grid_column_count
+attr ucrop_grid_row_count
+attr ucrop_grid_stroke_size
+attr ucrop_show_frame
+attr ucrop_show_grid
+attr ucrop_show_oval_crop_frame
 attr uiCompass
 attr uiMapToolbar
 attr uiRotateGestures
@@ -946,6 +965,31 @@ color test_mtrl_calendar_day
 color test_mtrl_calendar_day_selected
 color tooltip_background_dark
 color tooltip_background_light
+color ucrop_color_active_aspect_ratio
+color ucrop_color_active_controls_color
+color ucrop_color_black
+color ucrop_color_blaze_orange
+color ucrop_color_crop_background
+color ucrop_color_default_crop_frame
+color ucrop_color_default_crop_grid
+color ucrop_color_default_dimmed
+color ucrop_color_default_logo
+color ucrop_color_ebony_clay
+color ucrop_color_heather
+color ucrop_color_inactive_aspect_ratio
+color ucrop_color_inactive_controls_color
+color ucrop_color_progress_wheel_line
+color ucrop_color_statusbar
+color ucrop_color_toolbar
+color ucrop_color_toolbar_widget
+color ucrop_color_white
+color ucrop_color_widget
+color ucrop_color_widget_active
+color ucrop_color_widget_background
+color ucrop_color_widget_rotate_angle
+color ucrop_color_widget_rotate_mid_line
+color ucrop_color_widget_text
+color ucrop_scale_text_view_selector
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1272,6 +1316,28 @@ dimen tooltip_precise_anchor_threshold
 dimen tooltip_vertical_padding
 dimen tooltip_y_offset_non_touch
 dimen tooltip_y_offset_touch
+dimen ucrop_default_crop_frame_stoke_width
+dimen ucrop_default_crop_grid_stoke_width
+dimen ucrop_default_crop_logo_size
+dimen ucrop_default_crop_rect_corner_touch_area_line_length
+dimen ucrop_default_crop_rect_corner_touch_threshold
+dimen ucrop_default_crop_rect_min_size
+dimen ucrop_height_crop_aspect_ratio_text
+dimen ucrop_height_divider_shadow
+dimen ucrop_height_horizontal_wheel_progress_line
+dimen ucrop_height_wrapper_controls
+dimen ucrop_height_wrapper_states
+dimen ucrop_margin_horizontal_wheel_progress_line
+dimen ucrop_margin_top_controls_text
+dimen ucrop_margin_top_widget_text
+dimen ucrop_padding_crop_frame
+dimen ucrop_progress_size
+dimen ucrop_size_dot_scale_text_view
+dimen ucrop_size_wrapper_rotate_button
+dimen ucrop_text_size_controls_text
+dimen ucrop_text_size_widget_text
+dimen ucrop_width_horizontal_wheel_progress_line
+dimen ucrop_width_middle_wheel_progress_line
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -1434,6 +1500,25 @@ drawable redbox_top_border_background
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable ucrop_crop
+drawable ucrop_ic_angle
+drawable ucrop_ic_crop
+drawable ucrop_ic_crop_unselected
+drawable ucrop_ic_cross
+drawable ucrop_ic_done
+drawable ucrop_ic_next
+drawable ucrop_ic_reset
+drawable ucrop_ic_rotate
+drawable ucrop_ic_rotate_unselected
+drawable ucrop_ic_scale
+drawable ucrop_ic_scale_unselected
+drawable ucrop_rotate
+drawable ucrop_scale
+drawable ucrop_shadow_upside
+drawable ucrop_vector_ic_crop
+drawable ucrop_vector_loader
+drawable ucrop_vector_loader_animated
+drawable ucrop_wrapper_controls_shape
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -1538,6 +1623,8 @@ id confirm_button
 id container
 id content
 id contentPanel
+id controls_shadow
+id controls_wrapper
 id coordinator
 id custom
 id customPanel
@@ -1592,11 +1679,19 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id image_view_crop
+id image_view_logo
+id image_view_state_aspect_ratio
+id image_view_state_rotate
+id image_view_state_scale
 id info
 id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layout_aspect_ratio
+id layout_rotate_wheel
+id layout_scale_wheel
 id left
 id light
 id line1
@@ -1607,6 +1702,8 @@ id loopViewOne
 id loopViewThree
 id loopViewTwo
 id masked
+id menu_crop
+id menu_loader
 id message
 id middle
 id mini
@@ -1674,11 +1771,13 @@ id rn_redbox_reload_button
 id rn_redbox_report_button
 id rn_redbox_report_label
 id rn_redbox_stack
+id rotate_scroll_wheel
 id rounded
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
 id scale
+id scale_scroll_wheel
 id screen
 id scroll
 id scrollIndicatorDown
@@ -1715,6 +1814,9 @@ id src_in
 id src_over
 id standard
 id start
+id state_aspect_ratio
+id state_rotate
+id state_scale
 id stretch
 id submenuarrow
 id submit_area
@@ -1738,6 +1840,9 @@ id textSpacerNoTitle
 id textStart
 id text_input_end_icon
 id text_input_start_icon
+id text_view_crop
+id text_view_rotate
+id text_view_scale
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -1745,6 +1850,8 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toolbar
+id toolbar_title
 id top
 id topPanel
 id touch_outside
@@ -1753,12 +1860,16 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id ucrop
+id ucrop_frame
+id ucrop_photobox
 id unchecked
 id uniform
 id unlabeled
 id up
 id useLogo
 id view_offset_helper
+id view_overlay
 id view_tag_instance_handle
 id view_tag_native_id
 id visible
@@ -1768,6 +1879,10 @@ id wide
 id window
 id withText
 id wrap_content
+id wrapper_controls
+id wrapper_reset_rotate
+id wrapper_rotate_by_angle
+id wrapper_states
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -1792,6 +1907,7 @@ integer react_native_dev_server_port
 integer react_native_inspector_proxy_port
 integer show_password_duration
 integer status_bar_notification_info_maxnum
+integer ucrop_progress_loading_anim_time
 interpolator btn_checkbox_checked_mtrl_animation_interpolator_0
 interpolator btn_checkbox_checked_mtrl_animation_interpolator_1
 interpolator btn_checkbox_unchecked_mtrl_animation_interpolator_0
@@ -1910,6 +2026,14 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout ucrop_activity_photobox
+layout ucrop_aspect_ratio
+layout ucrop_controls
+layout ucrop_fragment_photobox
+layout ucrop_layout_rotate_wheel
+layout ucrop_layout_scale_wheel
+layout ucrop_view
+menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
@@ -2088,6 +2212,14 @@ string summary_description
 string tablist_description
 string timer_description
 string toolbar_description
+string ucrop_crop
+string ucrop_error_input_data_is_absent
+string ucrop_label_edit_photo
+string ucrop_label_original
+string ucrop_menu_crop
+string ucrop_mutate_exception_hint
+string ucrop_rotate
+string ucrop_scale
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -2782,6 +2914,12 @@ style amu_Bubble_TextAppearance_Dark
 style amu_Bubble_TextAppearance_Light
 style amu_ClusterIcon_TextAppearance
 style redboxButton
+style ucrop_ImageViewWidgetIcon
+style ucrop_TextViewCropAspectRatio
+style ucrop_TextViewWidget
+style ucrop_TextViewWidgetText
+style ucrop_WrapperIconState
+style ucrop_WrapperRotateButton
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -2864,6 +3002,7 @@ styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode bac
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
+styleable SwipeRefreshLayout swipeRefreshLayoutProgressSpinnerBackgroundColor
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text
@@ -2876,6 +3015,9 @@ styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
+styleable ucrop_AspectRatioTextView ucrop_artv_ratio_title ucrop_artv_ratio_x ucrop_artv_ratio_y
+styleable ucrop_UCropView ucrop_aspect_ratio_x ucrop_aspect_ratio_y ucrop_circle_dimmed_layer ucrop_dimmed_color ucrop_frame_color ucrop_frame_stroke_size ucrop_grid_color ucrop_grid_column_count ucrop_grid_row_count ucrop_grid_stroke_size ucrop_show_frame ucrop_show_grid ucrop_show_oval_crop_frame
+xml provider_paths
 xml rn_dev_preferences
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end

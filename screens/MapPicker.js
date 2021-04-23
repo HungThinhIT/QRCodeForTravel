@@ -3,9 +3,9 @@ import { Text, View, StyleSheet, Dimensions, Alert, PermissionsAndroid } from 'r
 import MapView, { Marker, OverlayComponent } from 'react-native-maps';
 // import * as Permission from 'expo-permissions';
 import { ButtonModel } from "../components";
+import { auth } from "../firebase/firebase";
 
-
-export default function MapPicker() {
+export default function MapPicker({ navigation }) {
 
     const getInitialState = {
         latitude: 15.98,
@@ -26,6 +26,7 @@ export default function MapPicker() {
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
             ).then((granted) => {
                 //alert(JSON.stringify(granted)); // just to ensure that permissions were granted
+                navigator.geolocation = require('@react-native-community/geolocation');
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         var currentLongLat = {
@@ -35,7 +36,6 @@ export default function MapPicker() {
                             longitudeDelta: 0.2,
                         }
                         onRegionChange(currentLongLat);
-
                     },
                     (err) => console.log(err),
                     { enableHighAccuracy: false, timeout: 8000, maximumAge: 10000 }
@@ -43,9 +43,21 @@ export default function MapPicker() {
             });
         }
     }
+    const onSelectLocation = () => {
+        navigation.navigate('AddLocation', { 'location': location });
+    }
     React.useEffect(() => {
         onRegionChange(location);
+        auth.onAuthStateChanged(function(user) {
+            if (!user) {
+                Logout();
+            }
+          });
     });
+    
+    const Logout = () => {
+        navigation.navigate('Log In');
+    };
     const mapView = React.createRef();
     const lastLocation = React.useRef(location);
     return (
@@ -81,7 +93,7 @@ export default function MapPicker() {
                 />
             </MapView>
             <View style={{ width: "85%", marginTop: 15 }}>
-                <ButtonModel label="CHỌN ĐỊA ĐIỂM NÀY" />
+                <ButtonModel label="CHỌN ĐỊA ĐIỂM NÀY" onPress={onSelectLocation} />
             </View>
         </View>
     );
@@ -95,8 +107,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
-        width: '85%',
-        height: '85%',
+        width: '80%',
+        height: '80%',
         marginTop: 1,
         marginBottom: 1,
         paddingTop: 0,

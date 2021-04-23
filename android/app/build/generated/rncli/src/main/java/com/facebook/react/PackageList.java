@@ -11,6 +11,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+// @react-native-async-storage/async-storage
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/geolocation
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 // @react-native-community/masked-view
@@ -21,6 +23,8 @@ import com.reactnativecommunity.picker.RNCPickerPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-image-crop-picker
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
 // react-native-picker
@@ -76,11 +80,13 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
+      new AsyncStoragePackage(),
       new GeolocationPackage(),
       new RNCMaskedViewPackage(),
       new RNCPickerPackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
+      new PickerPackage(),
       new MapsPackage(),
       new PickerViewPackage(),
       new ReanimatedPackage(),

@@ -116,7 +116,9 @@ attr animationMode
 attr appBarLayoutStyle
 attr arrowHeadLength
 attr arrowShaftLength
+attr aspectRatio
 attr autoCompleteTextViewStyle
+attr autoFocus
 attr autoSizeMaxTextSize
 attr autoSizeMinTextSize
 attr autoSizePresetSizes
@@ -355,6 +357,7 @@ attr fabCradleRoundedCornerRadius
 attr fabCradleVerticalOffset
 attr fabCustomSize
 attr fabSize
+attr facing
 attr fadeDuration
 attr failureImage
 attr failureImageScaleType
@@ -364,6 +367,7 @@ attr fastScrollHorizontalTrackDrawable
 attr fastScrollVerticalThumbDrawable
 attr fastScrollVerticalTrackDrawable
 attr firstBaselineToTopHeight
+attr flash
 attr floatingActionButtonStyle
 attr font
 attr fontFamily
@@ -941,6 +945,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color notification_material_background_media_default_color
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1307,6 +1312,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen subtitle_corner_radius
+dimen subtitle_outline_width
+dimen subtitle_shadow_offset
+dimen subtitle_shadow_radius
 dimen test_mtrl_calendar_day_cornerSize
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
@@ -1568,6 +1577,7 @@ id accessibility_label
 id accessibility_role
 id accessibility_state
 id accessibility_value
+id action0
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1596,12 +1606,14 @@ id always
 id amu_text
 id async
 id auto
+id back
 id barLayout
 id beginning
 id blocking
 id bottom
 id buttonPanel
 id cancel
+id cancel_action
 id cancel_button
 id catalyst_redbox_title
 id center
@@ -1643,6 +1655,7 @@ id disableHome
 id dropdown_menu
 id edit_query
 id end
+id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
@@ -1667,6 +1680,7 @@ id focusCrop
 id forever
 id fps_text
 id fragment_container_view_tag
+id front
 id ghost_view
 id ghost_view_holder
 id group_divider
@@ -1702,6 +1716,7 @@ id loopViewOne
 id loopViewThree
 id loopViewTwo
 id masked
+id media_actions
 id menu_crop
 id menu_loader
 id message
@@ -1759,6 +1774,7 @@ id progress_circular
 id progress_horizontal
 id radio
 id react_test_id
+id redEye
 id right
 id right_icon
 id right_side
@@ -1817,9 +1833,11 @@ id start
 id state_aspect_ratio
 id state_rotate
 id state_scale
+id status_bar_latest_event_content
 id stretch
 id submenuarrow
 id submit_area
+id surface_view
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -1846,6 +1864,7 @@ id text_view_scale
 id textinput_counter
 id textinput_error
 id textinput_helper_text
+id texture_view
 id time
 id title
 id titleDividerNoCustom
@@ -1854,6 +1873,7 @@ id toolbar
 id toolbar_title
 id top
 id topPanel
+id torch
 id touch_outside
 id transition_current_scene
 id transition_layout_save
@@ -1998,8 +2018,17 @@ layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
 layout notification_action
 layout notification_action_tombstone
+layout notification_media_action
+layout notification_media_cancel_action
+layout notification_template_big_media
+layout notification_template_big_media_custom
+layout notification_template_big_media_narrow
+layout notification_template_big_media_narrow_custom
 layout notification_template_custom_big
 layout notification_template_icon_group
+layout notification_template_lines_media
+layout notification_template_media
+layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout picker_view
@@ -2014,6 +2043,7 @@ layout select_dialog_singlechoice_material
 layout simple_spinner_dropdown_item
 layout simple_spinner_item
 layout support_simple_spinner_dropdown_item
+layout surface_view
 layout test_action_chip
 layout test_design_checkbox
 layout test_reflow_chipgroup
@@ -2026,6 +2056,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout texture_view
 layout ucrop_activity_photobox
 layout ucrop_aspect_ratio
 layout ucrop_controls
@@ -2573,9 +2604,14 @@ style TextAppearance_AppCompat_Widget_Switch
 style TextAppearance_AppCompat_Widget_TextView_SpinnerItem
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
+style TextAppearance_Compat_Notification_Info_Media
 style TextAppearance_Compat_Notification_Line2
+style TextAppearance_Compat_Notification_Line2_Media
+style TextAppearance_Compat_Notification_Media
 style TextAppearance_Compat_Notification_Time
+style TextAppearance_Compat_Notification_Time_Media
 style TextAppearance_Compat_Notification_Title
+style TextAppearance_Compat_Notification_Title_Media
 style TextAppearance_Design_CollapsingToolbar_Expanded
 style TextAppearance_Design_Counter
 style TextAppearance_Design_Counter_Overflow
@@ -2805,6 +2841,7 @@ style Widget_AppCompat_TextView
 style Widget_AppCompat_TextView_SpinnerItem
 style Widget_AppCompat_Toolbar
 style Widget_AppCompat_Toolbar_Button_Navigation
+style Widget_CameraView
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
 style Widget_Design_AppBarLayout
@@ -2943,6 +2980,7 @@ styleable BottomAppBar backgroundTint elevation fabAlignmentMode fabAnimationMod
 styleable BottomNavigationView backgroundTint elevation itemBackground itemHorizontalTranslationEnabled itemIconSize itemIconTint itemRippleColor itemTextAppearanceActive itemTextAppearanceInactive itemTextColor labelVisibilityMode menu
 styleable BottomSheetBehavior_Layout android_elevation backgroundTint behavior_expandedOffset behavior_fitToContents behavior_halfExpandedRatio behavior_hideable behavior_peekHeight behavior_saveFlags behavior_skipCollapsed shapeAppearance shapeAppearanceOverlay
 styleable ButtonBarLayout allowStacking
+styleable CameraView android_adjustViewBounds aspectRatio autoFocus facing flash
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection

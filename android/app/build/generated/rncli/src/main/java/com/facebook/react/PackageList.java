@@ -19,6 +19,8 @@ import com.reactnativecommunity.geolocation.GeolocationPackage;
 import org.reactnative.maskedview.RNCMaskedViewPackage;
 // @react-native-picker/picker
 import com.reactnativecommunity.picker.RNCPickerPackage;
+// react-native-camera
+import org.reactnative.camera.RNCameraPackage;
 // react-native-geolocation-service
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
@@ -27,6 +29,8 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
+// react-native-permissions
+import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-picker
 import com.beefe.picker.PickerViewPackage;
 // react-native-reanimated
@@ -84,10 +88,12 @@ public class PackageList {
       new GeolocationPackage(),
       new RNCMaskedViewPackage(),
       new RNCPickerPackage(),
+      new RNCameraPackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
       new PickerPackage(),
       new MapsPackage(),
+      new RNPermissionsPackage(),
       new PickerViewPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),

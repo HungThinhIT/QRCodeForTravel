@@ -186,6 +186,7 @@
     <color name="mtrl_textinput_hovered_box_stroke_color">#DE000000</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
+    <color name="notification_material_background_media_default_color">#ff424242</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -547,6 +548,10 @@
     <dimen name="notification_subtext_size">13sp</dimen>
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <dimen name="subtitle_corner_radius">2dp</dimen>
+    <dimen name="subtitle_outline_width">2dp</dimen>
+    <dimen name="subtitle_shadow_offset">2dp</dimen>
+    <dimen name="subtitle_shadow_radius">2dp</dimen>
     <dimen name="test_mtrl_calendar_day_cornerSize">52dp</dimen>
     <dimen name="tooltip_corner_radius">2dp</dimen>
     <dimen name="tooltip_horizontal_padding">16dp</dimen>
@@ -3195,12 +3200,17 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
+    <style name="TextAppearance.Compat.Notification.Info.Media"/>
     <style name="TextAppearance.Compat.Notification.Line2" parent="TextAppearance.Compat.Notification.Info"/>
+    <style name="TextAppearance.Compat.Notification.Line2.Media" parent="TextAppearance.Compat.Notification.Info.Media"/>
+    <style name="TextAppearance.Compat.Notification.Media"/>
     <style name="TextAppearance.Compat.Notification.Time">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
+    <style name="TextAppearance.Compat.Notification.Time.Media"/>
     <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
+    <style name="TextAppearance.Compat.Notification.Title.Media"/>
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded" parent="TextAppearance.AppCompat.Display1">
     <item name="android:textColor">?android:attr/textColorPrimary</item>
   </style>
@@ -3763,6 +3773,13 @@
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
+    <style name="Widget.CameraView" parent="android:Widget">
+        <item name="android:adjustViewBounds">false</item>
+        <item name="facing">back</item>
+        <item name="aspectRatio">4:3</item>
+        <item name="autoFocus">true</item>
+        <item name="flash">auto</item>
+    </style>
     <style name="Widget.Compat.NotificationActionContainer" parent=""/>
     <style name="Widget.Compat.NotificationActionText" parent=""/>
     <style name="Widget.Design.AppBarLayout" parent="android:Widget">
@@ -5439,6 +5456,49 @@
         <!-- Whether to automatically stack the buttons when there is not
              enough space to lay them out side-by-side. -->
         <attr format="boolean" name="allowStacking"/>
+    </declare-styleable>
+    <declare-styleable name="CameraView">
+        <!--
+          Set this to true if you want the CameraView to adjust its bounds to preserve the aspect
+          ratio of its camera preview.
+        -->
+        <attr name="android:adjustViewBounds"/>
+        <!-- Direction the camera faces relative to device screen. -->
+        <attr format="enum" name="facing">
+            <!-- The camera device faces the opposite direction as the device's screen. -->
+            <enum name="back" value="0"/>
+            <!-- The camera device faces the same direction as the device's screen. -->
+            <enum name="front" value="1"/>
+        </attr>
+        <!-- Aspect ratio of camera preview and pictures. -->
+        <attr format="string" name="aspectRatio"/>
+        <!-- Continuous auto focus mode. -->
+        <attr format="boolean" name="autoFocus"/>
+        <!-- The flash mode. -->
+        <attr format="enum" name="flash">
+            <!-- Flash will not be fired. -->
+            <enum name="off" value="0"/>
+            <!--
+              Flash will always be fired during snapshot.
+              The flash may also be fired during preview or auto-focus depending on the driver.
+            -->
+            <enum name="on" value="1"/>
+            <!--
+              Constant emission of light during preview, auto-focus and snapshot.
+              This can also be used for video recording.
+            -->
+            <enum name="torch" value="2"/>
+            <!--
+              Flash will be fired automatically when required.
+              The flash may be fired during preview, auto-focus, or snapshot depending on the
+              driver.
+            -->
+            <enum name="auto" value="3"/>
+            <!--
+              Flash will be fired in red-eye reduction mode.
+            -->
+            <enum name="redEye" value="4"/>
+        </attr>
     </declare-styleable>
     <declare-styleable name="CardView">
         <!-- Background color for CardView. -->

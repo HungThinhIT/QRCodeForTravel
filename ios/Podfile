@@ -5,6 +5,10 @@ platform :ios, '10.0'
 
 target 'QRCodeTravel' do
   config = use_native_modules!
+  # Permissions
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+  # Pods for QRCodeTravel
   # React Native Maps dependencies
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path

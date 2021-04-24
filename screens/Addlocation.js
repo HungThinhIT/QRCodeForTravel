@@ -20,10 +20,10 @@ export default function AddLocation({ navigation, route }) {
     const routeLocation = route.params.location ? route.params.location : null;
     const [location, setLocation] = useState(routeLocation);
     const stringLocation = location !== null ? location.latitude + " " + location.longtitude : "";
-    const [title, setTitle] = useState();
-    const [name, setName] = useState();
-    const [address, setAddress] = useState();
-    const [detail, setDetail] = useState();
+    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [detail, setDetail] = useState("");
     const fs = require('react-native-fs');
     const [uploading, setUploading] = useState(null);
     const [imageName, setImageName] = useState([]);
@@ -47,31 +47,40 @@ export default function AddLocation({ navigation, route }) {
                 for(var i=0; i <photo.length; i++){
                     submitImage(photo[i]);
                 }
-                var locationInfo = {
-                    long:longitude,
-                    lat: latitude,
-                    title: title,
-                    name: name,
-                    address: address,
-                    city:selectedValue,
-                    detail: detail,
-                    image:imageName,
-                    user_id : uid,
-                    qr_code: "null",
-                    rating : 0,
-                    user_rating : 0,
-                    update_at: getCurrentDate(),
+
+                if (!title.trim() || !address.trim() || !name.trim() || !detail.trim()) {
+                    Alert.alert('Vul lòng nhập đầy đủ thông tin!');
+                    return;
+                }else{
+                    var locationInfo = {
+                        long:longitude,
+                        lat: latitude,
+                        title: title,
+                        name: name,
+                        address: address,
+                        city:selectedValue,
+                        detail: detail,
+                        image:imageName,
+                        user_id : uid,
+                        qr_code: "null",
+                        rating : 0,
+                        user_rating : 0,
+                        update_at: getCurrentDate(),
+                    }
+                    
+                    const addFirebase = firestore().collection('location');
+                    addFirebase.add(locationInfo).then((docRef) => {
+                        addFirebase.doc((docRef.id).toString()).update({"qr_code": docRef.id});
+                        Alert.alert("Thêm thành công");
+                        navigation.navigate('Load');
+                    })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                        Alert.alert("Đã có lỗi xảy ra!");
+                    });
                 }
-                const addFirebase = firestore().collection('location');
-                addFirebase.add(locationInfo).then((docRef) => {
-                    addFirebase.doc((docRef.id).toString()).update({"qr_code": docRef.id});
-                    Alert.alert("Thêm thành công");
-                    navigation.navigate('Load');
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                    Alert.alert("Đã có lỗi xảy ra!");
-                });
+                
+                
             }
     };
 

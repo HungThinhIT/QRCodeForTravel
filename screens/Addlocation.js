@@ -10,7 +10,6 @@ import {db} from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-import ImgToBase64 from 'react-native-image-base64';
 
 export default function AddLocation({ navigation, route }) {
     const [selectedValue, setSelectedValue] = useState("dn");

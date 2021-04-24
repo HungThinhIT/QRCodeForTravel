@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
+            "outputFile": "C:\\Users\\Admin\\Documents\\GitHub\\QRCodeForTravel\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Van Quy\\.gradle\\caches\\transforms-2\\files-2.1\\99c6ff58ff6c83738ffbf8a18655305e\\jetified-ucrop-2.2.6-native\\res\\values-zh\\values-zh.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\99c6ff58ff6c83738ffbf8a18655305e\\jetified-ucrop-2.2.6-native\\res\\values-zh\\values-zh.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

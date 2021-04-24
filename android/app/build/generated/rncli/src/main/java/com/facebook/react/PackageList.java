@@ -17,12 +17,22 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 // @react-native-community/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @react-native-firebase/app
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// @react-native-firebase/storage
+import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
 // @react-native-picker/picker
 import com.reactnativecommunity.picker.RNCPickerPackage;
+// react-native-fetch-blob
+import com.RNFetchBlob.RNFetchBlobPackage;
+// react-native-fs
+import com.rnfs.RNFSPackage;
 // react-native-geolocation-service
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-image-base64
+import fr.snapp.imagebase64.RNImgToBase64Package;
 // react-native-image-crop-picker
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-maps
@@ -83,9 +93,14 @@ public class PackageList {
       new AsyncStoragePackage(),
       new GeolocationPackage(),
       new RNCMaskedViewPackage(),
+      new ReactNativeFirebaseAppPackage(),
+      new ReactNativeFirebaseStoragePackage(),
       new RNCPickerPackage(),
+      new RNFetchBlobPackage(),
+      new RNFSPackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
+      new RNImgToBase64Package(),
       new PickerPackage(),
       new MapsPackage(),
       new PickerViewPackage(),

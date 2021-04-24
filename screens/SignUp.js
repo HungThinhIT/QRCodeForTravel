@@ -36,6 +36,7 @@ export default function SignUp({ navigation}) {
             } else {
                 Alert.alert(`Mật khẩu không trùng khớp!`);
             }
+            
         }
     }
 

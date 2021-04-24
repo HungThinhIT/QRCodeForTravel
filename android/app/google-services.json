@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "532393879714",
+    "project_id": "qr-travel-a6f4c",
+    "storage_bucket": "qr-travel-a6f4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532393879714:android:c32b6ea89dee3ec69c8ffb",
+        "android_client_info": {
+          "package_name": "com.qrcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532393879714-akthh0tn12g0lutta234vtevmt7e9e49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtXQolqOaJb3sLK3FkhkO5Blpu-giH-K4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532393879714-akthh0tn12g0lutta234vtevmt7e9e49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

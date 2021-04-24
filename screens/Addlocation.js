@@ -6,10 +6,29 @@ import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
+//import {storage} from "../firebase/firebase";
+import firebase from '@react-native-firebase/app';
+import storage from '@react-native-firebase/storage';
+import ImgToBase64 from 'react-native-image-base64';
 
+function urlToBlob(url) {
+    return new Promise((resolve, reject) => {
+        var xhr = new XMLHttpRequest();
+        xhr.onerror = reject;
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                resolve(xhr.response);
+            }
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob'; // convert type
+        xhr.send();
+    })
+  }
+  const { v4: uuid } = require("uuid");
 export default function AddLocation({ navigation, route }) {
     const [selectedValue, setSelectedValue] = useState("dn");
-    const [photo, setPhoto] = useState(null);
+    const [photo, setPhoto] = useState([]);
     const [ inputlink, setInputlink] = useState('0');
     const [ height, setHeight] = useState(0);
     const [imageArray, setImageArray] = useState([]);
@@ -20,21 +39,69 @@ export default function AddLocation({ navigation, route }) {
     const [name, setName] = useState();
     const [address, setAddress] = useState();
     const [detail, setDetail] = useState();
+    const fs = require('react-native-fs');
+    const [uploading, setUploading] = useState(null);
+    const [imageName, setImageName] = useState([]);
 
     const submitLocation = (location,title,selectedValue,address,name,detail) => {
         const latitude = location.latitude;
         const longitude= location.longitude;
-        Alert.alert(title+name+address+selectedValue+detail+"Toa do: " +latitude+", "+longitude);
+        prepareUploadImageToStorage();
+        for(var i=0; i <photo.length; i++){
+            submitImage(photo[i]);
+        }
+        //Alert.alert(title+name+address+selectedValue+detail+"Toa do: " +latitude+", "+longitude);
     };
+    const testNote = (data)=>{
+        var RNFS = require('react-native-fs');
+        var path = RNFS.DocumentDirectoryPath + '/test.txt';
+        console.log(path);
+        RNFS.writeFile(path, data, 'utf8')
+        .then((success) => {
+            console.log('FILE WRITTEN!');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+        
+    }
+    const prepareUploadImageToStorage = () =>{
+        let app;
+        var stCredentials ={
+            apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
+            appId:"1:138826178666:web:62961ee1ec17c2899faa13",
+            authDomain: "qrtravel-vku.firebaseapp.com",
+            databaseURL: "https://qrtravel-vku.firebaseio.com",
+            storageBucket: "qrtravel-vku.appspot.com",
+            messagingSenderId: "138826178666",
+            projectId: "qrtravel-vku",
+            measurementId: "G-9ZZVLC2KNJ"
+        }
+        if(firebase.apps.length === 0){
+            app = firebase.initializeApp(stCredentials);
+        }else{
+            app = firebase.app();
+        }
+    }
+
+    const submitImage = async (photo)=>{
+        setUploading(true);
+        try{
+            //await storage.ref(`location/${photo.filename}`).putString(photo.data,'base64');
+            await storage().ref(`location/${photo.filename}`).putFile(photo.path);
+            setUploading(false);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     const onSelectetImage = () => {
         const options = {};
         const tempArrayImage = [];
-        // ImagePicker.launchImageLibrary(options, response => {
-        //     if (response.uri) {
-        //         setPhoto(response);
-        //     }
-        // });
+        const photos = [];
+        const imageGetName = [];
         ImagePicker.openPicker({
+            includeBase64: true,
             multiple: true,// To support multiple image selection
             quality: 1.0,
             maxWidth: 500,
@@ -42,16 +109,22 @@ export default function AddLocation({ navigation, route }) {
         }).then(image => {
             for (var i = 0; i < image.length; i++) {
                 var uri = image[i].path;
-                tempArrayImage.push(uri)//image[i].data=>base64 string
+                const filename = uri.substring(uri.lastIndexOf('/') + 1);
+                const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
+                image[i].path= uploadUri;
+                image[i].filename = filename;
+                tempArrayImage.push(uploadUri);//image[i].data=>base64 string
+                photos.push(image[i]);
+                imageGetName.push(filename);
             }
+            setPhoto(photos);
             setImageArray(tempArrayImage);
-            console.log(JSON.stringify(imageArray));
+            setImageName(imageGetName);
+        }).catch((e) => {
+            console.log(e);
         });
 
     }
-    // const onSelectMap = () => {
-    //     navigation.navigate('Map');
-    // }
     return (
         <KeyboardAwareScrollView>
             <View style={styles.firstPart}>

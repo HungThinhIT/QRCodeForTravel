@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, Image, StyleSheet, Button, Alert, SafeAreaView, TouchableOpacity, Dimensions,TextInput } from 'react-native';
 import { LabelInputText, } from '../components';
 import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
-import {db} from "../firebase/firebase";
+import {auth} from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
@@ -28,39 +28,52 @@ export default function AddLocation({ navigation, route }) {
     const [uploading, setUploading] = useState(null);
     const [imageName, setImageName] = useState([]);
 
+    const getCurrentDate=()=>{
+        var date = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        return date + '-' + month + '-' + year;
+  }
+
     const submitLocation = (location,title,selectedValue,address,name,detail) => {
         const latitude = location.latitude;
         const longitude= location.longitude;
         const app = prepareUploadImageToStorage();
-        for(var i=0; i <photo.length; i++){
-            submitImage(photo[i]);
-        }
-        var locationInfo = {
-            long:longitude,
-            lat: latitude,
-            title: title,
-            name: name,
-            address: address,
-            city:selectedValue,
-            detail: detail,
-            image:imageName,
-            user_id : null,
-            qr_code: "tam",
-            rating : 0,
-            user_rating : 0,
-            update_at: null
-        }
-        const addFirebase = firestore().collection('location').add(locationInfo);
-        addFirebase.then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-        });
-
-        //Alert.alert(title+name+address+selectedValue+detail+"Toa do: " +latitude+", "+longitude);
+        var user = auth.currentUser;
+        const uid = user != null ? user.uid : null;
+            if(photo.length==0){
+                Alert.alert("Vui lòng chọn hình ảnh!")
+            } else{
+                for(var i=0; i <photo.length; i++){
+                    submitImage(photo[i]);
+                }
+                var locationInfo = {
+                    long:longitude,
+                    lat: latitude,
+                    title: title,
+                    name: name,
+                    address: address,
+                    city:selectedValue,
+                    detail: detail,
+                    image:imageName,
+                    user_id : uid,
+                    qr_code: "null",
+                    rating : 0,
+                    user_rating : 0,
+                    update_at: getCurrentDate(),
+                }
+                const addFirebase = firestore().collection('location');
+                addFirebase.add(locationInfo).then((docRef) => {
+                    addFirebase.doc((docRef.id).toString()).update({"qr_code": docRef.id});
+                    Alert.alert("Thêm thành công");
+                    navigation.navigate('Load');
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                    Alert.alert("Đã có lỗi xảy ra!");
+                });
+            }
     };
-
 
     const prepareUploadImageToStorage = () =>{
         let app;

@@ -68,7 +68,7 @@ export default function AddLocation({ navigation, route }) {
             apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
             appId:"1:138826178666:web:62961ee1ec17c2899faa13",
             authDomain: "qrtravel-vku.firebaseapp.com",
-            databaseURL: "https://qrtravel-vku.firebaseio.com",
+            databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
             storageBucket: "qrtravel-vku.appspot.com",
             messagingSenderId: "138826178666",
             projectId: "qrtravel-vku",

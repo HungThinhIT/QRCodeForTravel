@@ -52,19 +52,6 @@ export default function AddLocation({ navigation, route }) {
         }
         //Alert.alert(title+name+address+selectedValue+detail+"Toa do: " +latitude+", "+longitude);
     };
-    const testNote = (data)=>{
-        var RNFS = require('react-native-fs');
-        var path = RNFS.DocumentDirectoryPath + '/test.txt';
-        console.log(path);
-        RNFS.writeFile(path, data, 'utf8')
-        .then((success) => {
-            console.log('FILE WRITTEN!');
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        
-    }
     const prepareUploadImageToStorage = () =>{
         let app;
         var stCredentials ={

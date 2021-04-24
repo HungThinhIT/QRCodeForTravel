@@ -44,7 +44,12 @@ export default function AddLocation({ navigation, route }) {
             address: address,
             city:selectedValue,
             detail: detail,
-            image:imageName
+            image:imageName,
+            user_id : null,
+            qr_code: "tam",
+            rating : 0,
+            user_rating : 0,
+            update_at: null
         }
         const addFirebase = firestore().collection('location').add(locationInfo);
         addFirebase.then((docRef) => {

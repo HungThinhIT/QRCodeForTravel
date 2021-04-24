@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import {SafeAreaView,StyleSheet,ScrollView, View,Text, StatusBar,TouchableOpacity, Button,Alert, Dimensions,TextInput } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import { RNCamera } from "react-native-camera";
 
 export default function Qr({ navigation,props }) {
     const [scan, setScan] = useState(false);
     const [result, setResult] = useState();
+    const [isFlashOn, setFlashOn] = useState(false);
+    
     onSuccess = (e) => {
         setResult(e.data)
         setScan(false)
@@ -50,8 +53,10 @@ export default function Qr({ navigation,props }) {
                           <Text style={styles.centerTextSr}>
                               Đặt mã QR Code vào trước máy ảnh để quét!
                           </Text>
+                          
                       <QRCodeScanner
-                        cameraStyle={{ borderWidth: 0, width:"100%", }}
+                        flashMode={isFlashOn ? RNCamera.Constants.FlashMode.torch : RNCamera.Constants.FlashMode.off}
+                        cameraStyle={{ width:"100%"}}
                         reactivate={true}
                         showMarker={true}
                         ref={(node) => { this.scanner = node }}
@@ -62,6 +67,9 @@ export default function Qr({ navigation,props }) {
                           </TouchableOpacity>
                         }
                       />
+                      <TouchableOpacity style={styles.btnFlash1} onPress={() => isFlashOn ? setFlashOn(false) : setFlashOn(true)}>
+                        <Text style={styles.btnFlash}>Bật đèn</Text>
+                      </TouchableOpacity>
                     </View>
                   }
                 </View>
@@ -123,5 +131,11 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize:18,
     margin:10
+  },
+  btnFlash:{
+    textAlign: 'right',
+    marginRight:38,
+    color:"white",
+    marginBottom:5,
   }
 });

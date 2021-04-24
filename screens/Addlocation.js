@@ -48,7 +48,7 @@ export default function AddLocation({ navigation, route }) {
                     submitImage(photo[i]);
                 }
 
-                if (!title.trim() || !address.trim() || !name.trim() || !detail.trim()) {
+                if (!title.trim() || !address.trim() || !name.trim()) {
                     Alert.alert('Vul lòng nhập đầy đủ thông tin!');
                     return;
                 }else{
@@ -72,6 +72,7 @@ export default function AddLocation({ navigation, route }) {
                     addFirebase.add(locationInfo).then((docRef) => {
                         addFirebase.doc((docRef.id).toString()).update({"qr_code": docRef.id});
                         Alert.alert("Thêm thành công");
+                        console.log(docRef.id);
                         navigation.navigate('Load');
                     })
                     .catch((error) => {
@@ -154,7 +155,7 @@ export default function AddLocation({ navigation, route }) {
                      width: '80%',
                      borderRadius: 20,
                      backgroundColor: '#fff',
-                    height: Math.max(2, Dimensions.get("screen").height*65/100+height)
+                    height: Math.max(2, Dimensions.get("screen").height*67/100+height)
                     }}>
                     <View style={styles.space}>
                         <TouchableOpacity

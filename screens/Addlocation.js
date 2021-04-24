@@ -6,26 +6,12 @@ import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
-//import {storage} from "../firebase/firebase";
+import {db} from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 import ImgToBase64 from 'react-native-image-base64';
 
-function urlToBlob(url) {
-    return new Promise((resolve, reject) => {
-        var xhr = new XMLHttpRequest();
-        xhr.onerror = reject;
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-                resolve(xhr.response);
-            }
-        };
-        xhr.open('GET', url);
-        xhr.responseType = 'blob'; // convert type
-        xhr.send();
-    })
-  }
-  const { v4: uuid } = require("uuid");
 export default function AddLocation({ navigation, route }) {
     const [selectedValue, setSelectedValue] = useState("dn");
     const [photo, setPhoto] = useState([]);
@@ -46,12 +32,32 @@ export default function AddLocation({ navigation, route }) {
     const submitLocation = (location,title,selectedValue,address,name,detail) => {
         const latitude = location.latitude;
         const longitude= location.longitude;
-        prepareUploadImageToStorage();
+        const app = prepareUploadImageToStorage();
         for(var i=0; i <photo.length; i++){
             submitImage(photo[i]);
         }
+        var locationInfo = {
+            long:longitude,
+            lat: latitude,
+            title: title,
+            name: name,
+            address: address,
+            city:selectedValue,
+            detail: detail,
+            image:imageName
+        }
+        const addFirebase = firestore().collection('location').add(locationInfo);
+        addFirebase.then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+
         //Alert.alert(title+name+address+selectedValue+detail+"Toa do: " +latitude+", "+longitude);
     };
+
+
     const prepareUploadImageToStorage = () =>{
         let app;
         var stCredentials ={
@@ -69,6 +75,7 @@ export default function AddLocation({ navigation, route }) {
         }else{
             app = firebase.app();
         }
+        return app;
     }
 
     const submitImage = async (photo)=>{

@@ -74,6 +74,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Permission-Camera.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Permission-LocationAccuracy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Permission-PhotoLibrary.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Picker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -104,6 +119,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RNCAsyncStorage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RNCMaskedView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -115,6 +135,21 @@
 			<false/>
 		</dict>
 		<key>RNGestureHandler.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNImageCropPicker-QBImagePicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNImageCropPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNPermissions.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -234,6 +269,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TOCropViewController-TOCropViewControllerBundle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TOCropViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Yoga.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -255,6 +300,11 @@
 			<false/>
 		</dict>
 		<key>libevent.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>react-native-camera.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

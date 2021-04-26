@@ -1,3 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-QRCodeTravel/Pods-QRCodeTravel-resources.sh
 ${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle

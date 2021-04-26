@@ -35,8 +35,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Your message to user when the camera is accessed for the first time</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location access is required to run the app (Phoenix).</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,15 +55,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	
-	<key>NSCameraUsageDescription</key>
-    <string>Your message to user when the camera is accessed for the first time</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Your message to user when the microsphone is accessed for the first time</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Your message to user when the photo library is accessed for the first time</string>
-
-
-
 </dict>
 </plist>

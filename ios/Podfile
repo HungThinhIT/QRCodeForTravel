@@ -7,12 +7,18 @@ target 'QRCodeTravel' do
   config = use_native_modules!
   # Permissions
   permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+  #pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec" #Comment by HungThinh0710
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+
   # Pods for QRCodeTravel
   # React Native Maps dependencies
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
+  
   #End call React Native maps dependencies
+
+  pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -32,6 +38,13 @@ target 'QRCodeTravel' do
   use_flipper!()
 
   post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+         if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
+           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+         end
+      end
+    end
     react_native_post_install(installer)
   end
 end

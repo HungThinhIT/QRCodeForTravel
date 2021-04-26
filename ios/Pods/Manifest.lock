@@ -80,6 +80,12 @@ PODS:
     - GoogleMaps/Base
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.180)
+  - Permission-Camera (3.0.2):
+    - RNPermissions
+  - Permission-LocationAccuracy (3.0.2):
+    - RNPermissions
+  - Permission-PhotoLibrary (3.0.2):
+    - RNPermissions
   - Picker (4.3.7):
     - Picker/Core (= 4.3.7)
   - Picker/Core (4.3.7):
@@ -277,6 +283,14 @@ PODS:
     - React-jsi (= 0.64.0)
     - React-perflogger (= 0.64.0)
   - React-jsinspector (0.64.0)
+  - react-native-camera (3.43.6):
+    - React-Core
+    - react-native-camera/RCT (= 3.43.6)
+    - react-native-camera/RN (= 3.43.6)
+  - react-native-camera/RCT (3.43.6):
+    - React-Core
+  - react-native-camera/RN (3.43.6):
+    - React-Core
   - react-native-geolocation (2.0.2):
     - React
   - react-native-geolocation-service (5.2.0):
@@ -353,11 +367,24 @@ PODS:
     - React-cxxreact (= 0.64.0)
     - React-jsi (= 0.64.0)
     - React-perflogger (= 0.64.0)
+  - RNCAsyncStorage (1.15.2):
+    - React-Core
   - RNCMaskedView (0.1.10):
     - React
   - RNCPicker (1.15.0):
     - React-Core
   - RNGestureHandler (1.10.3):
+    - React-Core
+  - RNImageCropPicker (0.36.0):
+    - React-Core
+    - React-RCTImage
+    - RNImageCropPicker/QBImagePickerController (= 0.36.0)
+    - TOCropViewController
+  - RNImageCropPicker/QBImagePickerController (0.36.0):
+    - React-Core
+    - React-RCTImage
+    - TOCropViewController
+  - RNPermissions (3.0.2):
     - React-Core
   - RNReanimated (2.1.0):
     - DoubleConversion
@@ -390,6 +417,7 @@ PODS:
     - Yoga
   - RNScreens (3.1.1):
     - React-Core
+  - TOCropViewController (2.6.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -418,6 +446,9 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (~> 0.75.1)
   - FlipperKit/SKIOSNetworkPlugin (~> 0.75.1)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera`)
+  - Permission-LocationAccuracy (from `../node_modules/react-native-permissions/ios/LocationAccuracy`)
+  - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary`)
   - Picker (from `../node_modules/react-native-picker`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -432,6 +463,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
@@ -449,9 +481,12 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -471,6 +506,7 @@ SPEC REPOS:
     - GoogleMaps
     - libevent
     - OpenSSL-Universal
+    - TOCropViewController
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -482,6 +518,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera"
+  Permission-LocationAccuracy:
+    :path: "../node_modules/react-native-permissions/ios/LocationAccuracy"
+  Permission-PhotoLibrary:
+    :path: "../node_modules/react-native-permissions/ios/PhotoLibrary"
   Picker:
     :path: "../node_modules/react-native-picker"
   RCT-Folly:
@@ -506,6 +548,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-camera:
+    :path: "../node_modules/react-native-camera"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-geolocation-service:
@@ -540,12 +584,18 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -571,6 +621,9 @@ SPEC CHECKSUMS:
   GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
+  Permission-Camera: 7aa2f6b584f8b1396ae6abaf13093fb9b5212499
+  Permission-LocationAccuracy: 78ee0d616c2fb5803f65a3ba919d05f7a4a10b30
+  Permission-PhotoLibrary: 4b8f4b1844463ef38bbff54a53d6c2e6136c1b77
   Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 2f8cb5b7533219bf4218a045f92768129cf7050a
@@ -583,6 +636,7 @@ SPEC CHECKSUMS:
   React-jsi: 74341196d9547cbcbcfa4b3bbbf03af56431d5a1
   React-jsiexecutor: 06a9c77b56902ae7ffcdd7a4905f664adc5d237b
   React-jsinspector: 0ae35a37b20d5e031eb020a69cc5afdbd6406301
+  react-native-camera: 9e55a09596b8c4e41eb7d4cce7c39826990c3cac
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-geolocation-service: 7c9436da6dfdecd9526c62eac62ea2bc3f0cc8ea
   react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
@@ -600,14 +654,18 @@ SPEC CHECKSUMS:
   React-RCTVibration: 0fd6b21751a33cb72fce1a4a33ab9678416d307a
   React-runtimeexecutor: cad74a1eaa53ee6e7a3620231939d8fe2c6afcf0
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
+  RNCAsyncStorage: 9b7605e899f9acb2fba33e87952c529731265453
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPicker: 5256da29a92406cac439ac6605719e233714a86a
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNImageCropPicker: e641bf83ac47324994cac139bde74635ec52c17c
+  RNPermissions: 58c1eb5638504e3afda963a8b0f43b6752132b05
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
   RNScreens: bd1523c3bde7069b8e958e5a16e1fc7722ad0bdd
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   Yoga: 8c8436d4171c87504c648ae23b1d81242bdf3bbf
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 54c9df6aa84977df5093f85412621b5a0ccb171d
+PODFILE CHECKSUM: 64d27b4571d6e3f173dff17bce6a38024b3b977b
 
 COCOAPODS: 1.10.1

@@ -15,7 +15,7 @@ const ButtonModel = (props) => {
                 borderRadius: 10,
                 color: "#111",
                 alignItems: "center",
-                backgroundColor: "#05B5B3",
+                backgroundColor: "#0A7FD9",
                 justifyContent: "center"
             }}>
             <Text style={{ color: "#fff" }}>{label}</Text>

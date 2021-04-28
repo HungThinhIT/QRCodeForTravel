@@ -166,29 +166,31 @@ export default function AddLocation({ navigation, route }) {
                                 <View style={styles.styleSlide}>
                                     <SliderBox images={imageArray} ImageComponentStyle={styles.styleImage} />
                                 </View>
-                            ) : (<Image
+                            ) : (
+                            <Image
                                 style={styles.styleImage}
                                 source={{uri: "https://images.creativemarket.com/0.1.0/ps/4350784/2976/1984/m1/fpnw/wm1/camera_1-.jpg?1524579467&s=0bd757418f98bb9b25a4f04f3b325d4c"}}
-                            />)}
+                            />
+                            )}
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: "row-reverse", width: "100%" }}>
                         <View style={{ flex: 1, marginRight: 0, marginTop: 5 }}>
                             {/* <Icon name="folder-open-o" size={30} style= {{ alignSelf: "flex-end", color:'black'}} color="#900" onPress={onSelectetImage} /> */}
                             {/* <Text style={{ alignSelf: "flex-end", color: "blue" }} onPress={onSelectetImage}>Chọn ảnh...</Text> */}
-                            <Icon.Button name="folder-open" color="#000" backgroundColor="#fff" style={{alignSelf: "flex-end", color: "blue"}} onPress={onSelectetImage} >
-                                <Text style={{ alignSelf: "flex-end", color:'black' }}>
+                            <Icon.Button name="folder-open" color="#0A7FD9" backgroundColor="#fff" style={{alignSelf: "flex-end", color: "0A7FD9"}} onPress={onSelectetImage} >
+                                <Text style={{ alignSelf: "flex-end", color:'#0A7FD9' }}>
                                     Chọn ảnh
                                 </Text>
                             </Icon.Button>
                         </View>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <View style={{ width: 260 }}>
+                        <View style={{ width: 260,marginTop: 0 }}>
                             <LabelInputText initText="Khu nghỉ dưỡng" label="Tiêu đề" onChangeText={title => setTitle(title)}/>
                         </View>
 
-                        <View style={{ marginTop: 10, width: 260 }}>
+                        <View style={{ marginTop: 5, width: 260 }}>
                             <LabelInputText initText="Bà Nà Hills" label="Tên địa danh" onChangeText={name => setName(name)}/>
                         </View>
                         <View style={[styles.container,
@@ -243,7 +245,7 @@ export default function AddLocation({ navigation, route }) {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 10,
+        paddingTop: 5,
     },
     firstPart: {
         flex: 1,

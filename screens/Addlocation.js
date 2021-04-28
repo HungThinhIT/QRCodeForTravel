@@ -174,11 +174,11 @@ export default function AddLocation({ navigation, route }) {
                         <View style={{ flex: 1, marginRight: 10, marginTop: 5 }}><Text style={{ alignSelf: "flex-end", color: "blue" }} onPress={onSelectetImage}>Chọn ảnh...</Text></View>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <View style={{ width: 250 }}>
+                        <View style={{ width: 260 }}>
                             <LabelInputText initText="Khu nghỉ dưỡng" label="Tiêu đề" onChangeText={title => setTitle(title)}/>
                         </View>
 
-                        <View style={{ marginTop: 10, width: 250 }}>
+                        <View style={{ marginTop: 10, width: 260 }}>
                             <LabelInputText initText="Bà Nà Hills" label="Tên địa danh" onChangeText={name => setName(name)}/>
                         </View>
                         <View style={[styles.container,
@@ -196,7 +196,7 @@ export default function AddLocation({ navigation, route }) {
                                 </View>
                             </View>
                         </View>
-                        <View style={{ marginTop: 5, width: 250 }}>
+                        <View style={{ marginTop: 10, width: 260 }}>
                             {/* <LabelInputText initText="địa chỉ du lịch thu hút nhiều du khách hằng năm" label="Chi tiết" /> */}
                             <Text>Chi tiết:</Text>
                             <TextInput
@@ -213,7 +213,7 @@ export default function AddLocation({ navigation, route }) {
                                 }]}
                             />
                         </View>
-                        <View style={{ marginTop: 20 }}>
+                        <View style={{ marginTop: 10 }}>
                             <Button
                                 style={{
                                     width: 200

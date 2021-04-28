@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import { Text, View, Image, StyleSheet, Button, Alert, SafeAreaView, TouchableOpacity, Dimensions,TextInput } from 'react-native';
-import { LabelInputText, } from '../components';
+import { LabelInputText, CityPicker } from '../components';
 import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -173,11 +173,10 @@ export default function AddLocation({ navigation, route }) {
                     <View style={{ flexDirection: "row-reverse", width: "100%" }}>
                         <View style={{ flex: 1, marginRight: 10, marginTop: 5 }}><Text style={{ alignSelf: "flex-end", color: "blue" }} onPress={onSelectetImage}>Chọn ảnh...</Text></View>
                     </View>
-                    <View style={{ flex: 1, }}>
+                    <View style={{ flex: 1 }}>
                         <View style={{ width: 250 }}>
                             <LabelInputText initText="Khu nghỉ dưỡng" label="Tiêu đề" onChangeText={title => setTitle(title)}/>
                         </View>
-
 
                         <View style={{ marginTop: 10, width: 250 }}>
                             <LabelInputText initText="Bà Nà Hills" label="Tên địa danh" onChangeText={name => setName(name)}/>
@@ -193,17 +192,7 @@ export default function AddLocation({ navigation, route }) {
                                 </View>
                                 <View style={styles.nd2}>
                                     <Text>Thành Phố:</Text>
-                                    <SafeAreaView >
-                                        <Picker
-                                            selectedValue={selectedValue}
-                                            style={{ height: 50, width: 150 }}
-                                            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-                                        >
-                                            <Picker.Item label="Đà Nẵng" value="dn" />
-                                            <Picker.Item label="Hà Nội" value="hn" />
-                                            <Picker.Item label="Hồ Chí Minh" value="hcm" />
-                                        </Picker>
-                                    </SafeAreaView>
+                                    <CityPicker selectedValue={selectedValue} onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}/>
                                 </View>
                             </View>
                         </View>

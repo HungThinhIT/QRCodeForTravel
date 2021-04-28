@@ -25,6 +25,7 @@ MERGED from [:react-native-maps] C:\Users\Admin\Documents\GitHub\QRCodeForTravel
 MERGED from [:react-native-picker] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-safe-area-context] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-safe-area-context\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-vector-icons] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\0ea3fdda9f5684423892484ef8480b5f\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [org.webkit:android-jsc:r245459] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\65337ca8c0783fc27be60d476a5f6b75\jetified-android-jsc-r245459\AndroidManifest.xml:2:1-11:12
@@ -279,6 +280,8 @@ MERGED from [:react-native-safe-area-context] C:\Users\Admin\Documents\GitHub\QR
 MERGED from [:react-native-safe-area-context] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-safe-area-context\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-screens] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] C:\Users\Admin\Documents\GitHub\QRCodeForTravel\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.0] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\a56511b037fb04f244c71df782e66ef7\jetified-react-native-0.64.0\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\0ea3fdda9f5684423892484ef8480b5f\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41

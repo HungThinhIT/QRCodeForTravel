@@ -1,8 +1,11 @@
-#Sat Apr 24 19:53:00 ICT 2021
+#Thu Apr 29 00:09:36 ICT 2021
 base.2=C\:\\Users\\Admin\\Documents\\GitHub\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_0.dex
 base.1=C\:\\Users\\Admin\\Documents\\GitHub\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
 base.0=C\:\\Users\\Admin\\Documents\\GitHub\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+renamed.21=classes22.dex
 renamed.20=classes21.dex
+path.21=classes_18.dex
+base.21=C\:\\Users\\Admin\\Documents\\GitHub\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_18.dex
 path.20=classes_17.dex
 base.20=C\:\\Users\\Admin\\Documents\\GitHub\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_17.dex
 path.9=classes_3.dex

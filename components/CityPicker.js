@@ -16,6 +16,7 @@ const CityPicker = (props) => {
                 selectedValue={selectedValue}
                 style={{color:"#000", marginTop:0,}}
                 onValueChange={onValueChange}
+                itemStyle={{fontSize:5}}
             >
                 {itemPicker(cities)}
             </Picker>

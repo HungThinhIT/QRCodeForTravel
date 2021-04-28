@@ -10,6 +10,8 @@ import {auth} from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { ButtonModel } from "../components";
 
 export default function AddLocation({ navigation, route }) {
     const [selectedValue, setSelectedValue] = useState("dn");
@@ -171,7 +173,15 @@ export default function AddLocation({ navigation, route }) {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: "row-reverse", width: "100%" }}>
-                        <View style={{ flex: 1, marginRight: 10, marginTop: 5 }}><Text style={{ alignSelf: "flex-end", color: "blue" }} onPress={onSelectetImage}>Chọn ảnh...</Text></View>
+                        <View style={{ flex: 1, marginRight: 0, marginTop: 5 }}>
+                            {/* <Icon name="folder-open-o" size={30} style= {{ alignSelf: "flex-end", color:'black'}} color="#900" onPress={onSelectetImage} /> */}
+                            {/* <Text style={{ alignSelf: "flex-end", color: "blue" }} onPress={onSelectetImage}>Chọn ảnh...</Text> */}
+                            <Icon.Button name="folder-open" color="#000" backgroundColor="#fff" style={{alignSelf: "flex-end", color: "blue"}} onPress={onSelectetImage} >
+                                <Text style={{ alignSelf: "flex-end", color:'black' }}>
+                                    Chọn ảnh
+                                </Text>
+                            </Icon.Button>
+                        </View>
                     </View>
                     <View style={{ flex: 1 }}>
                         <View style={{ width: 260 }}>
@@ -214,14 +224,15 @@ export default function AddLocation({ navigation, route }) {
                             />
                         </View>
                         <View style={{ marginTop: 10 }}>
-                            <Button
+                            {/* <Button
                                 style={{
                                     width: 200
                                 }}
                                 color="#05B5B3"
                                 title="Gửi"
                                 onPress={() => submitLocation(location,title,selectedValue,address,name,detail)}
-                            />
+                            /> */}
+                            <ButtonModel label="GỬI" onPress={() => submitLocation(location,title,selectedValue,address,name,detail)}/>
                         </View>
                     </View>
                 </View>

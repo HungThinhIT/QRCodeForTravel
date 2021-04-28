@@ -1,146 +1,148 @@
-import { React, useState } from "react";
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Alert, Modal } from 'react-native';
-// import { MaterialIcons } from '@expo/vector-icons';
-import {auth} from "../firebase/firebase";
-import 'react-native-gesture-handler';
+import React, { useState } from "react";
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Dimensions, SafeAreaView } from 'react-native';
+import { StatusBarBackground } from '../components'
+import Icon from 'react-native-vector-icons/FontAwesome';
+// import { auth } from "../firebase/firebase";
 
 const menu = [
-    { id: 1, title: 'Hồ sơ', icon: 'person' },
-    { id: 2, title: 'Cài đặt', icon: 'settings' },
-    { id: 3, title: 'Đã lưu', icon: 'bookmark' },
-    { id: 4, title: 'Something', icon: 'settings' },
-    { id: 5, title: 'Lịch sử', icon: 'history' },
-    { id: 6, title: 'Log Out', icon: 'history' },
+    { id: 1, title: 'Thay đổi mật khẩu', icon: 'key', screen: 'Home' },
+    { id: 2, title: 'Lịch sử tìm kiếm', icon: 'history', screen: 'Home' },
+    { id: 3, title: 'Địa điểm yêu thích', icon: 'heart', screen: 'Home' },
+    { id: 4, title: 'Cài đặt khác', icon: 'gear', screen: 'Home' },
+    { id: 5, title: 'Đăng xuất', icon: 'sign-out', screen: 'Home' },
 ];
-const signOut = (id,navigation) => {
-    if(id === 6){
-        auth.signOut().then(()=> navigation.navigate('Log In'));
-    }
+
+// const signOut = (id, navigation) => {
+//     if (id === 6) {
+//         auth.signOut().then(() => navigation.navigate('Log In'));
+//     }
+// }
+
+const navigateSetting = (navigation, screen) => {
+    navigation.navigate(screen)
 }
 
-const Item = ({id, title, icon, navigation }) => (
-    <TouchableOpacity style={styles.item} onPress={() => signOut(id,navigation)}>
-        {/* FIXME: Replace with another fonts */}
-        {/* <MaterialIcons name={icon} size={28} style={styles.icon} /> */}
-        <Text style={styles.itemTitle}>{title}</Text>
+const Item = ({ title, icon, navi, screen }) => (
+    <TouchableOpacity
+        onPress={() => { navigateSetting(navi, screen) }}
+        style={styles.itemList}>
+        <View style={styles.iconLeft}>
+            <Icon name={icon} size={22} color="#0A7FD9" />
+        </View>
+        <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
 );
+export default function Settings({ navigation }) {
 
-export default function Settings({navigation}) {
+
+    function renderUser2() {
+        if (1 == 2) // if(user is logged in) 
+            return (
+                <View style={styles.infoUser}>
+                    <Icon name="user-circle" size={22} color="white" />
+                    <Text style={styles.infoUserText}>Hưng Thịnh</Text>
+                </View>
+            );
+        return (
+            <View style={styles.infoUser}>
+                <Icon name="user-circle" size={22} color="white" />
+                <Text style={styles.infoUserText}>Bạn chưa đăng nhập</Text>
+            </View>
+        )
+    }
+
+
     const renderItem = ({ item }) => (
-        <Item id={item.id} title={item.title} icon={item.icon} navigation = {navigation}/>
+        <Item title={item.title} icon={item.icon} navi={navigation} screen={item.screen} />
     );
-    const [modalVisible, setModalVisible] = useState(false);
+
+    const listSettings = () => {
+        return (
+            <SafeAreaView style={styles.container}>
+                <FlatList
+                    scrollEnabled={false}
+                    data={menu}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
+            </SafeAreaView>
+        );
+    }
 
     return (
-        // <View style={styles.container}>
-        //     <View style={styles.header}>
-        //         <Text style={styles.headerTitle}>Setting</Text>
-        //     </View>
-        //     <View style={{}}>
-        //         <FlatList
-        //             data={menu}
-        //             renderItem={renderItem}
-        //             keyExtractor={item => item.id}
-        //             numColumns={2}
-        //         />
-        //     </View>
-        // </View>
         <View>
-            <View style={{ flex: 1, backgroundColor: "transparent" }}>
-                <View style={{ flex: 8, backgroundColor: "transparent" }}>
-
-                </View>
-                <View style={{ flex: 2, backgroundColor: "" }}>
-                    <View style={{ flex: 1, backgroundColor: "transparent", flexDirection: "row" }}>
-                        <View style={styles.item}>
-                            <Entypo name="key" size={24} color="#05B5B3" />
-                        </View>
-                        <View style={styles.item}>
-                            <FontAwesome name="sign-out" size={24} color="#05B5B3" />
-                        </View>
-                        <View style={styles.item}>
-                            <FontAwesome5 name="adjust" size={24} color="#05B5B3" />
-                        </View>
-                    </View>
-                    <View style={{ flex: 1, backgroundColor: "transparent", flexDirection: "row" }}>
-                        <View style={styles.item}>
-                            <FontAwesome5 name="history" size={24} color="#05B5B3" />
-                        </View>
-                        <View style={styles.item}>
-                            <AntDesign name="heart" size={24} color="#05B5B3" />
-                        </View>
-                        <View style={styles.item}>
-                            {/* FIXME: Replace with another fonts */}
-                            {/* <MaterialCommunityIcons name="hammer-wrench" size={24} color="#05B5B3" /> */}
-                        </View>
+            <StatusBarBackground />
+            <View style={styles.container}>
+                <View style={styles.backgroundBorder} />
+                <View style={styles.contentGroup}>
+                    <Text style={styles.headerTitle}>Cài đặt</Text>
+                    {renderUser2()}
+                    <View style={styles.contentForm}>
+                        {listSettings()}
                     </View>
                 </View>
             </View>
-            {/* <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                }}
-            > */}
-                {/* <View 
-                    style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
-                >
-                    <View
-                        style={{ height: '300px'}}
-                    ></View>
-                </View> */}
-                {/* <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
-                    </View>
-                </View> */}
-            {/* </Modal> */}
+
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#EBEDF0"
     },
-    header: {
-        marginTop: 40,
-        alignItems: 'center',
-        marginBottom: 30,
+    backgroundBorder: {
+        position: 'absolute',
+        backgroundColor: '#0A7FD9',
+        top: 0,
+        left: 0,
+        height: (Dimensions.get('window').height * 0.3),
+        width: '100%',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+    },
+    contentGroup: {
+        marginHorizontal: 20,
+        marginTop: 10,
     },
     headerTitle: {
-        fontSize: 20,
+        fontSize: 25,
+        color: 'white',
         fontWeight: 'bold',
+        textTransform: 'uppercase'
     },
-    item: {
-        justifyContent: 'center',
-        flex: 1,
-        backgroundColor: "#fff",
-        padding: 30,
-        borderRadius: 10,
-        margin: 3,
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 0 },
-        shadowRadius: 8,
-        shadowOpacity: 0.2,
-        elevation: 6
+    infoUser: {
+        flexDirection: 'row',
+        color: 'white',
+        alignItems: 'center',
+        marginTop: 5
     },
-    icon: {
-        position: 'absolute',
-        left: 8
+    infoUserText: {
+        fontWeight: '500',
+        color: '#FFF',
+        marginLeft: 10
     },
-    itemTitle: {
-        left: 10,
-    }
+    contentForm: {
+        marginTop: 20,
+        borderRadius: 20,
+        backgroundColor: 'white',
+    },
+    itemList: {
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#EFF1F5',
+        borderBottomWidth: 1,
+
+    },
+    iconLeft: {
+        borderRadius: 100,
+        padding: 10,
+        backgroundColor: '#F4F5F9',
+        marginRight: 10
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: '500'
+    },
 })

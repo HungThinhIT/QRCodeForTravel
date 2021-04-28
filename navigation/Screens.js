@@ -72,9 +72,9 @@ const Tab = createBottomTabNavigator();
             />
             <Tab.Screen 
                 name="Settings" 
-                component={Profile} 
+                component={Settings} 
                 options={{
-                    tabBarLabel: 'Cài đặt (not yet)',
+                    tabBarLabel: 'Cài đặt',
                     //FIXME: Refactor with new version
                     // tabBarIcon: () => (
                     //     <FontAwesome name="gear" size={24} color="#05B5B3" />

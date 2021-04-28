@@ -1,4 +1,4 @@
-#Fri Apr 23 16:58:54 ICT 2021
+#Wed Apr 28 22:21:31 ICT 2021
 base.2=C\:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 base.1=C\:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
 base.0=C\:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
@@ -20,6 +20,7 @@ renamed.3=classes4.dex
 path.1=classes.dex
 renamed.2=classes3.dex
 path.0=classes.dex
+renamed.17=classes18.dex
 renamed.1=classes2.dex
 renamed.16=classes17.dex
 renamed.0=classes.dex
@@ -27,6 +28,8 @@ renamed.15=classes16.dex
 renamed.14=classes15.dex
 renamed.13=classes14.dex
 renamed.12=classes13.dex
+path.17=classes_14.dex
+base.17=C\:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_14.dex
 renamed.11=classes12.dex
 path.16=classes_9.dex
 base.16=C\:\\Hoctap\\QRCodeForTravel\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_9.dex

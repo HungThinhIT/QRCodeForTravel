@@ -1,141 +1,189 @@
 import React, { useState } from 'react';
-import {SafeAreaView,StyleSheet,ScrollView, View,Text, StatusBar,TouchableOpacity, Button,Alert, Dimensions,TextInput } from 'react-native';
+import {SafeAreaView,StyleSheet, View,Text,TouchableOpacity, Button,Alert, Dimensions,Image } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from "react-native-camera";
 
+import Icon from "react-native-vector-icons/Ionicons";
+import * as Animatable from "react-native-animatable";
+
+
+const SCREEN_HEIGHT = Dimensions.get("window").height;
+const SCREEN_WIDTH = Dimensions.get("window").width;
+
+// console.disableYellowBox = true;
+
 export default function Qr({ navigation,props }) {
-    const [scan, setScan] = useState(false);
+    const [scan, setScan] = useState(true);
     const [result, setResult] = useState();
     const [isFlashOn, setFlashOn] = useState(false);
-    
     onSuccess = (e) => {
         setResult(e.data)
         setScan(false)
+
     }
+
     startScan = () => {
         setScan(true)
         setResult()
     }
 
+    makeSlideOutTranslation= (translationType, fromValue)=>{
+      return {
+        from: {
+          [translationType]: SCREEN_WIDTH * -0.18
+        },
+        to: {
+          [translationType]: fromValue
+        }
+      };
+    }
+
     return (
-        <View style={{backgroundColor:"#0A7FD9"}}>
-          <StatusBar barStyle="dark-content" />
-            <SafeAreaView>
+        <View style={styles.container}>
               { result &&
-                <View style={{textAlign: 'center',marginHorizontal:30}}>
+                <View style={styles.result}>
+                  <Text style={styles.resultkq}>{result}</Text>
                   <TouchableOpacity onPress={this.startScan}>
                     <View style = {styles.btnStart}>
-                        <Text style = {styles.btnStart2}>Quét lại mã QR Code</Text>
+                        <Text style = {styles.btnStart2}>Quét lại</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
+                
               }
-              <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={styles.scrollView}>
-                <View style={styles.body}>
-                  { result &&
-                    <View style={styles.sectionContainer}>
-                      <Text style={styles.centerText}>{result}</Text>
+              {scan &&
+              <QRCodeScanner
+                showMarker
+                onRead={this.onSuccess}
+                cameraStyle={{ height: SCREEN_HEIGHT }}
+                customMarker={
+                  <View style={styles.rectangleContainer}>
+                    <View style={styles.topOverlay}>
+                      <Text style={{ fontSize: 18, color: "white" }}>
+                        Đặt mã QR Code vào trước máy ảnh để quét!
+                      </Text>
                     </View>
-                  }
-                   {!scan &&
-                    <View style={styles.sectionContainer2}>
-                      <TouchableOpacity onPress={this.startScan}>
-                        <View style = {styles.btnStart}>
-                            <Text style = {styles.btnStart2}>Bắt đầu quét</Text>
+
+                    <View style={{ flexDirection: "row" }}>
+                      <View style={styles.leftAndRightOverlay} />
+                        <View style={styles.rectangle}>
+                          {/* <Icon
+                            name="ios-qr-scanner"
+                            size={SCREEN_WIDTH * 0.73}
+                            color={iconScanColor}
+                          /> */}
+                          <Image
+                              style={styles.tinyLogo}
+                              source={require('../assets/qrcode.png')}
+                            />
+                          <Animatable.View
+                            style={styles.scanBar}
+                            direction="alternate-reverse"
+                            iterationCount="infinite"
+                            duration={1700}
+                            easing="linear"
+                            animation={this.makeSlideOutTranslation(
+                              "translateY",
+                              SCREEN_WIDTH * -0.54
+                            )}
+                          />
                         </View>
-                      </TouchableOpacity>
+                      <View style={styles.leftAndRightOverlay} />
                     </View>
-                  }
-                  {scan &&
-                    <View style={styles.sectionContainer}>
-                          <Text style={styles.centerTextSr}>
-                              Đặt mã QR Code vào trước máy ảnh để quét!
-                          </Text>
-                          
-                      <QRCodeScanner
-                        flashMode={isFlashOn ? RNCamera.Constants.FlashMode.torch : RNCamera.Constants.FlashMode.off}
-                        cameraStyle={{ width:"100%"}}
-                        reactivate={true}
-                        showMarker={true}
-                        ref={(node) => { this.scanner = node }}
-                        onRead={this.onSuccess}
-                        bottomContent={
-                          <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScan(false)}>
-                            <Text style={styles.buttonText}>Dừng quét</Text>
-                          </TouchableOpacity>
-                        }
-                      />
-                      <TouchableOpacity style={styles.btnFlash1} onPress={() => isFlashOn ? setFlashOn(false) : setFlashOn(true)}>
-                        <Text style={styles.btnFlash}>Bật đèn</Text>
-                      </TouchableOpacity>
-                    </View>
-                  }
-                </View>
-              </ScrollView>
-          </SafeAreaView>
+                    <View style={styles.bottomOverlay} />
+                  </View>
+                }
+              />
+            }
       </View>
     );
 }
-const styles = StyleSheet.create({
-  scrollView: {
-    flexDirection:"column",
-    backgroundColor:"#0A7FD9",
-    height:"100%",
-    marginLeft:30,
-    marginRight:30,
-  },
-  body: {
-    flexGrow:2,
+
+
+const overlayColor = "rgba(0,0,0,0.5)"; // this gives us a black color with a 50% transparency
+const rectDimensions = SCREEN_WIDTH * 0.65; // this is equivalent to 255 from a 393 device width
+const rectBorderWidth = SCREEN_WIDTH * 0.005; // this is equivalent to 2 from a 393 device width
+const rectBorderColor = "red";
+const scanBarWidth = SCREEN_WIDTH * 0.46; // this is equivalent to 180 from a 393 device width
+const scanBarHeight = SCREEN_WIDTH * 0.0025; //this is equivalent to 1 from a 393 device width
+const scanBarColor = "#22ff00";
+const iconScanColor = "blue";
+
+const styles = {
+  rectangleContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
   },
-  sectionContainer: {
-    marginTop: 2,
+
+  rectangle: {
+    height: rectDimensions,
+    width: rectDimensions,
+    borderWidth: rectBorderWidth,
+    borderColor: rectBorderColor,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent"
   },
-  sectionContainer2: {
-    backgroundColor:"#0A7FD9",
-    marginTop: Dimensions.get('window').height/2,
-  },
-  centerText: {
+
+  topOverlay: {
     flex: 1,
-    fontSize: 18,
-    padding: 10,
-    color: '#fff',
-    marginTop:80,
+    height: SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
+    backgroundColor: overlayColor,
+    justifyContent: "center",
+    alignItems: "center"
   },
-  centerTextSr: {
+
+  bottomOverlay: {
     flex: 1,
-    fontSize: 18,
-    padding: 40,
-    color: '#fff',
-    marginBottom:40,
-    textAlign: 'center',
+    height: SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
+    backgroundColor: overlayColor,
+    paddingBottom: SCREEN_WIDTH * 0.25
   },
-  buttonText: {
-    fontSize: 21,
-    color: 'red',
+
+  leftAndRightOverlay: {
+    height: SCREEN_WIDTH * 0.65,
+    width: SCREEN_WIDTH,
+    backgroundColor: overlayColor
   },
-  buttonTouchable: {
-    padding: 5,
+
+  scanBar: {
+    width: scanBarWidth,
+    height: scanBarHeight,
+    backgroundColor: scanBarColor
+  },
+  container:{
+    height: SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
+  },
+  result:{
+    margin:20,
+    height:"100%"
+  },
+  resultkq:{
+    width:"100%",
+    fontSize:18,
+    marginTop:30
   },
   btnStart:{
-    backgroundColor: 'white', 
+    backgroundColor: '#0A7FD9', 
     alignItems: 'center',
     justifyContent: 'center', 
-    borderRadius: 15,
+    borderRadius: 20,
     marginTop:30,
+    margin:50,
   },
   btnStart2:{
-    color: 'black',
+    color: 'white',
     fontSize:18,
-    margin:10
+    margin:10,
   },
-  btnFlash:{
-    textAlign: 'right',
-    marginRight:38,
-    color:"white",
-    marginBottom:5,
+  tinyLogo:{
+    width:SCREEN_WIDTH * 0.75,
+    height:SCREEN_WIDTH * 0.75,
   }
-});
+  
+};

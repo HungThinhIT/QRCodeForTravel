@@ -166,7 +166,7 @@ export default function AddLocation({ navigation, route }) {
                                 </View>
                             ) : (<Image
                                 style={styles.styleImage}
-                                source={require("../assets/adaptive-icon.png")}
+                                source={{uri: "https://images.creativemarket.com/0.1.0/ps/4350784/2976/1984/m1/fpnw/wm1/camera_1-.jpg?1524579467&s=0bd757418f98bb9b25a4f04f3b325d4c"}}
                             />)}
                         </TouchableOpacity>
                     </View>

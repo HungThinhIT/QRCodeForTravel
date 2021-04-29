@@ -1,6 +1,7 @@
 import React from "react";
 import { Easing, Animated, Dimensions, View } from "react-native";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { Ionicons } from '@expo/vector-icons';
 // import { FontAwesome } from '@expo/vector-icons';
@@ -43,9 +44,9 @@ const Tab = createBottomTabNavigator();
                 options={{
                     tabBarLabel: "Khám phá",
                     //FIXME: Refactor with new version
-                    // tabBarIcon: () => (
-                    //     <Ionicons name="compass" size={24} color="#05B5B3" />
-                    // ),
+                    tabBarIcon: () => (
+                        <Icon name="compass" size={24} color="#05B5B3" />
+                    ),
                 }}
             />
             <Tab.Screen 
@@ -54,9 +55,9 @@ const Tab = createBottomTabNavigator();
                 options={{
                     tabBarLabel: 'Quét QR',
                     //FIXME: Refactor with new version
-                    // tabBarIcon: () => (
-                    //     <Ionicons name="qr-code-sharp" size={24} color="#05B5B3" />
-                    // )
+                    tabBarIcon: () => (
+                        <Icon name="qrcode" size={24} color="#05B5B3" />
+                    )
                 }}
             />
             <Tab.Screen 
@@ -65,9 +66,9 @@ const Tab = createBottomTabNavigator();
                 options={{
                     tabBarLabel: 'Tài khoản',
                     //FIXME: Refactor with new version
-                    // tabBarIcon: () => (
-                    //     <Ionicons name="person-circle" size={24} color="#05B5B3" />
-                    // ),
+                    tabBarIcon: () => (
+                        <Icon name="user-circle" size={24} color="#05B5B3" />
+                    ),
                 }}
             />
             <Tab.Screen 
@@ -76,9 +77,9 @@ const Tab = createBottomTabNavigator();
                 options={{
                     tabBarLabel: 'Cài đặt',
                     //FIXME: Refactor with new version
-                    // tabBarIcon: () => (
-                    //     <FontAwesome name="gear" size={24} color="#05B5B3" />
-                    // ),
+                    tabBarIcon: () => (
+                        <Icon name="gear" size={24} color="#05B5B3" />
+                    ),
                 }}
             />
         </Tab.Navigator>

@@ -5,10 +5,10 @@ com/qrcodetravel/ReactNativeFlipper.java
  com.qrcodetravel.ReactNativeFlipper$1
  com.qrcodetravel.ReactNativeFlipper$2
  com.qrcodetravel.ReactNativeFlipper$2$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/qrcodetravel/BuildConfig.java
+ com.qrcodetravel.BuildConfig
 com/qrcodetravel/MainApplication.java
  com.qrcodetravel.MainApplication
  com.qrcodetravel.MainApplication$1
-com/qrcodetravel/BuildConfig.java
- com.qrcodetravel.BuildConfig
-com/facebook/react/PackageList.java
- com.facebook.react.PackageList

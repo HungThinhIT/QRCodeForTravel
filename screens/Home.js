@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, ImageBackground, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // StatusBar.setHidden(true);StatusBar,
 
@@ -31,34 +32,127 @@ const Item = ({ name, img,add }) => (
     </TouchableOpacity>
 );
 
+
+
 export default function HomeScreen({ navigation }) {
     const renderItem = ({ item }) => (
         <Item name={item.name} img={item.img} add={item.add}/>
     );
 
+    const [search, setSearch] = React.useState("")
+
+    const updateSearch = (search) => {
+        setSearch(search)
+    }
     return (
         <SafeAreaView >
-            <View style={styles.header}> 
-                <Text style={styles.qrtr}>QR Travel</Text>
-                <Text style={styles.add} onPress={()=>navigation.navigate('Map')}>+</Text>
-            </View>
-            
-            <View style={styles.searchContainer}>
+            <ScrollView>
+
+                <View style={styles.header}> 
+                    <Text style={styles.qrtr}>QR Travel</Text>
+                    <Text style={styles.add} onPress={()=>navigation.navigate('Map')}>+</Text>
+                </View>
+                
+                <View style={styles.searchContainer}>
                     {/* FIXME: Replace with another fonts */}
-                    {/* <FontAwesome style={{margin: 12}} name="search" size={24} color="black" /> */}
+                    <Icon style={{}} name="search" size={24} color="#0A7FD9" />
                     <TextInput 
                         style={styles.search}
                         placeholder="Tìm kiếm địa điểm đến"
+                        placeholderTextColor="#0A7FD9" 
+                        onChange={updateSearch}
                     >
                     </TextInput>
-                
-            </View>
-            <FlatList
-                style={styles.listView}
-                data={categories}
-                renderItem={renderItem}
-                keyExtractor={item => item.id.toString()}
-            />
+                </View>
+
+                <View style={{padding: 10}}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>Các địa điểm yêu thích</Text>
+                        <Text style={styles.seeMore}>Xem thêm</Text>
+                    </View>
+                    <View >
+                        <FlatList 
+                            data={categories}
+                            renderItem={({item}) => (
+                                <TouchableOpacity 
+                                    style={{paddingRight: 10}} 
+                                    onPress={() => navigation.navigate('DetailLocation', {
+                                        id: item.id,
+                                    })}
+                                >
+                                    <ImageBackground 
+                                        source={{uri: item.img}}
+                                        style={{width: 100, height: 130, }}
+                                        imageStyle={{
+                                            borderRadius: 10
+                                        }}>
+                                        <View style={{position: 'absolute', left: 0, right: 0, bottom: 15, justifyContent: 'center', alignItems: 'center'}}>
+                                            <Text style={{color: "white", fontWeight: "bold"}}>TP California</Text>
+                                        </View>
+                                    </ImageBackground>
+                                    
+                                </TouchableOpacity>
+                            )}
+                            keyExtractor={(item) => item.id}
+                            horizontal={true}
+                        />
+                    </View>
+                </View>
+            
+                <View style={{padding: 10}}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>Các hoạt động nổi bật</Text>
+                        <Text style={styles.seeMore}>Xem thêm</Text>
+                    </View>
+                    <View >
+                        <FlatList 
+                            data={categories}
+                            renderItem={({item}) => (
+                                <TouchableOpacity style={{paddingRight: 10}}>
+                                    <View style={{
+                                        width: 274, 
+                                        height: 222, 
+                                        borderTopLeftRadius: 10, 
+                                        borderTopRightRadius: 10, 
+                                        borderBottomRightRadius: 10, 
+                                        borderBottomLeftRadius: 10, 
+                                        borderWidth: 2, 
+                                        borderColor: "#0A7FD9"
+                                    }}>
+                                        <Image 
+                                            source={{uri: item.img}}
+                                            style={{
+                                                width: 274, 
+                                                height: 180,
+                                                borderTopLeftRadius: 10,
+                                                borderTopRightRadius: 10
+                                            }}
+                                        />
+                                        <View style={{alignItems: "center"}}>
+                                            <Text style={{fontWeight: "bold", color: "#0A7FD9", fontSize: 23}}>TP California</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                            keyExtractor={(item) => item.id}
+                            horizontal={true}
+                        />
+                    </View>
+                </View>                    
+
+                <View style={{padding: 10}}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>Danh sách các địa điểm</Text>
+                        <Text style={styles.seeMore}>Xem thêm</Text>
+                    </View>                                
+                    <FlatList
+                        style={styles.listView}
+                        data={categories}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -66,11 +160,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems:'center',
-        padding:10,
-        borderRadius:10,
-        backgroundColor:'#FFF',
-        shadowColor:'#f20',
-        marginBottom:10,
+        // padding:10,
+        borderRadius: 10,
+        backgroundColor: '#FFFFFF',
+        shadowColor: '#f20',
+        marginBottom: 10,
         flexDirection: 'row',
         
     },
@@ -87,16 +181,15 @@ const styles = StyleSheet.create({
         flexGrow:2,
     },
     Catimg:{
-        width:60,
-        height:60,
-        flex: 1,
+        width: 88,
+        height: 82,
     },
     header:{
         flexDirection: 'row',
         paddingVertical:15,
-        backgroundColor:"#FFFFFF",
-        borderBottomWidth :1,
-        borderBottomColor: '#000',
+        // backgroundColor:"#FFFFFF",
+        // borderBottomWidth :1,
+        // borderBottomColor: '#000',
     },
     nameqr:{
         marginLeft:10,
@@ -118,14 +211,38 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     search: {
-        margin:10,
-        height: 50,
-        borderWidth: 1,
-        borderRadius: 20,
-        paddingHorizontal: 12,
+        // margin:10,
+        // height: 50,
+        // borderWidth: 1,
+        // borderRadius: 20,
+        // paddingHorizontal: 12,
         borderColor: '#0A7FD9',
+        borderRadius: 10,
     },
     searchContainer: {
         backgroundColor:"#FFFFFF",
+        display: "flex",
+        flexDirection: "row",
+        // justifyContent: "center",
+        paddingLeft: 10,
+        alignItems: "center",
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: "#0A7FD9",
+        marginLeft: 20,
+        marginRight: 20
+    },
+    titleContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingBottom: 10
+    },
+    title: {
+        fontSize: 20
+    },
+    seeMore: {
+        color: "#0A7FD9"
     }
-  });
+});

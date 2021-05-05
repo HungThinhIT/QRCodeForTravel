@@ -57,6 +57,7 @@ export default function Qr({ navigation,props }) {
                 onRead={this.onSuccess}
                 cameraStyle={{ height: SCREEN_HEIGHT }}
                 customMarker={
+                  <View style={styles.centerPart}>
                   <View style={styles.rectangleContainer}>
                     <View style={styles.topOverlay}>
                       <Text style={{ fontSize: 18, color: "white" }}>
@@ -92,6 +93,7 @@ export default function Qr({ navigation,props }) {
                     </View>
                     <View style={styles.bottomOverlay} />
                   </View>
+                  </View>
                 }
               />
             }
@@ -110,6 +112,16 @@ const scanBarColor = "#22ff00";
 const iconScanColor = "blue";
 
 const styles = {
+  centerPart: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    height: "75%",
+    borderRadius: 20,
+    backgroundColor: '#fff'
+},
+
+
   rectangleContainer: {
     flex: 1,
     alignItems: "center",

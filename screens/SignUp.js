@@ -4,7 +4,8 @@ import { Text, View, Image, StyleSheet, TextInput, TouchableHighlight, Button, A
 import { LabelInputText, ButtonModel } from "../components";
 import { auth } from "../firebase/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import firebase from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
 export default function SignUp({ navigation}) {
     // const [isSelected, setSelection] = React.useState(false);
     // const Login = () => {
@@ -28,6 +29,7 @@ export default function SignUp({ navigation}) {
                             displayName: 'Anonymous',
                             photoURL: phone,
                           }).then((s)=> {
+                            createFavor(email);
                             Alert.alert("Đăng ký thành công!");
                             auth.signOut().then(()=> navigation.navigate('Log In'));
                           })
@@ -38,6 +40,31 @@ export default function SignUp({ navigation}) {
             }
             
         }
+    }
+
+    const createFavor = (email) =>{
+        const app = prepareUploadImageToStorage();
+        const addFirebase = firestore().collection('users');
+        addFirebase.doc(email).set({address: "null",gender:"null",point:2000,favorite_locations : []});
+    }
+    const prepareUploadImageToStorage = () =>{
+        let app;
+        var stCredentials ={
+            apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
+            appId:"1:138826178666:web:62961ee1ec17c2899faa13",
+            authDomain: "qrtravel-vku.firebaseapp.com",
+            databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
+            storageBucket: "qrtravel-vku.appspot.com",
+            messagingSenderId: "138826178666",
+            projectId: "qrtravel-vku",
+            measurementId: "G-9ZZVLC2KNJ"
+        }
+        if(firebase.apps.length === 0){
+            app = firebase.initializeApp(stCredentials);
+        }else{
+            app = firebase.app();
+        }
+        return app;
     }
 
     return (

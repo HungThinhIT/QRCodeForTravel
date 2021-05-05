@@ -1,0 +1,54 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '10.0'
+
+target 'QRCodeTravel' do
+  config = use_native_modules!
+  # Permissions
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  #pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec" #Comment by HungThinh0710
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+
+  # Pods for QRCodeTravel
+  # React Native Maps dependencies
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  
+  #End call React Native maps dependencies
+  pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
+  
+
+
+  pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+
+
+  target 'QRCodeTravelTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable the next line.
+  use_flipper!()
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+         if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
+           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+         end
+      end
+    end
+    react_native_post_install(installer)
+  end
+end

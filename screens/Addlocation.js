@@ -26,7 +26,6 @@ export default function AddLocation({ navigation, route }) {
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [detail, setDetail] = useState("");
-    const fs = require('react-native-fs');
     const [uploading, setUploading] = useState(null);
     const [imageName, setImageName] = useState([]);
 

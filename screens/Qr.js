@@ -114,7 +114,7 @@ const styles = {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "transparent",
+    // backgroundColor: "transparent",
   },
 
   rectangle: {
@@ -124,14 +124,15 @@ const styles = {
     borderColor: rectBorderColor,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "transparent"
+    // backgroundColor: "transparent"
   },
 
   topOverlay: {
     flex: 1,
     height: SCREEN_WIDTH,
     width: SCREEN_WIDTH,
-    backgroundColor: overlayColor,
+    // backgroundColor: overlayColor,
+    backgroundColor: '#0A7FD9',
     justifyContent: "center",
     alignItems: "center"
   },
@@ -140,14 +141,16 @@ const styles = {
     flex: 1,
     height: SCREEN_WIDTH,
     width: SCREEN_WIDTH,
-    backgroundColor: overlayColor,
+    // backgroundColor: overlayColor,
+    backgroundColor: '#0A7FD9',
     paddingBottom: SCREEN_WIDTH * 0.25
   },
 
   leftAndRightOverlay: {
     height: SCREEN_WIDTH * 0.65,
     width: SCREEN_WIDTH,
-    backgroundColor: overlayColor
+    // backgroundColor: overlayColor
+    backgroundColor: '#0A7FD9',
   },
 
   scanBar: {
@@ -182,8 +185,8 @@ const styles = {
     margin:10,
   },
   tinyLogo:{
-    width:SCREEN_WIDTH * 0.75,
-    height:SCREEN_WIDTH * 0.75,
+    width:SCREEN_WIDTH * 0.76,
+    height:SCREEN_WIDTH * 0.76,
   }
   
 };

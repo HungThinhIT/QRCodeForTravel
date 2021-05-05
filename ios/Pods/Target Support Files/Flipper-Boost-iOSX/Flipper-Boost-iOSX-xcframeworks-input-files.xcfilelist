@@ -1,0 +1,7 @@
+${PODS_ROOT}/Target Support Files/Flipper-Boost-iOSX/Flipper-Boost-iOSX-xcframeworks.sh
+${PODS_ROOT}/Flipper-Boost-iOSX/frameworks/boost_context.xcframework
+${PODS_ROOT}/Flipper-Boost-iOSX/frameworks/boost_filesystem.xcframework
+${PODS_ROOT}/Flipper-Boost-iOSX/frameworks/boost_program_options.xcframework
+${PODS_ROOT}/Flipper-Boost-iOSX/frameworks/boost_regex.xcframework
+${PODS_ROOT}/Flipper-Boost-iOSX/frameworks/boost_system.xcframework
+${PODS_ROOT}/Flipper-Boost-iOSX/frameworks/boost_thread.xcframework

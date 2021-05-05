@@ -1,0 +1,6 @@
+${PODS_XCFRAMEWORKS_BUILD_DIR}/boost_context
+${PODS_XCFRAMEWORKS_BUILD_DIR}/boost_filesystem
+${PODS_XCFRAMEWORKS_BUILD_DIR}/boost_program_options
+${PODS_XCFRAMEWORKS_BUILD_DIR}/boost_regex
+${PODS_XCFRAMEWORKS_BUILD_DIR}/boost_system
+${PODS_XCFRAMEWORKS_BUILD_DIR}/boost_thread

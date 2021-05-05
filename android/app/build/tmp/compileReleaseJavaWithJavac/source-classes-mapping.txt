@@ -1,9 +1,0 @@
-com/qrcodetravel/MainActivity.java
- com.qrcodetravel.MainActivity
-com/qrcodetravel/MainApplication.java
- com.qrcodetravel.MainApplication
- com.qrcodetravel.MainApplication$1
-com/qrcodetravel/BuildConfig.java
- com.qrcodetravel.BuildConfig
-com/facebook/react/PackageList.java
- com.facebook.react.PackageList

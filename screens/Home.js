@@ -20,8 +20,15 @@ const categories = [
     { id: 10, name:'Công viên văn hóa Ấn Tượng Hội An',add:'khu du lịch Bà Nà Hills, thôn An Sơn, Xã Hoà Ninh, Huyện Hoà Vang, TP. Đà Nẵng',img:'http://divui.com/blog/wp-content/uploads/2018/10/nhung-trai-nghiem-thu-vi-chi-co-o-cong-vien-an-tuong-hoi-an-2-300x198.png'}
 ];
 
-const Item = ({ name, img,add }) => (
-    <TouchableOpacity style={styles.container}>
+const navigateHome = (navigation, screen) => {
+    navigation.navigate(navigation, screen)
+}
+
+const Item = ({ name, img, add, navigation, screen }) => (
+    <TouchableOpacity 
+        style={styles.container}
+        onPress={() => navigateHome(navigation, screen)}
+    >
         <Image source={{uri: img}}
             style={styles.Catimg}
         />
@@ -32,18 +39,18 @@ const Item = ({ name, img,add }) => (
     </TouchableOpacity>
 );
 
-
-
 export default function HomeScreen({ navigation }) {
-    const renderItem = ({ item }) => (
-        <Item name={item.name} img={item.img} add={item.add}/>
-    );
 
     const [search, setSearch] = React.useState("")
 
     const updateSearch = (search) => {
         setSearch(search)
     }
+
+    const renderItem = ({ item }) => (
+        <Item name={item.name} img={item.img} add={item.add} navigation={navigation}/>
+    );
+
     return (
         <SafeAreaView >
             <ScrollView>
@@ -108,7 +115,12 @@ export default function HomeScreen({ navigation }) {
                         <FlatList 
                             data={categories}
                             renderItem={({item}) => (
-                                <TouchableOpacity style={{paddingRight: 10}}>
+                                <TouchableOpacity 
+                                    style={{paddingRight: 10}}
+                                    onPress={() => navigation.navigate('DetailLocation', {
+                                        id: item.id,
+                                    })}
+                                >
                                     <View style={{
                                         width: 274, 
                                         height: 222, 

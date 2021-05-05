@@ -66,7 +66,7 @@ export default function AddLocation({ navigation, route }) {
                         user_id : uid,
                         qr_code: "null",
                         rating : 0,
-                        user_rating : 0,
+                        user_rating : [],
                         update_at: getCurrentDate(),
                     }
                     

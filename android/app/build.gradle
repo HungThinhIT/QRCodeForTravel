@@ -187,6 +187,22 @@ android {
 }
 
 dependencies {
+    //Fix conflict between react-camera with firebase
+    implementation (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+        exclude group: "com.google.android.gms", module: "play-services-vision"
+        exclude group: "com.google.firebase", module: "firebase-ml-vision-face-model"
+    }
+
+    //Fix conflict between react-camera with firebase_2
+    implementation ("com.google.firebase:firebase-ml-vision:19.0.3") {
+        force = true;
+    }
+    //Fix conflict between react-camera with firebase_3
+    implementation ("com.google.firebase:firebase-ml-vision-face-model:17.0.2") {
+        force = true;
+    }
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

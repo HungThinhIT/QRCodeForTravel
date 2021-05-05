@@ -57,7 +57,6 @@ export default function Qr({ navigation,props }) {
                 onRead={this.onSuccess}
                 cameraStyle={{ height: SCREEN_HEIGHT }}
                 customMarker={
-                  <View style={styles.centerPart}>
                   <View style={styles.rectangleContainer}>
                     <View style={styles.topOverlay}>
                       <Text style={{ fontSize: 18, color: "white" }}>
@@ -93,7 +92,6 @@ export default function Qr({ navigation,props }) {
                     </View>
                     <View style={styles.bottomOverlay} />
                   </View>
-                  </View>
                 }
               />
             }
@@ -112,16 +110,6 @@ const scanBarColor = "#22ff00";
 const iconScanColor = "blue";
 
 const styles = {
-  centerPart: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '80%',
-    height: "75%",
-    borderRadius: 20,
-    backgroundColor: '#fff'
-},
-
-
   rectangleContainer: {
     flex: 1,
     alignItems: "center",
@@ -136,15 +124,15 @@ const styles = {
     borderColor: rectBorderColor,
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "transparent"
+    backgroundColor: "transparent"
   },
 
   topOverlay: {
     flex: 1,
     height: SCREEN_WIDTH,
     width: SCREEN_WIDTH,
-    // backgroundColor: overlayColor,
-    backgroundColor: '#0A7FD9',
+    backgroundColor: overlayColor,
+    // backgroundColor: '#0A7FD9',
     justifyContent: "center",
     alignItems: "center"
   },
@@ -153,16 +141,16 @@ const styles = {
     flex: 1,
     height: SCREEN_WIDTH,
     width: SCREEN_WIDTH,
-    // backgroundColor: overlayColor,
-    backgroundColor: '#0A7FD9',
+    backgroundColor: overlayColor,
+    // backgroundColor: '#0A7FD9',
     paddingBottom: SCREEN_WIDTH * 0.25
   },
 
   leftAndRightOverlay: {
     height: SCREEN_WIDTH * 0.65,
     width: SCREEN_WIDTH,
-    // backgroundColor: overlayColor
-    backgroundColor: '#0A7FD9',
+    backgroundColor: overlayColor
+    // backgroundColor: '#0A7FD9',
   },
 
   scanBar: {

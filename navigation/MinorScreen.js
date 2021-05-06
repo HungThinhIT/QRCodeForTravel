@@ -9,6 +9,7 @@ import Profile from "../screens/Profile";
 import Load from "../screens/Load";
 import AddLocation from "../screens/Addlocation";
 import DetailLocation from "../screens/DetailLocation";
+import Favorite from "../screens/favorite";
 
 const Tab = createStackNavigator();
 
@@ -24,6 +25,8 @@ export default function MinorScreen() {
             <Tab.Screen name="AddLocation" component={AddLocation}/>
             <Tab.Screen name="Map" component={MapPicker}/>
             <Tab.Screen name="DetailLocation" component={DetailLocation}/>
+            <Tab.Screen name="Favorite" component={Favorite}/>
+
         </Tab.Navigator>
     );
 }

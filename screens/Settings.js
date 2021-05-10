@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const menu = [
     { id: 1, title: 'Thay đổi mật khẩu', icon: 'key', screen: 'Home' },
     { id: 2, title: 'Lịch sử tìm kiếm', icon: 'history', screen: 'Home' },
-    { id: 3, title: 'Địa điểm yêu thích', icon: 'heart', screen: 'Home' },
+    { id: 3, title: 'Địa điểm yêu thích', icon: 'heart', screen: 'Favorite' },
     { id: 4, title: 'Cài đặt khác', icon: 'gear', screen: 'Home' },
     { id: 5, title: 'Đăng xuất', icon: 'sign-out', screen: 'Home' },
 ];

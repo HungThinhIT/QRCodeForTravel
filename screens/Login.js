@@ -18,12 +18,12 @@ export default function Login({ navigation }) {
             }
             e.preventDefault();
             Alert.alert(
-              'Trở về trang chính?',
+              'Đăng nhập?',
               'Bạn chưa đăng nhập. Bạn có muốn về trang chính?',
               [
-                { text: "Tiếp tục", style: 'cancel', onPress: () => {} },
+                { text: "Ở lại", style: 'cancel', onPress: () => {} },
                 {
-                  text: 'Rời đi',
+                  text: 'Về trang chính',
                   style: 'destructive',
                   onPress: () => navigation.navigate('Load'),
                 },

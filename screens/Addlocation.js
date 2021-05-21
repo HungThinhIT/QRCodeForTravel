@@ -157,6 +157,8 @@ export default function AddLocation({ navigation, route }) {
     return (
         <KeyboardAwareScrollView>
             <View style={styles.firstPart}>
+            <View style={styles.backgroundBorder} />
+                <View style={styles.contentGroup}>
                 <View style={{
                      justifyContent: 'center',
                      alignItems: 'center',
@@ -244,6 +246,7 @@ export default function AddLocation({ navigation, route }) {
                         </View>
                     </View>
                 </View>
+                </View>
             </View>
         </KeyboardAwareScrollView >
     );
@@ -258,8 +261,21 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0A7FD9',
         flexDirection: 'column'
+    },
+    backgroundBorder: {
+        position: 'absolute',
+        backgroundColor: '#0A7FD9',
+        top: 0,
+        left: 0,
+        height: (Dimensions.get('window').height * 0.4),
+        width: '100%',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+    },
+    contentGroup: {
+        marginHorizontal: 20,
+        marginTop: 10,
     },
     centerPart: {
         justifyContent: 'center',

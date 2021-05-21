@@ -50,7 +50,10 @@ export default function Login({ navigation }) {
     return (
             <KeyboardAwareScrollView>
                 <View style={styles.firstPart}>
+                <View style={styles.backgroundBorder} />
+                    <Text style={styles.headerTitle}>đăng nhập</Text>
                     <View style={styles.centerPart}>
+                        
                         <View style={styles.space}>
                             <Image
                                 style={{
@@ -105,7 +108,6 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0A7FD9',
         flexDirection: 'column'
     },
     centerPart: {
@@ -118,6 +120,26 @@ const styles = StyleSheet.create({
     },
     container: {
         paddingTop: 50,
+    },
+    backgroundBorder: {
+        position: 'absolute',
+        backgroundColor: '#0A7FD9',
+        top: 0,
+        left: 0,
+        height: (Dimensions.get('window').height * 0.35),
+        width: '100%',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+    },
+    contentGroup: {
+        marginHorizontal: 20,
+        marginTop: 10,
+    },
+    headerTitle: {
+        fontSize: 25,
+        color: 'white',
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
     },
     tinyLogo: {
         width: 50,

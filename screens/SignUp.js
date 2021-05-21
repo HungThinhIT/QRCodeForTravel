@@ -70,6 +70,8 @@ export default function SignUp({ navigation}) {
     return (
         <KeyboardAwareScrollView>
             <View style={styles.firstPart}>
+            <View style={styles.backgroundBorder} />
+                    <Text style={styles.headerTitle}>đăng ký</Text>
                 <View style={styles.centerPart}>
                     <View style={styles.space}>
                         <Image
@@ -112,11 +114,26 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0A7FD9',
         flexDirection: 'column'
     },
     container: {
         paddingTop: 50,
+    },
+    backgroundBorder: {
+        position: 'absolute',
+        backgroundColor: '#0A7FD9',
+        top: 0,
+        left: 0,
+        height: (Dimensions.get('window').height * 0.4),
+        width: '100%',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+    },
+    headerTitle: {
+        fontSize: 25,
+        color: 'white',
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
     },
     tinyLogo: {
         width: 50,

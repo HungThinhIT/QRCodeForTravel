@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, ImageBackground, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { auth, db } from "../firebase/firebase";
+import firebase from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
+import { createIconSetFromFontello } from "react-native-vector-icons";
 // StatusBar.setHidden(true);StatusBar,
 
 const windowWidth = Dimensions.get('screen').width;
@@ -39,17 +42,85 @@ const Item = ({ name, img, add, navigation, screen }) => (
     </TouchableOpacity>
 );
 
+const loadLocation = async()=>{
+    const locationList = await firestore().collection('location').get();
+    console.log(locationList.data)
+}
+
 export default function HomeScreen({ navigation }) {
 
     const [search, setSearch] = React.useState("")
+    const [location, setLocation] = React.useState([])
+    const [post, setPost] = React.useState([])
 
     const updateSearch = (search) => {
         setSearch(search)
     }
 
     const renderItem = ({ item }) => (
-        <Item name={item.name} img={item.img} add={item.add} navigation={navigation}/>
+        <Item name={item.name} img={item.thumbnail} add={item.address} navigation={navigation}/>
     );
+
+    const prepareUploadImageToStorage = () =>{
+        let app;
+        var stCredentials ={
+            apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
+            appId:"1:138826178666:web:62961ee1ec17c2899faa13",
+            authDomain: "qrtravel-vku.firebaseapp.com",
+            databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
+            storageBucket: "qrtravel-vku.appspot.com",
+            messagingSenderId: "138826178666",
+            projectId: "qrtravel-vku",
+            measurementId: "G-9ZZVLC2KNJ"
+        }
+        if(firebase.apps.length === 0){
+            app = firebase.initializeApp(stCredentials);
+        }else{
+            app = firebase.app();
+        }
+        return app;
+    }
+
+    const loadData = async () => {
+        // const user = await auth.currentUser;
+        const locationList = []
+        const postList = []
+        console.log("Get data!")
+        // if (user != null) {
+            // console.log(user.email);
+            const app = prepareUploadImageToStorage();
+            try {
+                var locationSnapshot = await firestore().collection("location").get();
+                var postSnapshot = await firestore().collection("posts").get();
+                console.log("Here");
+                locationSnapshot.forEach((doc) => {
+                    locationList.push({
+                        ...location,
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                setLocation([...locationList]);
+                // console.log("Locations: ", location)
+
+                postSnapshot.forEach((doc) => {
+                    postList.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                setPost([...postList]);
+                // console.log("Posts: ", post)
+            } catch (error) {
+                console.log(error)
+            }
+        
+    }
+
+    React.useEffect(() => {
+        // getData()
+        loadData()
+    }, [])
 
     return (
         <SafeAreaView >
@@ -79,7 +150,7 @@ export default function HomeScreen({ navigation }) {
                     </View>
                     <View >
                         <FlatList 
-                            data={categories}
+                            data={post}
                             renderItem={({item}) => (
                                 <TouchableOpacity 
                                     style={{paddingRight: 10}} 
@@ -88,13 +159,13 @@ export default function HomeScreen({ navigation }) {
                                     })}
                                 >
                                     <ImageBackground 
-                                        source={{uri: item.img}}
+                                        source={{uri: item.image}}
                                         style={{width: 100, height: 130, }}
                                         imageStyle={{
                                             borderRadius: 10
                                         }}>
                                         <View style={{position: 'absolute', left: 0, right: 0, bottom: 15, justifyContent: 'center', alignItems: 'center'}}>
-                                            <Text style={{color: "white", fontWeight: "bold"}}>TP California</Text>
+                                            <Text style={{color: "white", fontWeight: "bold"}}>{item.title}</Text>
                                         </View>
                                     </ImageBackground>
                                     
@@ -108,7 +179,7 @@ export default function HomeScreen({ navigation }) {
             
                 <View style={{padding: 10}}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.title}>Các hoạt động nổi bật</Text>
+                        <Text style={styles.title}>Địa điểm mới</Text>
                         <Text style={styles.seeMore}>Xem thêm</Text>
                     </View>
                     <View >
@@ -159,8 +230,27 @@ export default function HomeScreen({ navigation }) {
                     </View>                                
                     <FlatList
                         style={styles.listView}
-                        data={categories}
-                        renderItem={renderItem}
+                        data={location}
+                        // renderItem={renderItem}
+                        renderItem={({item}) => (
+                            <TouchableOpacity 
+                                style={styles.container}
+                                onPress={() => {
+                                    console.log(item.id)
+                                    navigation.navigate('DetailLocation', {
+                                        id: item.id
+                                    })
+                                }}
+                            >
+                                <Image source={{uri: item.thumbnail}}
+                                    style={styles.Catimg}
+                                />
+                                <View style={styles.cont}>
+                                    <Text style={styles.nameqr}>{item.name}</Text>
+                                    <Text style={styles.nameadd}>{item.address}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
                         keyExtractor={item => item.id.toString()}
                     />
                 </View>

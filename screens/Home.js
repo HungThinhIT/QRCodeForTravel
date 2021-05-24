@@ -6,6 +6,7 @@ import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 import Star from 'react-native-star-view';
 import { createIconSetFromFontello } from "react-native-vector-icons";
+
 // StatusBar.setHidden(true);StatusBar,
 
 const windowWidth = Dimensions.get('screen').width;
@@ -89,10 +90,13 @@ export default function HomeScreen({ navigation }) {
         console.log("Get data!")
         // if (user != null) {
             // console.log(user.email);
-            const app = prepareUploadImageToStorage();
+            // const app = prepareUploadImageToStorage();
+
             try {
-                var locationSnapshot = await firestore().collection("location").get();
-                var postSnapshot = await firestore().collection("posts").get();
+                // var locationSnapshot = await firestore().collection("location").get();
+                // var postSnapshot = await firestore().collection("posts").get();
+                var locationSnapshot = await db.collection("location").get();
+                var postSnapshot = await db.collection("posts").get();
                 console.log("Here");
                 locationSnapshot.forEach((doc) => {
                     locationList.push({
@@ -113,6 +117,7 @@ export default function HomeScreen({ navigation }) {
                 setPost([...postList]);
                 // console.log("Posts: ", post)
             } catch (error) {
+                console.log("BUG IN HERE");
                 console.log(error)
             }
         
@@ -340,6 +345,7 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 12,
         borderColor: '#0A7FD9',
         borderRadius: 10,
+        paddingVertical: 10,
     },
     searchContainer: {
         backgroundColor:"#FFFFFF",

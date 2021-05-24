@@ -1,31 +1,70 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { FlatList, Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, TouchableOpacity, Alert, PermissionsAndroid } from 'react-native';
 import Star from 'react-native-star-view';
 // import { Entypo, AntDesign } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
-import firebase from '@react-native-firebase/app';
+import { db, storageRef } from '../firebase/firebase';
 import firestore from '@react-native-firebase/firestore';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { auth } from "../firebase/firebase";
-
 
 export default function DetailLocation({route, navigation}) {
-    
-    const getInitialState = {
-        latitude: 15.98,
-        longitude: 108.14,
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.1,
-    };
+    const [id, setId] = useState(route.params.id)
+    const [locationData, setLocationData] = useState({});
+    const [slideImage, setSlideImage] = useState();
     const [location, onChangeLocation] = React.useState(getInitialState);
     const [paddingTop, onChangePaddingTop] = React.useState(0);
-    const [detailLocation, setDetailLocation] = React.useState({});
-    const [id, setId] = React.useState(route.params.id)
-    const [images, setImages] = React.useState([])
 
     const onRegionChange = (location) => {
         onChangeLocation(location);
     }
+    let getInitialState = {
+        latitude: 16.061057,
+        longitude: 108.224508,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+    };
+
+
+    function loadSlideImage() {
+        if (typeof (slideImage) != 'undefined' && slideImage.length > 0) {
+
+            return (
+                <ScrollView
+                    style={styles.scrollView}
+                    horizontal={true}>
+                    {
+                        slideImage.map((item, i) => (
+                            <Image
+                                key={i}
+                                style={{
+                                    height: 150,
+                                    width: 250
+                                }}
+                                source={{ uri: item, }} />
+                        ))
+                    }
+
+                </ScrollView>
+            )
+        }
+    }
+
+    async function onLoadFirebaseLocation() {
+        var tmpArray = []
+        db.collection('location').onSnapshot( async (snapshot) => {
+            snapshot.docs.map( async (doc) => {
+                if (doc.id == id) {
+                    console.log(doc.data())
+                    setLocationData(doc.data())
+                    getInitialState.latitude = doc.data().lat
+                    getInitialState.longitude = doc.data().long
+                    tmpArray.push(doc.data().image)
+                }
+            })
+            setSlideImage(...tmpArray)
+
+        })
+    }
+
 
     function onMapReady() {
         onChangePaddingTop(1);
@@ -52,53 +91,18 @@ export default function DetailLocation({route, navigation}) {
         }
     }
 
-    const prepareUploadImageToStorage = () =>{
-        let app;
-        var stCredentials ={
-            apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
-            appId:"1:138826178666:web:62961ee1ec17c2899faa13",
-            authDomain: "qrtravel-vku.firebaseapp.com",
-            databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
-            storageBucket: "qrtravel-vku.appspot.com",
-            messagingSenderId: "138826178666",
-            projectId: "qrtravel-vku",
-            measurementId: "G-9ZZVLC2KNJ"
-        }
-        if(firebase.apps.length === 0){
-            app = firebase.initializeApp(stCredentials);
-        }else{
-            app = firebase.app();
-        }
-        return app;
-    }
-    const loadData = async () => {
-        const user = await auth.currentUser;
-        const imagesList = []
-        console.log("Get data!")
-
-        const app = prepareUploadImageToStorage();
-        try {
-            var detailLocationSnapshot = await firestore().collection("location").doc(id).get();
-            const data = detailLocationSnapshot.data()
-            data.image.forEach(item => {
-                imagesList.push({
-                    url: item
-                })
-            })
-            setImages([...imagesList])
-            console.log("Images", images)
-            setDetailLocation({...data});
-            console.log("Detail location: ", detailLocation);
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     React.useEffect(() => {
-        console.log("ID: ", route.params.id)
-        loadData()
-        // console.log("Image: ", detailLocation.image)
         onRegionChange(location);
+
+        async function getDownloadUrl(item){
+            const url = await storageRef.child(`location/${item}`).getDownloadURL();
+            console.log(url);
+            return url
+        }
+
+        
+        onLoadFirebaseLocation()
+        
     }, []);
 
     return (
@@ -106,77 +110,56 @@ export default function DetailLocation({route, navigation}) {
             flexDirection: "column"
         }]}>
             <View style={styles.map}>
-                {/* <Text> Map in here</Text> */}
-                {/* <MapView
-                    provider={MapView.PROVIDER_GOOGLE}
-                    initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                    }}
-                /> */}
+
                 <MapView
-                provider={MapView.PROVIDER_GOOGLE}
-                style={[styles.map, { paddingTop: 15 }]}
-                // initialRegion={location}
-                onRegionChange={onRegionChange}
-                followsUserLocation={true}
-                showsUserLocation
-                showsMyLocationButton={true}
-                showsCompass={true}
-                onMapReady={onMapReady}
-                toolbarEnabled={true}
-                zoomEnabled={true}
-                rotateEnabled={true}
-                onPress={(e) => {
-                    var currentLongLat = {
-                        latitude: e.nativeEvent.coordinate.latitude,
-                        longitude: e.nativeEvent.coordinate.longitude,
-                        latitudeDelta: 0.2,
-                        longitudeDelta: 0.2,
-                    }
-                    onChangeLocation(currentLongLat);
-                }}
-            >
-            </MapView>
+                    provider={MapView.PROVIDER_GOOGLE}
+                    style={[styles.map, { paddingTop: 15 }]}
+                    // initialRegion={location}
+                    onRegionChange={onRegionChange}
+                    followsUserLocation={true}
+                    showsUserLocation
+                    showsMyLocationButton={true}
+                    showsCompass={true}
+                    onMapReady={onMapReady}
+                    toolbarEnabled={true}
+                    zoomEnabled={true}
+                    rotateEnabled={true}
+                    onPress={(e) => {
+                        var currentLongLat = {
+                            latitude: e.nativeEvent.coordinate.latitude,
+                            longitude: e.nativeEvent.coordinate.longitude,
+                            latitudeDelta: 0.2,
+                            longitudeDelta: 0.2,
+                        }
+                        onChangeLocation(currentLongLat);
+                    }}
+                >
+                </MapView>
             </View>
             <View>
                 <SafeAreaView>
-                    <ScrollView
-                        style={styles.scrollView}
-                        horizontal={true}>
-                        {images.map((item) => (
-                            <Image
-                                style={{
-                                    height: 150,
-                                    width: 250
-                                }}
-                                source={{ uri: item.url }} 
-                            />
-                        ))}
-                    </ScrollView>
+                    {loadSlideImage()}
                 </SafeAreaView>
                 <SafeAreaView style={styles.information}>
                     <View style={styles.headOption}>
-                        <Text style={styles.title} >{detailLocation.name}</Text>
+                        {/* <Text style={styles.title} >Asia Park – Sunworld Đà Nẵng Wonders</Text> */}
+                        <Text style={styles.title} > {locationData.name}</Text>
                     </View>
                     <View style={styles.detailInformation}>
                         <View style={{ flex: 3, }} >
                             <View
                                 style={{ flexDirection: 'column' }}>
-                                <Text style={{ fontSize: 12 }}>{detailLocation.address}</Text>
+                                <Text style={{ fontSize: 12 }}>{locationData.address}</Text>
                             </View>
                             <View style={styles.starAndView}>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Star score={detailLocation.rating} style={styles.starStyle} />
-                                    <Text style={{ marginTop: 3 }}> {detailLocation.rating}</Text>
+                                    <Star score={locationData.rating} style={styles.starStyle} />
+                                    <Text style={{ marginTop: 3 }}> {locationData.rating} </Text>
                                 </View>
-                                <View style={{ flexDirection: 'row', alignItems: "center" }}>
+                                <View style={{ flexDirection: 'row' }}>
                                     {/* FIXME: Replace with another fonts */}
                                     {/* <Entypo name="eye" size={24} color="black" /> */}
-                                    <Icon style={{}} name="eye" size={15} color="black" />
-                                    <Text style={{ marginTop: 3 }}> 999</Text>
+                                    <Text style={{ marginTop: 3 }}> 420</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
@@ -187,8 +170,6 @@ export default function DetailLocation({route, navigation}) {
                                 <Text style={{ color: "red" }}>Thêm vào yêu thích</Text>
                                 {/* FIXME: Replace with another fonts */}
                                 {/* <AntDesign name="heart" size={20} color="red" /> */}
-                                <Icon style={{}} name="heart" size={15} color="red" />
-
                             </TouchableOpacity>
                         </View>
                         {/* QR CODE GENERATE  */}
@@ -200,12 +181,12 @@ export default function DetailLocation({route, navigation}) {
                                 }}
                                 source={{ uri: 'https://s3-alpha-sig.figma.com/img/59b2/5a79/aa8cefd1a60e87f9557138ed02943e73?Expires=1619395200&Signature=RNgE2alGlUfmPc7-7LTD28D9Vnu5jSpKBP2ci9WD7Fh5Dxk950GesltQ9KqgEm~BktI3ECwY0P-7EmFGIzhQxWdTiBfH-ag-RXy95goL6gUtztJKIAEzsA5GxHQpIxll1BIgDkvo0RoWHLQE-4yL7z7cqb5QOYHKFCRHy8lzSAH17s9XAYQtV2b085ZRhoKvZ1JWSpR118YA3edju-bZ-gf2TMXkEth8lpBuLjRFqOSvSfMGSfdreyhrVviU-uYzTCxZwJloj3RW-avDLcw0SqEQE5OjU38PaTDZUaNAG11WzjwicKWkjyX2-2DR~0sHmnjPDldJjgzh38naJGTgYQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', }} />
                         </View>
-                        
+
                     </View>
                 </SafeAreaView>
                 <SafeAreaView>
                     <Text style={styles.textContentView}>
-                       {'\t'}{detailLocation.detail}
+                        {'\t'}{locationData.detail}
                     </Text>
                 </SafeAreaView>
             </View>

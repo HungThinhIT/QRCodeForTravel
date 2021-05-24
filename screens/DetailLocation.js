@@ -5,6 +5,7 @@ import Star from 'react-native-star-view';
 import MapView from 'react-native-maps';
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { auth } from "../firebase/firebase";
 
 export default function DetailLocation({ navigation, route }) {
@@ -71,31 +72,25 @@ export default function DetailLocation({ navigation, route }) {
     }
     const loadData = async () => {
         const user = await auth.currentUser;
-        const locationList = []
+        const imagesList = []
         console.log("Get data!")
-        if (user != null) {
-            // console.log(user.email);
-            const app = prepareUploadImageToStorage();
-            const location = await firestore()
-                .collection('location')
-                .doc(id)
-                .get()
-                .then(snapshot => {
-                    console.log("Detail Location: ", snapshot.data())
-                    setDetailLocation({...snapshot.data()})
-                    const img = detailLocation.image
-                    setImages([...img])
-                    console.log("Image: ", images)
+
+        const app = prepareUploadImageToStorage();
+        try {
+            var detailLocationSnapshot = await firestore().collection("location").doc(id).get();
+            const data = detailLocationSnapshot.data()
+            data.image.forEach(item => {
+                imagesList.push({
+                    url: item
                 })
-                .catch(err => {
-                    console.log('Error getting documents', err);
-                });
-            // console.log("Test")    
-            // console.log(locationList.image)
-        }else{
-            console.log("Null");
+            })
+            setImages([...imagesList])
+            console.log("Images", images)
+            setDetailLocation({...data});
+            console.log("Detail location: ", detailLocation);
+        } catch (error) {
+            console.log(error)
         }
-        
     }
 
     React.useEffect(() => {
@@ -147,18 +142,6 @@ export default function DetailLocation({ navigation, route }) {
             </View>
             <View>
                 <SafeAreaView>
-                    {/* <FlatList
-                        data={images}
-                        renderItem={(image) => (
-                            <Image
-                                style={{
-                                    height: 150,
-                                    width: 250
-                                }}
-                                source={{ uri: image }} 
-                            />
-                        )}
-                    /> */}
                     <ScrollView
                         style={styles.scrollView}
                         horizontal={true}>
@@ -168,27 +151,9 @@ export default function DetailLocation({ navigation, route }) {
                                     height: 150,
                                     width: 250
                                 }}
-                                source={{ uri: item }} 
+                                source={{ uri: item.url }} 
                             />
                         ))}
-                        {/* <Image
-                            style={{
-                                height: 150,
-                                width: 250
-                            }}
-                            source={{ uri: 'https://s3-alpha-sig.figma.com/img/d857/de8e/d54537400a84279101e7d01a4f4ed207?Expires=1619395200&Signature=eVzpCXuR0YCnhirstBQhZqc9S~f0MlaFiOvo3Rf5rrsVVVTCMbjwqIe7kx0d5G1R2v70WuISIvF-id3jJpLGH463a5gX5~xvB0bHWdh3cCSOuxFVwApA9015X8VPHT5vPNFOQ3nqn69jr8uaRN3fVeeOFQdfIgL-tUC30hpOmIqdz1nXb4BJZ9gMcpp71rgpi6UxnJw0k7wAr7K6I0t3AFIH8JCALNKTOAx-eUyE5QnLZCn7MvN-W5SkBiVv7gtiY9DfOVPMXGrmFa9JPyaH0~YDIhUc~uGuutP1TfncKbeWTI2gvy1U~n-VPPpgrF4-Fvfvhy3pYYbCLuZEG2EveQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', }} />
-                        <Image
-                            style={{
-                                height: 150,
-                                width: 200
-                            }}
-                            source={{ uri: 'https://s3-alpha-sig.figma.com/img/7d67/01d5/d2c5468fff12abfa44be90e2df1e48d4?Expires=1619395200&Signature=O8Ut6x99htnAVov9rJH17lU-ssuVJBHYFCjY3FpXVQHi~vG4s77~ku4O6DYFsinZabwQYtKMiRVo1SEZ0f8QsPtzFNPEcWlSdgPBln-5tSKvEJkncAZ~ueXDK-17ljNtpgpjtXO-pnx2wsIikVDdyVOqCcmXqNiSUX1JrT-RrbBQe~Ar85QmezKS6Nsoz~XIW~t5SpddTZebdZfg-sgyyU3DuqYasqGev6r0CpvO27FEK~eFUjGBAfpkg~TMg~JyXcQEClewgh4XNi7pi6XK7WLD7kgWxh7mc-~VmmOd-hBKxdHnK6yHOAbFeu~KOI7nEGjNVljfQD7Qf~NEMTVPsg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', }} />
-                        <Image
-                            style={{
-                                height: 150,
-                                width: 200
-                            }}
-                            source={{ uri: 'https://s3-alpha-sig.figma.com/img/6c09/8f9d/6c0e4ed05381f329c92ee4a541f81e37?Expires=1619395200&Signature=YYX2N~Gj~qEyVQni03A-W76wNHtOUUaLARBvfYKQhoFJpYgymhrMqyfrk3meAMubblcDORe3CD014g1V9wXrRtj90fynvY-1x3rzE0YwNlnntan89flypsPEsnmoNLL4uGtbGHssQ4Kvv-Zt~iudlSFTNpWwv0isVefCU2f89YIXGfftwJJPIakpydVXYB7Un7jvrCK7DE1G2rGDLGQWgMKcZ9vkHX0gX2Mv-v7swLng51QL5q9qge6-I551JAQh07ZI7OxPZicduFlvrP2iPzoc3ccNfsViSjgUBcG0YS-JUD2toN~SWQUk8bZaRJQbUGvp5HZMuHG9Rj3pNRG3HQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', }} /> */}
                     </ScrollView>
                 </SafeAreaView>
                 <SafeAreaView style={styles.information}>
@@ -206,10 +171,11 @@ export default function DetailLocation({ navigation, route }) {
                                     <Star score={detailLocation.rating} style={styles.starStyle} />
                                     <Text style={{ marginTop: 3 }}> {detailLocation.rating}</Text>
                                 </View>
-                                <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flexDirection: 'row', alignItems: "center" }}>
                                     {/* FIXME: Replace with another fonts */}
                                     {/* <Entypo name="eye" size={24} color="black" /> */}
-                                    <Text style={{ marginTop: 3 }}> 420</Text>
+                                    <Icon style={{}} name="eye" size={15} color="black" />
+                                    <Text style={{ marginTop: 3 }}> 999</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
@@ -220,6 +186,8 @@ export default function DetailLocation({ navigation, route }) {
                                 <Text style={{ color: "red" }}>Thêm vào yêu thích</Text>
                                 {/* FIXME: Replace with another fonts */}
                                 {/* <AntDesign name="heart" size={20} color="red" /> */}
+                                <Icon style={{}} name="heart" size={15} color="red" />
+
                             </TouchableOpacity>
                         </View>
                         {/* QR CODE GENERATE  */}

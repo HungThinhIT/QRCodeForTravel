@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { auth, db } from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
+import Star from 'react-native-star-view';
 import { createIconSetFromFontello } from "react-native-vector-icons";
 // StatusBar.setHidden(true);StatusBar,
 
@@ -248,6 +249,23 @@ export default function HomeScreen({ navigation }) {
                                 <View style={styles.cont}>
                                     <Text style={styles.nameqr}>{item.name}</Text>
                                     <Text style={styles.nameadd}>{item.address}</Text>
+                                    <View style={{flexDirection:'row', alignItems: "center"}}>
+                                        <View style={{flexDirection:'row'}}>
+                                            <Star score={item.rating} style={styles.starStyle} />
+                                            <Text>{item.rating}</Text>
+                                        </View>
+                                        <View style={{flex: 1, flexDirection:'row', justifyContent: "space-between", }}>
+                                            <View style={{flex: 1, flexDirection:'row', marginLeft: 10, justifyContent: "center"}}>
+                                                <Icon style={{}} name="eye" size={15} color="black" />
+                                                <Text style={{fontSize: 10}}>999</Text>
+                                            </View>
+                                            
+                                            <View style={{}}>
+                                                <Icon style={{}} name="heart" size={18} color="red" />
+                                            </View>
+
+                                        </View>
+                                    </View>
                                 </View>
                             </TouchableOpacity>
                         )}
@@ -308,6 +326,7 @@ const styles = StyleSheet.create({
     cont:{
         flexDirection: "column",
         flex: 5,
+        marginRight: 10,
     },
     listView: {
         paddingHorizontal: 10,
@@ -346,5 +365,11 @@ const styles = StyleSheet.create({
     },
     seeMore: {
         color: "#0A7FD9"
-    }
+    },
+    starStyle: {
+        width: 100,
+        height: 20,
+        marginBottom: 10,
+        marginLeft: 10
+    },
 });

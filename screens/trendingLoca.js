@@ -116,16 +116,18 @@ export default function TrendingLoca({ route, navigation }) {
     return (
         <SafeAreaView >
             <View style={styles.searchContainer}>
-                {/* FIXME: Replace with another fonts */}
-                <Icon style={{}} name="search" size={24} color="#0A7FD9" />
-                <TextInput 
+                {/* <Icon style={{}} name="search" size={24} color="#0A7FD9" /> */}
+                 <TextInput 
                     style={styles.search}
-                    placeholder="Tìm kiếm địa điểm đến"
+                    placeholder={`Những địa điểm được yêu thích ở ${cityName}`}
                     placeholderTextColor="#0A7FD9" 
-                >
-                </TextInput>
-
+                    editable={false}
+                /> 
             </View>
+            {/* <View style={styles.titleContainer}>
+                    <Text style={styles.title}>Các địa điểm yêu thích ở {cityName}</Text>
+            </View> */}
+            <View style={styles.backgroundBorder} />
             <FlatList
                 style={styles.listView}
                 data={region}
@@ -146,6 +148,26 @@ const styles = StyleSheet.create({
         marginBottom:10,
         flexDirection: 'row',
         
+    },
+    
+    headerTitle: {
+        fontSize: 18,
+        color: 'black',
+    },
+    titleContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingBottom: 10
+    },
+    title: {
+        paddingTop:5,
+        paddingLeft:10,
+        fontSize: 18
+    },
+    seeMore: {
+        color: "#0A7FD9"
     },
     Catimg:{
         width: 76,
@@ -174,6 +196,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 20,
         marginBottom: 10,
+        marginLeft:10
     },
 
     searchContainer: {
@@ -186,8 +209,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: "#0A7FD9",
-        marginLeft: 20,
-        marginRight: 20
+        margin: 10
     },
     search: {
         // margin:10,
@@ -197,6 +219,7 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 12,
         borderColor: '#0A7FD9',
         borderRadius: 10,
+        fontSize:14
     },
     cont:{
         flexDirection: "column",

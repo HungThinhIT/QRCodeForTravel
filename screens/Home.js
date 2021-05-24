@@ -120,7 +120,8 @@ export default function HomeScreen({ navigation }) {
 
     React.useEffect(() => {
         // getData()
-        loadData()
+        loadData();
+        console.log(location);
     }, [])
 
     return (
@@ -185,7 +186,7 @@ export default function HomeScreen({ navigation }) {
                     </View>
                     <View >
                         <FlatList 
-                            data={categories}
+                            data={location}
                             renderItem={({item}) => (
                                 <TouchableOpacity 
                                     style={{paddingRight: 10}}
@@ -204,7 +205,7 @@ export default function HomeScreen({ navigation }) {
                                         borderColor: "#0A7FD9"
                                     }}>
                                         <Image 
-                                            source={{uri: item.img}}
+                                            source={{uri: item.thumbnail}}
                                             style={{
                                                 width: 274, 
                                                 height: 180,
@@ -213,7 +214,7 @@ export default function HomeScreen({ navigation }) {
                                             }}
                                         />
                                         <View style={{alignItems: "center"}}>
-                                            <Text style={{fontWeight: "bold", color: "#0A7FD9", fontSize: 23}}>TP California</Text>
+                                            <Text style={{fontWeight: "bold", color: "#0A7FD9", fontSize: 23}}>{item.name}</Text>
                                         </View>
                                     </View>
                                 </TouchableOpacity>

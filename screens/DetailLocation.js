@@ -3,7 +3,7 @@ import { FlatList, Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Butt
 import Star from 'react-native-star-view';
 // import { Entypo, AntDesign } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
-import { db, storageRef } from '../firebase/firebase';
+import { app, storageRef } from '../firebase/firebase';
 import firestore from '@react-native-firebase/firestore';
 
 export default function DetailLocation({route, navigation}) {
@@ -50,7 +50,7 @@ export default function DetailLocation({route, navigation}) {
 
     async function onLoadFirebaseLocation() {
         var tmpArray = []
-        db.collection('location').onSnapshot( async (snapshot) => {
+        app.firestore().collection('location').onSnapshot( async (snapshot) => {
             snapshot.docs.map( async (doc) => {
                 if (doc.id == id) {
                     console.log(doc.data())

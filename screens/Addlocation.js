@@ -6,7 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
-import {auth} from "../firebase/firebase";
+import { auth, app } from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
@@ -39,7 +39,7 @@ export default function AddLocation({ navigation, route }) {
     const submitLocation = async (location,title,selectedValue,address,name,detail) => {
         const latitude = location.latitude;
         const longitude= location.longitude;
-        const app = prepareUploadImageToStorage();
+        // const app = prepareUploadImageToStorage();
         var user = auth.currentUser;
         let imageUrlArray = [];
         const uid = user != null ? user.uid : null;
@@ -73,7 +73,7 @@ export default function AddLocation({ navigation, route }) {
                         update_at: getCurrentDate(),
                     }
                     
-                    const addFirebase = firestore().collection('location');
+                    const addFirebase = app.firestore().collection('location');
                     addFirebase.add(locationInfo).then((docRef) => {
                         addFirebase.doc((docRef.id).toString()).update({"qr_code": docRef.id});
                         Alert.alert("Thêm thành công");
@@ -113,8 +113,8 @@ export default function AddLocation({ navigation, route }) {
         var url = null;
         try{
             //await storage.ref(`location/${photo.filename}`).putString(photo.data,'base64');
-            await storage().ref(`location/${photo.filename}`).putFile(photo.path);
-            url = await storage().ref().child(`location/${photo.filename}`).getDownloadURL();
+            await app.storage().ref(`location/${photo.filename}`).putFile(photo.path);
+            url = await app.storage().ref().child(`location/${photo.filename}`).getDownloadURL();
             //photo.filename = urlImage;
             //console.log(url);
             setUploading(false);

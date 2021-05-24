@@ -4,7 +4,9 @@ import Star from 'react-native-star-view';
 // import { Entypo, AntDesign } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
 
-export default function DetailLocation() {
+export default function DetailLocation({route, navigation}) {
+
+    alert(route.params.id)
 
     const getInitialState = {
         latitude: 15.98,

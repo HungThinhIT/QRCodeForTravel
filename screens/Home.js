@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, ImageBackground, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { auth, db } from "../firebase/firebase";
+import { auth, db, app } from "../firebase/firebase";
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 import Star from 'react-native-star-view';
 import { createIconSetFromFontello } from "react-native-vector-icons";
+
 // StatusBar.setHidden(true);StatusBar,
 
 const windowWidth = Dimensions.get('screen').width;
@@ -62,37 +63,16 @@ export default function HomeScreen({ navigation }) {
         <Item name={item.name} img={item.thumbnail} add={item.address} navigation={navigation}/>
     );
 
-    const prepareUploadImageToStorage = () =>{
-        let app;
-        var stCredentials ={
-            apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
-            appId:"1:138826178666:web:62961ee1ec17c2899faa13",
-            authDomain: "qrtravel-vku.firebaseapp.com",
-            databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
-            storageBucket: "qrtravel-vku.appspot.com",
-            messagingSenderId: "138826178666",
-            projectId: "qrtravel-vku",
-            measurementId: "G-9ZZVLC2KNJ"
-        }
-        if(firebase.apps.length === 0){
-            app = firebase.initializeApp(stCredentials);
-        }else{
-            app = firebase.app();
-        }
-        return app;
-    }
-
     const loadData = async () => {
         // const user = await auth.currentUser;
         const locationList = []
         const postList = []
         console.log("Get data!")
-        // if (user != null) {
-            // console.log(user.email);
-            const app = prepareUploadImageToStorage();
             try {
-                var locationSnapshot = await firestore().collection("location").get();
-                var postSnapshot = await firestore().collection("posts").get();
+                // var locationSnapshot = await firestore().collection("location").get();
+                // var postSnapshot = await firestore().collection("posts").get();
+                var locationSnapshot = await app.firestore().collection("location").get();
+                var postSnapshot = await app.firestore().collection("posts").get();
                 console.log("Here");
                 locationSnapshot.forEach((doc) => {
                     locationList.push({
@@ -113,6 +93,7 @@ export default function HomeScreen({ navigation }) {
                 setPost([...postList]);
                 // console.log("Posts: ", post)
             } catch (error) {
+                console.log("BUG IN HERE");
                 console.log(error)
             }
         
@@ -340,6 +321,7 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 12,
         borderColor: '#0A7FD9',
         borderRadius: 10,
+        paddingVertical: 10,
     },
     searchContainer: {
         backgroundColor:"#FFFFFF",

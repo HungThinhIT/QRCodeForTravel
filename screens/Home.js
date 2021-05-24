@@ -156,7 +156,7 @@ export default function HomeScreen({ navigation }) {
                                 <TouchableOpacity 
                                     style={{paddingRight: 10}} 
                                     onPress={() => navigation.navigate('trending', {
-                                        id: item.id, name: item.name
+                                        id: item.id, name: item.city
                                     })}
                                 >
                                     <ImageBackground 
@@ -166,7 +166,7 @@ export default function HomeScreen({ navigation }) {
                                             borderRadius: 10
                                         }}>
                                         <View style={{position: 'absolute', left: 0, right: 0, bottom: 15, justifyContent: 'center', alignItems: 'center'}}>
-                                            <Text style={{color: "white", fontWeight: "bold"}}>{item.title}</Text>
+                                            <Text style={{color: "white", fontWeight: "bold"}}>{item.city}</Text>
                                         </View>
                                     </ImageBackground>
                                     

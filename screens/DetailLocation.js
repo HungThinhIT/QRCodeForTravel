@@ -10,7 +10,7 @@ import { auth } from "../firebase/firebase";
 
 
 export default function DetailLocation({route, navigation}) {
-    alert(route.params.id)
+    
     const getInitialState = {
         latitude: 15.98,
         longitude: 108.14,

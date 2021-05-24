@@ -103,7 +103,7 @@ const getNameCity = async(cityName)=>{
 export default function TrendingLoca({ route, navigation }) {
     const [region, setRegion] = useState([]);
     //alert(route.params.name);
-    var cityName = "Đà Nẵng";
+    var cityName = route.params.name;
     useEffect(() =>{
     getNameCity(cityName).then(data=>{setRegion(data.sort((a, b)=>b.data.rating - a.data.rating));});
     },[]);

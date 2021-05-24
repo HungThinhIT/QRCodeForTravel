@@ -155,9 +155,9 @@ export default function HomeScreen({ navigation }) {
                             renderItem={({item}) => (
                                 <TouchableOpacity 
                                     style={{paddingRight: 10}} 
-                                    onPress={() => navigation.navigate('DetailLocation', {
-                                        id: item.id,
-                                    })}
+                                    // onPress={() => navigation.navigate('DetailLocation', {
+                                    //     id: item.id,
+                                    // })}
                                 >
                                     <ImageBackground 
                                         source={{uri: item.image}}

@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { ButtonModel } from "../components";
 
 export default function AddLocation({ navigation, route }) {
-    const [selectedValue, setSelectedValue] = useState("dn");
+    const [selectedValue, setSelectedValue] = useState("Đà Nẵng");
     const [photo, setPhoto] = useState([]);
     const [ inputlink, setInputlink] = useState('0');
     const [ height, setHeight] = useState(0);
@@ -36,19 +36,23 @@ export default function AddLocation({ navigation, route }) {
         return date + '-' + month + '-' + year;
   }
 
-    const submitLocation = (location,title,selectedValue,address,name,detail) => {
+    const submitLocation = async (location,title,selectedValue,address,name,detail) => {
         const latitude = location.latitude;
         const longitude= location.longitude;
         const app = prepareUploadImageToStorage();
         var user = auth.currentUser;
+        let imageUrlArray = [];
         const uid = user != null ? user.uid : null;
             if(photo.length==0){
                 Alert.alert("Vui lòng chọn hình ảnh!")
             } else{
+                
                 for(var i=0; i <photo.length; i++){
-                    submitImage(photo[i]);
+                    const urlImage = await submitImage(photo[i]);
+                    imageUrlArray.push(urlImage);
                 }
-
+                console.log(imageUrlArray);
+                console.log(photo);
                 if (!title.trim() || !address.trim() || !name.trim()) {
                     Alert.alert('Vul lòng nhập đầy đủ thông tin!');
                     return;
@@ -61,7 +65,7 @@ export default function AddLocation({ navigation, route }) {
                         address: address,
                         city:selectedValue,
                         detail: detail,
-                        image:imageName,
+                        image:imageUrlArray,
                         user_id : uid,
                         qr_code: "null",
                         rating : 0,
@@ -80,9 +84,7 @@ export default function AddLocation({ navigation, route }) {
                         console.error("Error adding document: ", error);
                         Alert.alert("Đã có lỗi xảy ra!");
                     });
-                }
-                
-                
+               }
             }
     };
 
@@ -108,13 +110,18 @@ export default function AddLocation({ navigation, route }) {
 
     const submitImage = async (photo)=>{
         setUploading(true);
+        var url = null;
         try{
             //await storage.ref(`location/${photo.filename}`).putString(photo.data,'base64');
             await storage().ref(`location/${photo.filename}`).putFile(photo.path);
+            url = await storage().ref().child(`location/${photo.filename}`).getDownloadURL();
+            //photo.filename = urlImage;
+            //console.log(url);
             setUploading(false);
         }catch(e){
             console.log(e);
         }
+        return url;
     }
 
     const onSelectetImage = () => {
@@ -150,6 +157,8 @@ export default function AddLocation({ navigation, route }) {
     return (
         <KeyboardAwareScrollView>
             <View style={styles.firstPart}>
+            <View style={styles.backgroundBorder} />
+                <View style={styles.contentGroup}>
                 <View style={{
                      justifyContent: 'center',
                      alignItems: 'center',
@@ -237,6 +246,7 @@ export default function AddLocation({ navigation, route }) {
                         </View>
                     </View>
                 </View>
+                </View>
             </View>
         </KeyboardAwareScrollView >
     );
@@ -251,8 +261,21 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0A7FD9',
         flexDirection: 'column'
+    },
+    backgroundBorder: {
+        position: 'absolute',
+        backgroundColor: '#0A7FD9',
+        top: 0,
+        left: 0,
+        height: (Dimensions.get('window').height * 0.4),
+        width: '100%',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+    },
+    contentGroup: {
+        marginHorizontal: 20,
+        marginTop: 10,
     },
     centerPart: {
         justifyContent: 'center',

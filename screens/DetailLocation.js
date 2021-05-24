@@ -8,8 +8,9 @@ import firestore from '@react-native-firebase/firestore';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { auth } from "../firebase/firebase";
 
-export default function DetailLocation({ navigation, route }) {
 
+export default function DetailLocation({route, navigation}) {
+    alert(route.params.id)
     const getInitialState = {
         latitude: 15.98,
         longitude: 108.14,

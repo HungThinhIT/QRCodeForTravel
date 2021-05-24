@@ -24,7 +24,7 @@ const CityPicker = (props) => {
     )
 }
 function itemPicker(cities){
-    return cities.map((city)=><Picker.Item  label={city} value={city} />);
+    return cities.map((city, index)=><Picker.Item key={index} label={city} value={city} />);
 };
 
 const styles = StyleSheet.create({

@@ -22,7 +22,7 @@ export default function SignUp({ navigation}) {
             Alert.alert(`Vui lòng nhập đầy đủ thông tin!`);
         } else {
             if (password === confirmPass) {
-                auth.createUserWithEmailAndPassword(email, password)
+                auth().createUserWithEmailAndPassword(email, password)
                     .then((userCredentials)=>{
                         if(userCredentials.user){
                           userCredentials.user.updateProfile({
@@ -31,7 +31,7 @@ export default function SignUp({ navigation}) {
                           }).then((s)=> {
                             createFavor(email);
                             Alert.alert("Đăng ký thành công!");
-                            auth.signOut().then(()=> navigation.navigate('Log In'));
+                            auth().signOut().then(()=> navigation.navigate('Log In'));
                           })
                         }
                     }).catch(error => Alert.alert("Message:" + error.message))

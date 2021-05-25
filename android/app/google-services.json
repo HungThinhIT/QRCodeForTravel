@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "532393879714",
-    "project_id": "qr-travel-a6f4c",
-    "storage_bucket": "qr-travel-a6f4c.appspot.com"
+    "project_number": "138826178666",
+    "firebase_url": "https://qrtravel-vku-default-rtdb.firebaseio.com",
+    "project_id": "qrtravel-vku",
+    "storage_bucket": "qrtravel-vku.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:532393879714:android:c32b6ea89dee3ec69c8ffb",
+        "mobilesdk_app_id": "1:138826178666:android:94cca030608607ef9faa13",
         "android_client_info": {
-          "package_name": "com.qrcode"
+          "package_name": "com.qrcodetravel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "532393879714-akthh0tn12g0lutta234vtevmt7e9e49.apps.googleusercontent.com",
+          "client_id": "138826178666-lvdhn27lnodv3942co8s6pih02ou41l0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtXQolqOaJb3sLK3FkhkO5Blpu-giH-K4"
+          "current_key": "AIzaSyDq2nb59JwIZ9JJFOni6QnQCrEEVUeCvN8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "532393879714-akthh0tn12g0lutta234vtevmt7e9e49.apps.googleusercontent.com",
+              "client_id": "138826178666-lvdhn27lnodv3942co8s6pih02ou41l0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "138826178666-b7r46e4sp397jp7jv7fph68rheg8383s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vku.qrtravelcode"
+              }
             }
           ]
         }

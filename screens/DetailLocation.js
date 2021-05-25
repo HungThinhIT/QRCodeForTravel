@@ -1,12 +1,13 @@
 import React, { Component, useState } from "react";
-import { FlatList, Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, TouchableOpacity, Alert, PermissionsAndroid } from 'react-native';
+// import { firestore, firebase } from "../firebase/firebase";
+import { Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, TouchableOpacity, Alert, PermissionsAndroid } from 'react-native';
 import Star from 'react-native-star-view';
-// import { Entypo, AntDesign } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
-import { app, storageRef } from '../firebase/firebase';
+
+import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 
-export default function DetailLocation({route, navigation}) {
+export default function DetailLocation({ route, navigation }) {
     const [id, setId] = useState(route.params.id)
     const [locationData, setLocationData] = useState({});
     const [slideImage, setSlideImage] = useState();
@@ -50,19 +51,25 @@ export default function DetailLocation({route, navigation}) {
 
     async function onLoadFirebaseLocation() {
         var tmpArray = []
-        app.firestore().collection('location').onSnapshot( async (snapshot) => {
-            snapshot.docs.map( async (doc) => {
-                if (doc.id == id) {
-                    console.log(doc.data())
-                    setLocationData(doc.data())
-                    getInitialState.latitude = doc.data().lat
-                    getInitialState.longitude = doc.data().long
-                    tmpArray.push(doc.data().image)
-                }
-            })
-            setSlideImage(...tmpArray)
+        try {
+            firestore().collection('location').onSnapshot(async (snapshot) => {
+                snapshot.docs.map(async (doc) => {
+                    if (doc.id == id) {
+                        console.log(doc.data())
+                        setLocationData(doc.data())
+                        getInitialState.latitude = doc.data().lat
+                        getInitialState.longitude = doc.data().long
+                        tmpArray.push(doc.data().image)
+                    }
+                })
+                setSlideImage(...tmpArray)
 
-        })
+            })
+        } catch (error) {
+            console.log("ERROR IN DETAIL LOCATION");
+            console.log(error);
+        }
+
     }
 
 
@@ -94,15 +101,15 @@ export default function DetailLocation({route, navigation}) {
     React.useEffect(() => {
         onRegionChange(location);
 
-        async function getDownloadUrl(item){
+        async function getDownloadUrl(item) {
             const url = await storageRef.child(`location/${item}`).getDownloadURL();
             console.log(url);
             return url
         }
 
-        
+
         onLoadFirebaseLocation()
-        
+
     }, []);
 
     return (

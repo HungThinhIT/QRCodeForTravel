@@ -6,10 +6,10 @@ import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import { SliderBox } from "react-native-image-slider-box";
-import { auth, app } from "../firebase/firebase";
-import firebase from '@react-native-firebase/app';
-import storage from '@react-native-firebase/storage';
-import firestore from '@react-native-firebase/firestore';
+import { auth, firebase, firestore, storage } from "../firebase/firebase";
+// import firebase from '@react-native-firebase/app';
+// import storage from '@react-native-firebase/storage';
+// import firestore from '@react-native-firebase/firestore';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ButtonModel } from "../components";
 
@@ -40,19 +40,19 @@ export default function AddLocation({ navigation, route }) {
         const latitude = location.latitude;
         const longitude= location.longitude;
         // const app = prepareUploadImageToStorage();
-        var user = auth.currentUser;
+        var user = auth().currentUser; //chỗ ni
         let imageUrlArray = [];
         const uid = user != null ? user.uid : null;
             if(photo.length==0){
                 Alert.alert("Vui lòng chọn hình ảnh!")
             } else{
-                
                 for(var i=0; i <photo.length; i++){
+                    console.log(photo[i]);
                     const urlImage = await submitImage(photo[i]);
                     imageUrlArray.push(urlImage);
                 }
-                console.log(imageUrlArray);
-                console.log(photo);
+               // console.log(imageUrlArray);
+               // console.log(photo);
                 if (!title.trim() || !address.trim() || !name.trim()) {
                     Alert.alert('Vul lòng nhập đầy đủ thông tin!');
                     return;
@@ -69,11 +69,12 @@ export default function AddLocation({ navigation, route }) {
                         user_id : uid,
                         qr_code: "null",
                         rating : 0,
+                        thumbnail: imageUrlArray[0],
                         user_rating : [],
                         update_at: getCurrentDate(),
                     }
                     
-                    const addFirebase = app.firestore().collection('location');
+                    const addFirebase = firestore().collection('location');
                     addFirebase.add(locationInfo).then((docRef) => {
                         addFirebase.doc((docRef.id).toString()).update({"qr_code": docRef.id});
                         Alert.alert("Thêm thành công");
@@ -88,35 +89,15 @@ export default function AddLocation({ navigation, route }) {
             }
     };
 
-    const prepareUploadImageToStorage = () =>{
-        let app;
-        var stCredentials ={
-            apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
-            appId:"1:138826178666:web:62961ee1ec17c2899faa13",
-            authDomain: "qrtravel-vku.firebaseapp.com",
-            databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
-            storageBucket: "qrtravel-vku.appspot.com",
-            messagingSenderId: "138826178666",
-            projectId: "qrtravel-vku",
-            measurementId: "G-9ZZVLC2KNJ"
-        }
-        if(firebase.apps.length === 0){
-            app = firebase.initializeApp(stCredentials);
-        }else{
-            app = firebase.app();
-        }
-        return app;
-    }
-
     const submitImage = async (photo)=>{
         setUploading(true);
         var url = null;
         try{
             //await storage.ref(`location/${photo.filename}`).putString(photo.data,'base64');
-            await app.storage().ref(`location/${photo.filename}`).putFile(photo.path);
-            url = await app.storage().ref().child(`location/${photo.filename}`).getDownloadURL();
+            await storage().ref(`location/${photo.filename}`).putFile(photo.path);
+            url = await storage().ref().child(`location/${photo.filename}`).getDownloadURL();
             //photo.filename = urlImage;
-            //console.log(url);
+            console.log(url);
             setUploading(false);
         }catch(e){
             console.log(e);

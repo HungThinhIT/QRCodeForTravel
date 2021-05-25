@@ -48,7 +48,7 @@ export default function MapPicker({ navigation }) {
     }
     React.useEffect(() => {
         onRegionChange(location);
-        auth.onAuthStateChanged(function(user) {
+        auth().onAuthStateChanged(function(user) {
             if (!user) {
                 Logout();
             }

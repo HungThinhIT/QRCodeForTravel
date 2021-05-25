@@ -1,13 +1,13 @@
-import * as firebase from 'firebase';
-import "firebase/auth";
-import "firebase/firestore";
-
-let app;
+import firebase from '@react-native-firebase/app';
+import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAcH9iGfbmP1Xzx8j5OB1wNyGTkHoCAvmk",
     authDomain: "qrtravel-vku.firebaseapp.com",
+    databaseURL: "https://qrtravel-vku-default-rtdb.firebaseio.com",
     projectId: "qrtravel-vku",
     storageBucket: "qrtravel-vku.appspot.com",
     messagingSenderId: "138826178666",
@@ -15,14 +15,8 @@ const firebaseConfig = {
     measurementId: "G-9ZZVLC2KNJ"
 };
 
-if(firebase.apps.length === 0){
-    app = firebase.initializeApp(firebaseConfig);
-}else{
-    app = firebase.app();
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig)
 }
 
-const db = app.firestore();
-const auth = firebase.auth();
-const storage = app.storage();
-
-export {db, auth, storage, app};
+export { firebase, storage, firestore, auth };

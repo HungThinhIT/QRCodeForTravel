@@ -38,7 +38,7 @@ export default function Login({ navigation }) {
     };
 
     const handleSubmit = (evt) => {
-        auth
+        auth()
             .signInWithEmailAndPassword(name, pass)
             .then(() => {
                 console.log("success");

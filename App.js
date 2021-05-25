@@ -5,6 +5,7 @@ import MyTabs from "./navigation/Screens";
 // import AddLocation from "./screens/AddLocation";
 import MinorScreen from "./navigation/MinorScreen";
 import MapPicker from './screens/MapPicker';
+import { firestore } from './firebase/firebase';
 
 export default function App() {
   return (

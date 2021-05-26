@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button, Alert } from 'react-native';
 import { LabelInputText, ButtonModel } from '../components';
-import { auth } from "../firebase/firebase";
+import { auth} from "../firebase/firebase";
 import {YellowBox} from 'react-native';
 console.disableYellowBox = true; 
 
@@ -50,24 +50,27 @@ export default function Profile({ navigation }) {
     const [phone, setPhone] = useState();
     const [name1, setName1] = useState("");
     const [phone1, setPhone1] = useState("");
-     
+
     useEffect(() => {
-        auth.onAuthStateChanged(function(user) {
-            if (user) {
-                setName(user.displayName);
-                setEmail(user.email);
-                var phone1 = user.photoURL;
-                phone1 == null ? setPhone("Trống") : setPhone(user.photoURL);
-            } else {
-                Logout();
-            }
-          });
-    },[])
+        const unsubscribe = navigation.addListener('focus', () => {
+            auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    setName(user.displayName);
+                    setEmail(user.email);
+                    var phone1 = user.photoURL;
+                    phone1 == null ? setPhone("Trống") : setPhone(user.photoURL);
+                } else {
+                    Logout();
+                }
+              });
+        });
+        return unsubscribe;
+      }, [navigation]);
 
     const Logout = () => {
-        const user = auth.currentUser;
+        const user = auth().currentUser;
         if (user != null) {
-            auth.signOut().then(()=> navigation.navigate('Log In'));
+            auth().signOut().then(()=> navigation.navigate('Log In'));
         }else{
             navigation.navigate('Log In');
         }
@@ -75,7 +78,7 @@ export default function Profile({ navigation }) {
 
     //Lưu thông tin sau khi nhấn nút Lưu lại
     const handleSubmit = (evt) => {
-        var user = auth.currentUser;
+        var user = auth().currentUser;
         if(user){
             if(name1 != "" && phone1 == ""){
                 user.updateProfile({

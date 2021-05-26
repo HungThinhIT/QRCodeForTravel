@@ -9,44 +9,35 @@ export default function Login({ navigation }) {
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const hasUnsavedChanges = Boolean(true);
-    React.useEffect(
-        () =>
-          navigation.addListener('beforeRemove', (e) => {
-            if (!hasUnsavedChanges) {
-              // If we don't have unsaved changes, then we don't need to do anything
-              return;
-            }
-            e.preventDefault();
-            Alert.alert(
-              'Đăng nhập?',
-              'Bạn chưa đăng nhập. Bạn có muốn về trang chính?',
-              [
-                { text: "Ở lại", style: 'cancel', onPress: () => {} },
-                {
-                  text: 'Về trang chính',
-                  style: 'destructive',
-                  onPress: () => navigation.navigate('Load'),
-                },
-              ]
-            );
-          }),
-        [navigation, hasUnsavedChanges]
-      );
+
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    goBackScreen(); // Check login, if true -> go back
+                } 
+            });
+        });
+        return unsubscribe;
+      }, [navigation]);
 
     const SignUp = () => {
-        navigation.navigate('Sign Up');
+        navigation.navigate('Sign Up'); //Click Sign Up
     };
 
-    const handleSubmit = (evt) => {
+    const goBackScreen = () => {
+        navigation.goBack();
+    };
+
+    const handleSubmit = () => {
         auth()
             .signInWithEmailAndPassword(name, pass)
             .then(() => {
                 console.log("success");
-                navigation.navigate('Load');
+                navigation.navigate("Main");
               })
             .catch(error => Alert.alert("Message:" + error.message))
     }
-    
     return (
             <KeyboardAwareScrollView>
                 <View style={styles.firstPart}>

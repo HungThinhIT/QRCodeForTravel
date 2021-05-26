@@ -47,17 +47,16 @@ export default function MapPicker({ navigation }) {
         navigation.navigate('AddLocation', { 'location': location });
     }
     React.useEffect(() => {
-        onRegionChange(location);
-        auth().onAuthStateChanged(function(user) {
-            if (!user) {
-                Logout();
-            }
-          });
-    });
+        const unsubscribe = navigation.addListener('focus', () => {
+            auth().onAuthStateChanged(function(user) {
+                if (!user) {
+                    navigation.navigate('Log In');
+                } 
+            });
+        });
+        return unsubscribe;
+      }, [navigation]);
     
-    const Logout = () => {
-        navigation.navigate('Log In');
-    };
     const mapView = React.createRef();
     const lastLocation = React.useRef(location);
     return (

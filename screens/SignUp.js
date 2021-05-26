@@ -24,13 +24,13 @@ export default function SignUp({ navigation}) {
                     .then((userCredentials)=>{
                         if(userCredentials.user){
                           userCredentials.user.updateProfile({
-                            displayName: 'Anonymous',
+                            displayName: 'A',
                             photoURL: phone,
                           }).then((s)=> {
                             createFavor(email);
                             Alert.alert("Đăng ký thành công!");
                             // auth().signOut().then(()=> navigation.navigate('Log In'));
-                            navigation.navigate('Main');
+                            navigation.navigate('Load');
                           })
                         }
                     }).catch(error => Alert.alert("Message:" + error.message))

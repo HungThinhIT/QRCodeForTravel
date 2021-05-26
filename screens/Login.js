@@ -14,7 +14,7 @@ export default function Login({ navigation }) {
         const unsubscribe = navigation.addListener('focus', () => {
             auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    goBackScreen(); // Check login, if true -> go back
+                    navigation.goBack();
                 } 
             });
         });
@@ -23,10 +23,6 @@ export default function Login({ navigation }) {
 
     const SignUp = () => {
         navigation.navigate('Sign Up'); //Click Sign Up
-    };
-
-    const goBackScreen = () => {
-        navigation.goBack();
     };
 
     const handleSubmit = () => {

@@ -10,7 +10,7 @@ const TextInfo = (props) => {
     return (
         <View style={{ flexDirection: 'row', paddingTop: 10 }}>
             <View style={{ flex: 3 }} >
-                <Text>{label}</Text>
+                <Text>{label} :</Text>
             </View>
             <View style={{ flex: 7 }} >
                 <Text>{info}</Text>

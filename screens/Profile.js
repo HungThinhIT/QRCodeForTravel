@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button, Alert } from 'react-native';
-import { LabelInputText, ButtonModel } from '../components';
-import { auth } from "../firebase/firebase";
+import { LabelInputText, ButtonModel, LabelPicker, TextInfo } from '../components';
+import { auth, firebase, firestore, storage } from "../firebase/firebase";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {YellowBox} from 'react-native';
 console.disableYellowBox = true; 
 
-const viewForm = (phone,name) => {
+const viewForm = (phone,name, gender, address) => {
     return (
         <View style={styles.containerBody}>
             <Text style={styles.titleInfo}>Thông tin của bạn</Text>
-            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-                <View style={{ flex: 3 }} >
-                    <Text>Họ và Tên</Text>
-                </View>
-                <View style={{ flex: 7 }} >
-                    <Text>{name}</Text>
-                </View>
-            </View>
-            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-                <View style={{ flex: 3 }} >
-                    <Text>Số điện thoại</Text>
-                </View>
-                <View style={{ flex: 7 }} >
-                    <Text>{phone}</Text>
-                </View>
-            </View>
+            <TextInfo label={'Họ và Tên'} info={name} />
+            <TextInfo label={'Số điện thoại'} info={phone}/>
+            <TextInfo label={'Giới tính'} info={gender} />
+            <TextInfo label={'Địa chỉ'} info={address} />
         </View>
     );
+}
+
+const getInfor = ()=>{
+    console.log(auth());
 }
 
 const hanldeButtonText = (isEditable) =>{
@@ -50,24 +43,33 @@ export default function Profile({ navigation }) {
     const [phone, setPhone] = useState();
     const [name1, setName1] = useState("");
     const [phone1, setPhone1] = useState("");
-     
+    const [address, setAddress] = useState("");
+    const [gender, setGender] = useState("");
+
     useEffect(() => {
-        auth.onAuthStateChanged(function(user) {
+        auth().onAuthStateChanged(function(user) {
             if (user) {
                 setName(user.displayName);
                 setEmail(user.email);
                 var phone1 = user.photoURL;
                 phone1 == null ? setPhone("Trống") : setPhone(user.photoURL);
+                firestore().collection('users').doc(user.email).get().then((data)=>{
+                    var value = data._data;
+                    setAddress(value.address);
+                    setGender(value.gender);
+                });
+                //alert(address);
             } else {
                 Logout();
             }
           });
+        
     },[])
 
     const Logout = () => {
-        const user = auth.currentUser;
+        const user = auth().currentUser;
         if (user != null) {
-            auth.signOut().then(()=> navigation.navigate('Log In'));
+            auth().signOut().then(()=> navigation.navigate('Log In'));
         }else{
             navigation.navigate('Log In');
         }
@@ -75,7 +77,7 @@ export default function Profile({ navigation }) {
 
     //Lưu thông tin sau khi nhấn nút Lưu lại
     const handleSubmit = (evt) => {
-        var user = auth.currentUser;
+        var user = auth().currentUser;
         if(user){
             if(name1 != "" && phone1 == ""){
                 user.updateProfile({
@@ -116,6 +118,11 @@ export default function Profile({ navigation }) {
                     Alert.alert("Đã có lỗi xảy ra!");
                 });
             }
+            firestore().collection('users').doc(user.email).update({gender:gender,address:address}).then(()=>{
+                setIsEditable(!isEditable)}
+            ).catch(error=>{
+                console.error(error);
+            });
         }else{
             Logout();
         }
@@ -131,6 +138,8 @@ export default function Profile({ navigation }) {
                         <LabelInputText label={'Số điện thoại'} initText={phone}  onChangeText={phone1 => setPhone1(phone1)} keyboardType="numeric"/>
                     </View>
                 </View>
+                <LabelPicker label={'Giới tính'} initText={gender} onValueChange={value => {setGender(value)}}/>
+                <LabelInputText label={'Địa chỉ'} defaultValue={address} onChangeText={address => setAddress(address)} />
                 <View style={{ marginTop: 10 }}>
                     <ButtonModel label="Lưu lại" onPress={() => handleSubmit()} />
                 </View>
@@ -139,6 +148,7 @@ export default function Profile({ navigation }) {
     }
 
     return (
+        <KeyboardAwareScrollView>
         <View >
             <TouchableOpacity style={styles.editAndSaveBtn} onPress={() => {
                 setIsEditable(!isEditable)
@@ -163,13 +173,14 @@ export default function Profile({ navigation }) {
                 <Text style={styles.fullName}>{name}</Text>
                 <Text>{email}</Text>
             </View>
-            {isEditable == true ? editForm() : viewForm(phone,name)}
+            {isEditable == true ? editForm() : viewForm(phone,name, gender, address)}
             {/* { editForm()} */}
             {/* // { viewForm()} */}
             <View style = {styles.logout}>
                 <Text style={{ marginTop: 10 }} onPress={Logout}>{hanldeButtonText1(isEditable)}</Text>
             </View>
         </View>
+        </KeyboardAwareScrollView>
     );
 }
 

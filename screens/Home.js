@@ -183,7 +183,7 @@ export default function HomeScreen({ navigation }) {
                                         borderWidth: 2,
                                         borderColor: "#0A7FD9"
                                     }}>
-                                        {console.log(item.thumbnail)}
+
                                         <Image
                                     
                                             source={{ uri: item.thumbnail }}

@@ -1,55 +1,51 @@
-import React, { Component, useEffect, useState } from "react";
+import React, {useState} from 'react';
 import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, ScrollView, } from 'react-native';
 import Star from 'react-native-star-view';
-import { auth, firebase, firestore, storage } from "../firebase/firebase";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { ListLocation } from "../components";
 
-const getNameCity = async(cityName)=>{
-    var region = [];
-    const favor = await firestore().collection('location').where("city","==",cityName).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            var specificRegion = {
-                id: doc.id,
-                data: doc.data()
-            }
-            region.push(specificRegion);
-        });
-    });
-    return region;
-}
+const ListLocation = (props) => {
+    const [selectedLanguage, setSelectedLanguage] = useState();
+    const { dataList, navigation } = props;
 
-export default function TrendingLoca({ route, navigation }) {
-    const [region, setRegion] = useState([]);
-    var cityName = route.params.name;
-    useEffect(() =>{
-    getNameCity(cityName).then(data=>{setRegion(data.sort((a, b)=>b.data.rating - a.data.rating));});
-    },[]);
+    const Item = ({ navigation, id, name, img,add,rate, numRate,  }) => (
+        <TouchableOpacity style={styles.container} onPress={() => { navigation.navigate('DetailLocation',{id:id}); }}>
+            <Image source={{uri: img}}
+                style={styles.Catimg}
+            />
+            <View style={styles.cont}>
+                <Text style={styles.nameqr}>{name}</Text>
+                <Text style={styles.nameadd}>{add}</Text>
+                <View style={styles.starAndView}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Star score={rate} style={styles.starStyle} />
+                        <Text style={{ marginTop: 3 }}> {rate}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                                        {/* FIXME: Replace with another fonts */}
+                                        {/* <Entypo name="eye" size={24} color="black" /> */}
+                        <Text></Text>
+                        <Text style={{ marginTop: 3 }}> {numRate}</Text>
+                    </View>
+                </View>
     
-
-    const renderItem = ({ item }) => (
-        <Item navigation={navigation} id={item.id} name={item.data.name} img={item.data.image[0]} add={item.data.address} rate={item.data.rating} numRate={item.data.user_rating.length}/>
+            </View>
+        </TouchableOpacity>
     );
-
+    const renderItem = ({ item }) => (
+        <Item navigation={navigation} id={item.id} name={item.data.name} img={item.data.thumbnail} add={item.data.address} rate={item.data.rating} numRate={item.data.user_rating.length}/>
+    );
     return (
         <ScrollView >
-            <View style={styles.searchContainer}>
-                {/* <Icon style={{}} name="search" size={24} color="#0A7FD9" /> */}
-                 <TextInput 
-                    style={styles.search}
-                    placeholder={`Những địa điểm được yêu thích ở ${cityName}`}
-                    placeholderTextColor="#0A7FD9" 
-                    editable={false}
-                /> 
-            </View>
-            {/* <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Các địa điểm yêu thích ở {cityName}</Text>
-            </View> */}
             <View style={styles.backgroundBorder} />
-            <ListLocation dataList={region} navigation={navigation} />
+            <FlatList
+                style={styles.listView}
+                data={dataList}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+            />
         </ScrollView>
-    );
+    )
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -142,3 +138,5 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
   });
+
+export default ListLocation;

@@ -5,7 +5,7 @@ import StatusBarBackground from './StatusBarBackground';
 import CityPicker from './CityPicker';
 import Cities from './Cities';
 import TextInfo from './TextInfo';
-
+import ListLocation from './ListLocation';
 export {
     LabelInputText,
     LabelPicker,
@@ -13,5 +13,6 @@ export {
     StatusBarBackground,
     CityPicker,
     Cities,
-    TextInfo
+    TextInfo,
+    ListLocation
 };

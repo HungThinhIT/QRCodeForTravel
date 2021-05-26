@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, ScrollView, } from 'react-native';
 import Star from 'react-native-star-view';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 const ListLocation = (props) => {
     const [selectedLanguage, setSelectedLanguage] = useState();
     const { dataList, navigation } = props;
@@ -24,6 +24,9 @@ const ListLocation = (props) => {
                                         {/* <Entypo name="eye" size={24} color="black" /> */}
                         <Text></Text>
                         <Text style={{ marginTop: 3 }}> {numRate}</Text>
+                        <View style={{ marginTop: 3, marginLeft: 3}}>
+                            <Icon style={{}} name="heart" size={18} color="red" />
+                        </View>
                     </View>
                 </View>
     

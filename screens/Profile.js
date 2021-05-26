@@ -47,7 +47,8 @@ export default function Profile({ navigation }) {
     const [gender, setGender] = useState("");
 
     useEffect(() => {
-        auth().onAuthStateChanged(function(user) {
+        const unsubscribe = navigation.addListener('focus', () => {
+            auth().onAuthStateChanged(function(user) {
             if (user) {
                 setName(user.displayName);
                 setEmail(user.email);
@@ -63,8 +64,9 @@ export default function Profile({ navigation }) {
                 Logout();
             }
           });
-        
-    },[])
+        });
+        return unsubscribe;
+      }, [navigation]);
 
     const Logout = () => {
         const user = auth().currentUser;

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput, SafeAreaView } from 'react-native';
 // import { withNavigation } from '@react-navigation/compat';
 
 const LabelInputText = (props) => {
-    const { label, initText, onChangeText, secureTextEntry,keyboardType } = props
+    const { label, initText, defaultValue, onChangeText, secureTextEntry,keyboardType, de } = props
 
     return (
         <SafeAreaView style={styles.formInput}>
@@ -14,6 +14,7 @@ const LabelInputText = (props) => {
                 placeholder={initText}
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboardType}
+                defaultValue={defaultValue}
             />
         </SafeAreaView>
     )

@@ -4,6 +4,7 @@ import ButtonModel from './Button';
 import StatusBarBackground from './StatusBarBackground';
 import CityPicker from './CityPicker';
 import Cities from './Cities';
+import TextInfo from './TextInfo';
 
 export {
     LabelInputText,
@@ -11,5 +12,6 @@ export {
     ButtonModel,
     StatusBarBackground,
     CityPicker,
-    Cities
+    Cities,
+    TextInfo
 };

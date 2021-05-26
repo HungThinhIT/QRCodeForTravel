@@ -1,9 +1,9 @@
 import React, { Component, useEffect, useState } from "react";
-import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, } from 'react-native';
-import firebase from '@react-native-firebase/app';
+import {  Image, Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions, TextInput, ScrollView, } from 'react-native';
+//import firebase from '@react-native-firebase/app';
 import Star from 'react-native-star-view';
-import firestore from '@react-native-firebase/firestore';
-import { auth } from "../firebase/firebase";
+//import firestore from '@react-native-firebase/firestore';
+import { auth, firebase, firestore, storage } from "../firebase/firebase";
 import Icon from 'react-native-vector-icons/FontAwesome';
 // StatusBar.setHidden(true);StatusBar,
 
@@ -85,7 +85,7 @@ const getNameCity = async(cityName)=>{
     //loadFavor();
     //console.log("_____________________________________________");
     var region = [];
-    const app = prepareUploadImageToStorage();
+    //const app = prepareUploadImageToStorage();
     const favor = await firestore().collection('location').where("city","==",cityName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
@@ -114,7 +114,7 @@ export default function TrendingLoca({ route, navigation }) {
     );
 
     return (
-        <SafeAreaView >
+        <ScrollView >
             <View style={styles.searchContainer}>
                 {/* <Icon style={{}} name="search" size={24} color="#0A7FD9" /> */}
                  <TextInput 
@@ -134,7 +134,7 @@ export default function TrendingLoca({ route, navigation }) {
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}
             />
-        </SafeAreaView>
+        </ScrollView>
     );
 }
 const styles = StyleSheet.create({

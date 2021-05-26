@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {SafeAreaView,StyleSheet, View,Text,TouchableOpacity, Button,Alert, Dimensions,Image } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from "react-native-camera";
+import firestore from '@react-native-firebase/firestore';
 
 import Icon from "react-native-vector-icons/Ionicons";
 import * as Animatable from "react-native-animatable";
@@ -17,9 +18,20 @@ export default function Qr({ navigation,props }) {
     const [result, setResult] = useState();
     const [isFlashOn, setFlashOn] = useState(false);
     onSuccess = (e) => {
-        setResult(e.data)
-        setScan(false)
-
+        // setResult(e.data);
+        setScan(false);
+        var docRef = firestore().collection("location").doc(e.data);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+              setScan(true);
+                navigation.navigate('DetailLocation', {id: e.data});
+            } else {
+                setResult("Mã không hợp lệ!");
+                console.log("Null");
+            }
+        }).catch((error) => {
+            console.log("Error", error);
+        });
     }
 
     startScan = () => {
@@ -164,12 +176,15 @@ const styles = {
   },
   result:{
     margin:20,
-    height:"100%"
+    height:"100%",
+    marginTop: SCREEN_HEIGHT * 0.3,
   },
   resultkq:{
     width:"100%",
-    fontSize:18,
-    marginTop:30
+    fontSize:22,
+    marginTop:30,
+    justifyContent: "center",
+    alignItems: "center"
   },
   btnStart:{
     backgroundColor: '#0A7FD9', 

@@ -5,19 +5,24 @@ import { Picker } from '@react-native-picker/picker';
 
 const LabelPicker = (props) => {
     const [selectedLanguage, setSelectedLanguage] = useState();
-    const { label, initText } = props
+    const { label, initText,onValueChange,selectedValue } = props
+    //var iniText = iniText;
+    // if(iniText==null){
+    // }
     return (
         <SafeAreaView style={styles.formInput}>
             <Text>{label}</Text>
+            <SafeAreaView style={styles.formInput1}>
             <Picker
-                selectedValue={selectedLanguage}
-                onValueChange={(itemValue, itemIndex) =>
-                    setSelectedLanguage(itemValue)
-                }>
-                <Picker.Item label="Male" value="java" />
-                <Picker.Item label="Female" value="js" />
-                <Picker.Item label="Other" value="js" />
+                selectedValue={initText}
+                onValueChange={onValueChange}
+                style={{borderColor:'black'}}
+                >
+                <Picker.Item label="Nam" value="Nam" />
+                <Picker.Item label="Nữ" value="Nữ" />
+                <Picker.Item label="Khác" value="Khác" />
             </Picker>
+            </SafeAreaView>
         </SafeAreaView>
     )
 }
@@ -26,6 +31,15 @@ const styles = StyleSheet.create({
     formInput: {
         marginTop: 10,
     },
+    formInput1:{
+        maxHeight:40, 
+        justifyContent:"center", 
+        padding: 0, 
+        marginTop:5 , 
+        borderWidth : 1, 
+        borderRadius:10 ,
+        borderColor: 'lightgrey'
+    }
 });
 
 export default LabelPicker;

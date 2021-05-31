@@ -48,14 +48,6 @@ export default function HomeScreen({ navigation }) {
     const [location, setLocation] = React.useState([])
     const [post, setPost] = React.useState([])
 
-    const updateSearch = (search) => {
-        setSearch(search)
-    }
-
-    const renderItem = ({ item }) => (
-        <Item name={item.name} img={item.thumbnail} add={item.address} navigation={navigation} />
-    );
-
     const loadData = async () => {
         // const user = await auth.currentUser;
         const locationList = []
@@ -77,7 +69,7 @@ export default function HomeScreen({ navigation }) {
                 });
                 setLocation([...locationList]);
             });
-            
+
             postCollectionRef.get().then((snapshot) => {
                 snapshot.forEach((doc) => {
                     postList.push({
@@ -119,9 +111,18 @@ export default function HomeScreen({ navigation }) {
                         style={styles.search}
                         placeholder="Tìm kiếm địa điểm đến"
                         placeholderTextColor="#0A7FD9"
-                        onChange={updateSearch}
+                        onChangeText={(keyword) => { setSearch(keyword) }}
                     >
                     </TextInput>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('Search', {
+                                keyword: search
+                            })
+                        }}
+                        style={{ flex: 1 }}>
+                        <Text style={{ textAlign: 'right', paddingRight: 5, fontWeight: 'bold' }}>Tìm kiếm</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={{ padding: 10 }}>
@@ -185,7 +186,7 @@ export default function HomeScreen({ navigation }) {
                                     }}>
 
                                         <Image
-                                    
+
                                             source={{ uri: item.thumbnail }}
                                             style={{
                                                 width: 274,

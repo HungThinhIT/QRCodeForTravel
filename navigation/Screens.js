@@ -29,56 +29,56 @@ const Tab = createBottomTabNavigator();
 /**
  * Test Screen (Only for testing env)
  */
- export default function MyTabs() {
+export default function MyTabs() {
     return (
         <Tab.Navigator
-            barStyle={{ backgroundColor: 'white', color: '#05B5B3' }}
+            barStyle={{ backgroundColor: 'white', color: '#0a7fd9', }}
             tabBarOptions={{
-                labelStyle: {color: '#05b5b3'},
+                labelStyle: { color: '#0a7fd9', fontWeight: 'bold',  marginBottom: 5 },
             }}
         >
-            <Tab.Screen 
-                style={{color: 'white!important'}}
-                name="Home" 
-                component={Home} 
+            <Tab.Screen
+                style={{ color: 'white!important' }}
+                name="Home"
+                component={Home}
                 options={{
                     tabBarLabel: "Khám phá",
                     //FIXME: Refactor with new version
                     tabBarIcon: () => (
-                        <Icon name="compass" size={24} color="#05B5B3" />
+                        <Icon name="compass" size={24} color="#0a7fd9" />
                     ),
                 }}
             />
-            <Tab.Screen 
-                name="Qr" 
-                component={Qr} 
+            <Tab.Screen
+                name="Qr"
+                component={Qr}
                 options={{
                     tabBarLabel: 'Quét QR',
                     //FIXME: Refactor with new version
                     tabBarIcon: () => (
-                        <Icon name="qrcode" size={24} color="#05B5B3" />
+                        <Icon name="qrcode" size={24} color="#0a7fd9" />
                     )
                 }}
             />
-            <Tab.Screen 
-                name="Profile" 
-                component={Profile} 
+            <Tab.Screen
+                name="Profile"
+                component={Profile}
                 options={{
                     tabBarLabel: 'Tài khoản',
                     //FIXME: Refactor with new version
                     tabBarIcon: () => (
-                        <Icon name="user-circle" size={24} color="#05B5B3" />
+                        <Icon name="user-circle" size={24} color="#0a7fd9" />
                     ),
                 }}
             />
-            <Tab.Screen 
-                name="Settings" 
-                component={Settings} 
+            <Tab.Screen
+                name="Settings"
+                component={Settings}
                 options={{
                     tabBarLabel: 'Cài đặt',
                     //FIXME: Refactor with new version
                     tabBarIcon: () => (
-                        <Icon name="gear" size={24} color="#05B5B3" />
+                        <Icon name="gear" size={24} color="#0a7fd9" />
                     ),
                 }}
             />

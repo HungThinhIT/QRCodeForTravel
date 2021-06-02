@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems:'center',
-        padding:10,
+        // padding:10,
+        paddingLeft: 10,
+        paddingVertical: 10,
         borderRadius:10,
         backgroundColor:'#FFF',
         shadowColor:'#f20',
@@ -82,8 +84,9 @@ const styles = StyleSheet.create({
         color: "#0A7FD9"
     },
     Catimg:{
-        width: 76,
+        width: 80,
         height: 80,
+        borderRadius: 10
     },
     nameqr:{
         marginLeft:10,

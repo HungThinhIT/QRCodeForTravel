@@ -97,9 +97,8 @@ export default function Search({ route, navigation }) {
     }, [])
 
     return (
-        <SafeAreaView >
+        <SafeAreaView>
             <ScrollView>
-
                 <View style={styles.header}>
                     <Text style={styles.qrtr}>QR Travel</Text>
                 </View>

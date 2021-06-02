@@ -96,7 +96,7 @@ export default function HomeScreen({ navigation }) {
     }, [])
 
     return (
-        <SafeAreaView >
+        <SafeAreaView style={styles.wrapAll}>
             <ScrollView>
 
                 <View style={styles.header}>
@@ -175,13 +175,11 @@ export default function HomeScreen({ navigation }) {
                                     })}
                                 >
                                     <View style={{
-                                        width: 274,
-                                        height: 222,
-                                        borderTopLeftRadius: 10,
-                                        borderTopRightRadius: 10,
-                                        borderBottomRightRadius: 10,
-                                        borderBottomLeftRadius: 10,
-                                        borderWidth: 2,
+                                        // width: 274,
+                                        // height: 222,
+                                        borderRadius: 10,
+                                        padding: 0,
+                                        borderWidth: 1,
                                         borderColor: "#0A7FD9"
                                     }}>
 
@@ -189,14 +187,14 @@ export default function HomeScreen({ navigation }) {
 
                                             source={{ uri: item.thumbnail }}
                                             style={{
-                                                width: 274,
+                                                width: 270,
                                                 height: 180,
                                                 borderTopLeftRadius: 10,
                                                 borderTopRightRadius: 10
                                             }}
                                         />
                                         <View style={{ alignItems: "center" }}>
-                                            <Text style={{ fontWeight: "bold", color: "#0A7FD9", fontSize: 23 }}>{item.name}</Text>
+                                            <Text style={{ fontWeight: "bold", color: "#0A7FD9", fontSize: 20, paddingVertical: 5 }}>{item.name}</Text>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
@@ -232,7 +230,7 @@ export default function HomeScreen({ navigation }) {
                                 <View style={styles.cont}>
                                     <Text style={styles.nameqr}>{item.name}</Text>
                                     <Text style={styles.nameadd}>{item.address}</Text>
-                                    <View style={{ flexDirection: 'row', alignItems: "center" }}>
+                                    <View style={{ flexDirection: 'row', alignItems: "center", alignSelf: 'center' }}>
                                         <View style={{ flexDirection: 'row' }}>
                                             <Star score={item.rating} style={styles.starStyle} />
                                             <Text>{item.rating}</Text>
@@ -240,7 +238,7 @@ export default function HomeScreen({ navigation }) {
                                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", }}>
                                             <View style={{ flex: 1, flexDirection: 'row', marginLeft: 10, justifyContent: "center" }}>
                                                 <Icon style={{}} name="eye" size={15} color="black" />
-                                                <Text style={{ fontSize: 10 }}>999</Text>
+                                                <Text style={{ paddingLeft: 3, fontSize: 11 }}>999</Text>
                                             </View>
 
                                             <View style={{}}>
@@ -260,16 +258,26 @@ export default function HomeScreen({ navigation }) {
     );
 }
 const styles = StyleSheet.create({
+    wrapAll: {
+        backgroundColor: "#FFF"
+    },
     container: {
         flex: 1,
         alignItems: 'center',
-        // padding:10,
+        paddingLeft: 5,
+        paddingVertical: 5,
+        marginHorizontal: 5,
+        marginVertical: 5,
         borderRadius: 10,
         backgroundColor: '#FFFFFF',
-        shadowColor: '#f20',
-        marginBottom: 10,
         flexDirection: 'row',
 
+        //Shadow
+        shadowColor: 'black',
+        shadowOpacity: 0.26,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 10,
+        elevation: 6, //android
     },
     qrtr: {
         marginLeft: 18,
@@ -285,7 +293,8 @@ const styles = StyleSheet.create({
     },
     Catimg: {
         width: 88,
-        height: 82,
+        height: 88,
+        borderRadius: 10,
     },
     header: {
         flexDirection: 'row',
@@ -312,7 +321,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     listView: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 5,
     },
     search: {
         // margin:10,
@@ -353,7 +362,7 @@ const styles = StyleSheet.create({
     starStyle: {
         width: 100,
         height: 20,
-        marginBottom: 10,
+        marginBottom: 5,
         marginLeft: 10
     },
 });

@@ -57,6 +57,7 @@ export default function DetailLocation({ route, navigation }) {
                 snapshot.docs.map(async (doc) => {
                     if (doc.id == id) {
                         console.log(doc.data())
+                        doc.data().id = id
                         setLocationData(doc.data())
                         getInitialState.latitude = doc.data().lat
                         getInitialState.longitude = doc.data().long
@@ -277,6 +278,7 @@ export default function DetailLocation({ route, navigation }) {
                                 }}
                                 source={{ uri: 'https://s3-alpha-sig.figma.com/img/59b2/5a79/aa8cefd1a60e87f9557138ed02943e73?Expires=1619395200&Signature=RNgE2alGlUfmPc7-7LTD28D9Vnu5jSpKBP2ci9WD7Fh5Dxk950GesltQ9KqgEm~BktI3ECwY0P-7EmFGIzhQxWdTiBfH-ag-RXy95goL6gUtztJKIAEzsA5GxHQpIxll1BIgDkvo0RoWHLQE-4yL7z7cqb5QOYHKFCRHy8lzSAH17s9XAYQtV2b085ZRhoKvZ1JWSpR118YA3edju-bZ-gf2TMXkEth8lpBuLjRFqOSvSfMGSfdreyhrVviU-uYzTCxZwJloj3RW-avDLcw0SqEQE5OjU38PaTDZUaNAG11WzjwicKWkjyX2-2DR~0sHmnjPDldJjgzh38naJGTgYQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', }} />
                         </View> */}
+                        {console.log(locationData.id)}
                         <QRCode
                             value={locationData.id}
                         />

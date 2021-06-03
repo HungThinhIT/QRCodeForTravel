@@ -242,7 +242,7 @@ export default function HomeScreen({ navigation }) {
                                             </View>
 
                                             <View style={{}}>
-                                                <Icon style={{}} name="heart" size={18} color="red" />
+                                                {/* <Icon style={{}} name="heart" size={18} color="red" /> */}
                                             </View>
 
                                         </View>

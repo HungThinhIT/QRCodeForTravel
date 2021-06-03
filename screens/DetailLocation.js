@@ -1,8 +1,9 @@
 import React, { Component, useState } from "react";
-// import { firestore, firebase } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, TouchableOpacity, Alert, PermissionsAndroid } from 'react-native';
 import Star from 'react-native-star-view';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
@@ -11,15 +12,17 @@ export default function DetailLocation({ route, navigation }) {
     const [id, setId] = useState(route.params.id)
     const [locationData, setLocationData] = useState({});
     const [slideImage, setSlideImage] = useState();
-    const [location, onChangeLocation] = React.useState(getInitialState);
-    const [paddingTop, onChangePaddingTop] = React.useState(0);
-
+    const [location, onChangeLocation] = useState(getInitialState);
+    const [paddingTop, onChangePaddingTop] = useState(0);
+    const [isSignedIn, setIsSignedIn] = useState(false);
+    const [isFavorited, setIsFavorited] = useState(false);
+    const [currentFavoritedList, setCurrentFavoritedList] = useState([]);
     const onRegionChange = (location) => {
         onChangeLocation(location);
     }
     let getInitialState = {
-        latitude: 16.061057,
-        longitude: 108.224508,
+        latitude: 15.766421,
+        longitude: 108.123,
         latitudeDelta: 0.1,
         longitudeDelta: 0.1,
     };
@@ -27,7 +30,6 @@ export default function DetailLocation({ route, navigation }) {
 
     function loadSlideImage() {
         if (typeof (slideImage) != 'undefined' && slideImage.length > 0) {
-
             return (
                 <ScrollView
                     style={styles.scrollView}
@@ -43,7 +45,6 @@ export default function DetailLocation({ route, navigation }) {
                                 source={{ uri: item, }} />
                         ))
                     }
-
                 </ScrollView>
             )
         }
@@ -63,8 +64,27 @@ export default function DetailLocation({ route, navigation }) {
                     }
                 })
                 setSlideImage(...tmpArray)
+            });
 
-            })
+            // Get current user
+            auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    setIsSignedIn(true);
+                    firestore().collection('users').doc(user.email).get().then((data) => {
+                        var value = data._data;
+                        favorites = value.favorite_locations;
+                        setCurrentFavoritedList(favorites);
+                        const found = favorites.find(function (el) {
+                            return el == id;
+                        });
+                        if (typeof found != 'undefined') {
+                            setIsFavorited(true);
+                        }
+                    });
+                } else {
+                    setIsSignedIn(false);
+                }
+            });
         } catch (error) {
             console.log("ERROR IN DETAIL LOCATION");
             console.log(error);
@@ -72,31 +92,70 @@ export default function DetailLocation({ route, navigation }) {
 
     }
 
+    function onUpdateFavorite(favorites) {
+        auth().onAuthStateChanged(function (user) {
+            if (user) {
+                setIsSignedIn(true);
+                firestore().collection('users').doc(user.email).update(
+                    {
+                        favorite_locations: favorites,
+                    })
+                    .then(() => {
+                        console.log("updated");
+                    });
+            } else {
+                setIsSignedIn(false);
+            }
+        });
+    }
 
-    function onMapReady() {
-        onChangePaddingTop(1);
-        if (Platform.OS === 'android') {
-            PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-            ).then((granted) => {
-                //alert(JSON.stringify(granted)); // just to ensure that permissions were granted
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        var currentLongLat = {
-                            latitude: position.coords.latitude,
-                            longitude: position.coords.longitude,
-                            latitudeDelta: 0.2,
-                            longitudeDelta: 0.2,
-                        }
-                        onRegionChange(currentLongLat);
-
-                    },
-                    (err) => console.log(err),
-                    { enableHighAccuracy: false, timeout: 8000, maximumAge: 10000 }
-                );
-            });
+    function onFavoriteHandle(id, type,) {
+        let currentFavorite = currentFavoritedList;
+        if (type == 'add') {
+            currentFavorite.push(id);
+            onUpdateFavorite(currentFavorite);
+            setIsFavorited(true);
+        }
+        else if (type == 'remove') {
+            var index = currentFavorite.indexOf(id);
+            if (index > -1) {
+                currentFavorite.splice(index, 1);
+                onUpdateFavorite(currentFavorite);
+                setIsFavorited(false);
+            }
+        }
+        else {
+            console.log(" ERROR DO NOT KNOWN TYPE");
         }
     }
+
+    // function onMapReady() {
+    //     onChangePaddingTop(1);
+    //     if (Platform.OS === 'android') {
+    //         PermissionsAndroid.request(
+    //             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+    //         ).then((granted) => {
+    //             //alert(JSON.stringify(granted)); // just to ensure that permissions were granted
+    //             navigator.geolocation = require('@react-native-community/geolocation');
+    //             navigator.geolocation.getCurrentPosition(
+    //                 (position) => {
+    //                     var currentLongLat = {
+    //                         // latitude: position.coords.latitude,
+    //                         // longitude: position.coords.longitude,
+    //                         latitude: '15.766421',
+    //                         longitude: '108.123',
+    //                         // latitudeDelta: 0.2,
+    //                         // longitudeDelta: 0.2,
+    //                     }
+    //                     onRegionChange(currentLongLat);
+
+    //                 },
+    //                 (err) => console.log(err),
+    //                 { enableHighAccuracy: false, timeout: 8000, maximumAge: 10000 }
+    //             );
+    //         });
+    //     }
+    // }
 
     React.useEffect(() => {
         onRegionChange(location);
@@ -112,6 +171,33 @@ export default function DetailLocation({ route, navigation }) {
 
     }, []);
 
+    function favoriteRender() {
+        if (isFavorited) {
+            return (
+                <TouchableOpacity
+                    style={{ color: 'red' }}
+                    onPress={() => { onFavoriteHandle(id, 'remove') }}
+                    style={styles.favoriteButton}
+                >
+                    <Text style={{ color: "red" }}>Gỡ bỏ yêu thích</Text>
+                    {/* FIXME: Replace with another fonts */}
+                    <Icon name="closesquare" size={20} color="red" />
+                </TouchableOpacity>
+            )
+        }
+        return (
+            <TouchableOpacity
+                style={{ color: 'red' }}
+                onPress={() => { onFavoriteHandle(id, 'add') }}
+                style={styles.favoriteButton}
+            >
+                <Text style={{ color: "red" }}>Thêm vào yêu thích</Text>
+                {/* FIXME: Replace with another fonts */}
+                <Icon name="heart" size={20} color="red" />
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <ScrollView style={[styles.container, {
             flexDirection: "column"
@@ -121,26 +207,28 @@ export default function DetailLocation({ route, navigation }) {
                 <MapView
                     provider={MapView.PROVIDER_GOOGLE}
                     style={[styles.map, { paddingTop: 15 }]}
-                    // initialRegion={location}
-                    onRegionChange={onRegionChange}
-                    followsUserLocation={true}
-                    showsUserLocation
-                    showsMyLocationButton={true}
+                    region={{
+                        latitude: typeof (locationData.lat) == 'undefined' ? 0 : locationData.lat,
+                        longitude: typeof (locationData.long) == 'undefined' ? 0 : locationData.long,
+                        latitudeDelta: 0.1,
+                        longitudeDelta: 0.1,
+                    }}
+                    showsMyLocationDataButton={true}
                     showsCompass={true}
-                    onMapReady={onMapReady}
+                    // onMapReady={onMapReady}
                     toolbarEnabled={true}
                     zoomEnabled={true}
                     rotateEnabled={true}
-                    onPress={(e) => {
-                        var currentLongLat = {
-                            latitude: e.nativeEvent.coordinate.latitude,
-                            longitude: e.nativeEvent.coordinate.longitude,
-                            latitudeDelta: 0.2,
-                            longitudeDelta: 0.2,
-                        }
-                        onChangeLocation(currentLongLat);
-                    }}
+
                 >
+                    <Marker
+                        coordinate={{
+                            latitude: typeof (locationData.lat) == 'undefined' ? 0 : locationData.lat,
+                            longitude: typeof (locationData.long) == 'undefined' ? 0 : locationData.long,
+                        }}
+                        title={typeof (locationData.name) == 'undefined' ? 'Trống' : locationData.name}
+                        description={typeof (locationData.address) == 'undefined' ? 'Trống' : locationData.address}
+                    />
                 </MapView>
             </View>
             <View>
@@ -169,15 +257,16 @@ export default function DetailLocation({ route, navigation }) {
                                     <Text style={{ marginTop: 3 }}> 420</Text>
                                 </View>
                             </View>
-                            <TouchableOpacity
-                                style={{ color: 'red' }}
-                                onPress={() => Alert.alert('Touched favorite button.')}
-                                style={styles.favoriteButton}
-                            >
-                                <Text style={{ color: "red" }}>Thêm vào yêu thích</Text>
-                                {/* FIXME: Replace with another fonts */}
-                                {/* <AntDesign name="heart" size={20} color="red" /> */}
-                            </TouchableOpacity>
+                            {isSignedIn ? favoriteRender() : (
+                                <TouchableOpacity
+                                    style={{ color: 'red' }}
+                                    onPress={() => { navigation.navigate("Log In") }}
+                                    style={styles.favoriteButton}
+                                >
+                                    <Text style={{ color: "red" }}>Đăng nhập để thêm vào yêu thích</Text>
+                                </TouchableOpacity>
+                            )}
+
                         </View>
                         {/* QR CODE GENERATE  */}
                         <View style={{ flex: 1 }} >

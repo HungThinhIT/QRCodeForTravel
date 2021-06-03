@@ -210,8 +210,8 @@ export default function DetailLocation({ route, navigation }) {
                     region={{
                         latitude: typeof (locationData.lat) == 'undefined' ? 0 : locationData.lat,
                         longitude: typeof (locationData.long) == 'undefined' ? 0 : locationData.long,
-                        latitudeDelta: 0.1,
-                        longitudeDelta: 0.1,
+                        latitudeDelta: 0.03,
+                        longitudeDelta: 0.03,
                     }}
                     showsMyLocationDataButton={true}
                     showsCompass={true}

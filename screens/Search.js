@@ -4,43 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { firestore } from "../firebase/firebase";
 import Star from 'react-native-star-view';
 
-const renderItem = ({ item }) => (
-    <TouchableOpacity
-        style={styles.container}
-        onPress={() => {
-            console.log(item.id)
-            navigation.navigate('DetailLocation', {
-                id: item.id
-            })
-        }}
-    >
-        <Image source={{ uri: item.thumbnail }}
-            style={styles.Catimg}
-        />
-        <View style={styles.cont}>
-            <Text style={styles.nameqr}>{item.name}</Text>
-            <Text style={styles.nameadd}>{item.address}</Text>
-            <View style={{ flexDirection: 'row', alignItems: "center" }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <Star score={item.rating} style={styles.starStyle} />
-                    <Text>{item.rating}</Text>
-                </View>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", }}>
-                    <View style={{ flex: 1, flexDirection: 'row', marginLeft: 10, justifyContent: "center" }}>
-                        <Icon style={{}} name="eye" size={15} color="black" />
-                        <Text style={{ fontSize: 10 }}>999</Text>
-                    </View>
-
-                    <View style={{}}>
-                        <Icon style={{}} name="heart" size={18} color="red" />
-                    </View>
-
-                </View>
-            </View>
-        </View>
-    </TouchableOpacity>
-
-);
 
 export default function Search({ route, navigation }) {
 
@@ -48,6 +11,44 @@ export default function Search({ route, navigation }) {
     const [location, setLocation] = React.useState([])
     const [search, setSearch] = React.useState([])
 
+    const renderItem = ({ item }) => (
+        <TouchableOpacity
+            style={styles.container}
+            onPress={() => {
+                console.log(item.id)
+                navigation.navigate('DetailLocation', {
+                    id: item.id
+                })
+            }}
+        >
+            <Image source={{ uri: item.thumbnail }}
+                style={styles.Catimg}
+            />
+            <View style={styles.cont}>
+                <Text style={styles.nameqr}>{item.name}</Text>
+                <Text style={styles.nameadd}>{item.address}</Text>
+                <View style={{ flexDirection: 'row', alignItems: "center" }}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Star score={item.rating} style={styles.starStyle} />
+                        <Text>{item.rating}</Text>
+                    </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", }}>
+                        <View style={{ flex: 1, flexDirection: 'row', marginLeft: 10, justifyContent: "center" }}>
+                            <Icon style={{}} name="eye" size={15} color="black" />
+                            <Text style={{ fontSize: 10 }}>999</Text>
+                        </View>
+    
+                        <View style={{}}>
+                            <Icon style={{}} name="heart" size={18} color="red" />
+                        </View>
+    
+                    </View>
+                </View>
+            </View>
+        </TouchableOpacity>
+    
+    );
+    
     function removeAccents(str) {
         return str.normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')

@@ -4,7 +4,7 @@ import { Text, View, Image, StyleSheet, SafeAreaView, ScrollView, Button, Toucha
 import Star from 'react-native-star-view';
 import MapView, { Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import QRCode from 'react-native-qrcode-svg';
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 
@@ -269,15 +269,17 @@ export default function DetailLocation({ route, navigation }) {
 
                         </View>
                         {/* QR CODE GENERATE  */}
-                        <View style={{ flex: 1 }} >
+                        {/* <View style={{ flex: 1 }} >
                             <Image
                                 style={{
                                     height: '100%',
                                     width: '100%'
                                 }}
                                 source={{ uri: 'https://s3-alpha-sig.figma.com/img/59b2/5a79/aa8cefd1a60e87f9557138ed02943e73?Expires=1619395200&Signature=RNgE2alGlUfmPc7-7LTD28D9Vnu5jSpKBP2ci9WD7Fh5Dxk950GesltQ9KqgEm~BktI3ECwY0P-7EmFGIzhQxWdTiBfH-ag-RXy95goL6gUtztJKIAEzsA5GxHQpIxll1BIgDkvo0RoWHLQE-4yL7z7cqb5QOYHKFCRHy8lzSAH17s9XAYQtV2b085ZRhoKvZ1JWSpR118YA3edju-bZ-gf2TMXkEth8lpBuLjRFqOSvSfMGSfdreyhrVviU-uYzTCxZwJloj3RW-avDLcw0SqEQE5OjU38PaTDZUaNAG11WzjwicKWkjyX2-2DR~0sHmnjPDldJjgzh38naJGTgYQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', }} />
-                        </View>
-
+                        </View> */}
+                        <QRCode
+                            value={locationData.id}
+                        />
                     </View>
                 </SafeAreaView>
                 <SafeAreaView>
